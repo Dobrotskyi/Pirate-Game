@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5879992085940801406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2752327620844091177}
+  - component: {fileID: 594347356930123411}
+  m_Layer: 0
+  m_Name: TrajectoryLines
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2752327620844091177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5879992085940801406}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &594347356930123411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5879992085940801406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5ac0a5c71b06d49a7aeaac9d09c2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _trajectoryDrawer: {fileID: 7094704382743686202, guid: c6c2f7533572aa64f89c3d677d85cb1d, type: 3}
+  _trajectory:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.009185791
+      value: 0.0007324219
+      inSlope: -0.15081789
+      outSlope: -0.15081789
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.30792156
+    - serializedVersion: 3
+      time: 0.73059726
+      value: -0.38878125
+      inSlope: -1.2706242
+      outSlope: -1.2706242
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.22979654
+      outWeight: 0.63950163
+    - serializedVersion: 3
+      time: 1.0140018
+      value: -1.5067015
+      inSlope: -8.879282
+      outSlope: -8.879282
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16967447
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
