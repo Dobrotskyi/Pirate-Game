@@ -37,7 +37,6 @@ public class Cannon : MonoBehaviour
 
     public void Aim()
     {
-
         Vector3 direction = _barrel.transform.position - _target.transform.position;
         Quaternion rotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), 5 * Time.deltaTime);

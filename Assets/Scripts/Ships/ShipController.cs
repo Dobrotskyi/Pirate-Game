@@ -3,20 +3,21 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
-    [SerializeField] private Ship—haracteristics _ship—haracteristics;
 
-    [SerializeField] private float[] _targetYLimits = new float[2];
-    [SerializeField] private float[] _targetZLimits = new float[2];
+
+    [SerializeField] protected float[] _targetYLimits = new float[2];
+    [SerializeField] protected float[] _targetZLimits = new float[2];
 
 
     protected List<Cannon> _leftCannons;
     protected List<Cannon> _rightCannons;
 
+    protected Transform _mainLeftTarget;
+    protected Transform _mainRightTarget;
+
+    [SerializeField] private Ship—haracteristics _ship—haracteristics;
     private Rigidbody _rigidbody;
     private bool _canMoveForward = true;
-
-    private Transform _mainLeftTarget;
-    private Transform _mainRightTarget;
 
     public virtual void SetLeftCannons()
     {
@@ -72,12 +73,12 @@ public class ShipController : MonoBehaviour
             cannon.RestoreDefaultPosition();
     }
 
-    public void AimLeftCannons(Vector2 mouseInput)
+    public virtual void AimLeftCannons(Vector2 mouseInput)
     {
         AimCannons(mouseInput, _mainLeftTarget, _leftCannons);
     }
 
-    public void AimRightCannons(Vector2 mouseInput)
+    public virtual void AimRightCannons(Vector2 mouseInput)
     {
         mouseInput.x = -mouseInput.x;
         AimCannons(mouseInput, _mainRightTarget, _rightCannons);
@@ -115,7 +116,7 @@ public class ShipController : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         _leftCannons = new List<Cannon>();
         _rightCannons = new List<Cannon>();

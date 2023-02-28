@@ -9,6 +9,9 @@ public class ShipCameraSettings : MonoBehaviour
     [SerializeField] private Vector3 _rightBody;
     [SerializeField] private Vector3 _aim = Vector3.zero;
 
+    [SerializeField] private GameObject _mainLeftTarget;
+    [SerializeField] private GameObject _mainRightTarget;
+
     private List<CinemachineVirtualCamera> _cmCameras = new List<CinemachineVirtualCamera>(3);
 
     private void OnEnable()
@@ -25,10 +28,10 @@ public class ShipCameraSettings : MonoBehaviour
         _cmCameras[0].LookAt = targetTransform;
         _cmCameras[0].GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = _backBody;
 
-        _cmCameras[1].LookAt = transform.Find("MainLeftTarget");
+        _cmCameras[1].LookAt = _mainLeftTarget.transform;
         _cmCameras[1].GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = _leftBody;
 
-        _cmCameras[2].LookAt = transform.Find("MainRightTarget");
+        _cmCameras[2].LookAt = _mainRightTarget.transform;
         _cmCameras[2].GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = _rightBody;
 
         if (_aim != Vector3.zero)

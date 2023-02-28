@@ -1576,16 +1576,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229332e87344ed047a337347aa5012c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "_ship\u0421haracteristics": {fileID: 3100386504847990009}
-  _targetXLimits:
-  - 0
-  - 0
   _targetYLimits:
   - 0
   - 8
   _targetZLimits:
   - -10
   - 10
+  "_ship\u0421haracteristics": {fileID: 3100386504847990009}
+  _targetPrefab: {fileID: 5905824303975257117, guid: 59d12362ceda2784ca56d3cf29d7b4f5, type: 3}
 --- !u!114 &3100386504847990009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1618,6 +1616,8 @@ MonoBehaviour:
   _leftBody: {x: 7, y: 5.66, z: 0}
   _rightBody: {x: -7, y: 5.66, z: 0}
   _aim: {x: 0, y: 0, z: 0}
+  _mainLeftTarget: {fileID: 2163028208580977982}
+  _mainRightTarget: {fileID: 2163028208580977982}
 --- !u!54 &2078796908654853011
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3262,6 +3262,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3234836930430135050}
     m_Modifications:
+    - target: {fileID: 1467020551487472352, guid: 8d5e291aa0914d64088319c0818f6a4e, type: 3}
+      propertyPath: _mainLeftTarget
+      value: 
+      objectReference: {fileID: 6191834208334352539}
     - target: {fileID: 1467020551487472352, guid: 8d5e291aa0914d64088319c0818f6a4e, type: 3}
       propertyPath: _mainRightTarget
       value: 

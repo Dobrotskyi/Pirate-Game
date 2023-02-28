@@ -4,14 +4,11 @@ using UnityEngine;
 public class TargetCreator : MonoBehaviour
 {
     [SerializeField] private GameObject _newTarget;
-    private GameObject _mainLeftTarget;
-    private GameObject _mainRightTarget;
+    [SerializeField] private GameObject _mainLeftTarget;
+    [SerializeField] private GameObject _mainRightTarget;
 
     private void OnEnable()
     {
-        _mainLeftTarget = transform.parent.Find("MainLeftTarget").gameObject;
-        _mainRightTarget = transform.parent.Find("MainRightTarget").gameObject;
-
         List<GameObject> cannons = new List<GameObject>();
         Transform cannonsParent = transform.parent.Find("Cannons");
         for (int i = 0; i < cannonsParent.childCount; i++)

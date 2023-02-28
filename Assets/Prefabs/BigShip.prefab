@@ -2003,16 +2003,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8137d94063ff04fad1ec0018a9d7e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "_ship\u0421haracteristics": {fileID: 4304828075367370006}
-  _targetXLimits:
-  - 5
-  - 40
   _targetYLimits:
   - 2
   - 12
   _targetZLimits:
   - -10
   - 10
+  "_ship\u0421haracteristics": {fileID: 4304828075367370006}
 --- !u!114 &4790506616245342970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2057,6 +2054,8 @@ MonoBehaviour:
   _leftBody: {x: 23.53, y: 20, z: 0}
   _rightBody: {x: -23.53, y: 20, z: 0}
   _aim: {x: 0, y: 9.5, z: 0.6}
+  _mainLeftTarget: {fileID: 2608210918735609249}
+  _mainRightTarget: {fileID: 3966250681110141251}
 --- !u!54 &892352146455587452
 Rigidbody:
   m_ObjectHideFlags: 0
