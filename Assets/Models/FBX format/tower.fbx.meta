@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: _defaultMat
+    second: {fileID: 2100000, guid: 8a56688910183bb47adef5ff796355c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: iron
     second: {fileID: 2100000, guid: 072f754c2434422419fc5ecfb87e21db, type: 2}
   - first:
