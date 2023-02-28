@@ -51,6 +51,4 @@ public class SmallShipController : ShipController
         _target = Instantiate(_targetPrefab, transform).transform;
         _mainRightTarget.parent = _target;
     }
-
-
 }

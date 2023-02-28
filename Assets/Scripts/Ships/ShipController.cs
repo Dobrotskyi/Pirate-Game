@@ -3,11 +3,8 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
-
-
     [SerializeField] protected float[] _targetYLimits = new float[2];
     [SerializeField] protected float[] _targetZLimits = new float[2];
-
 
     protected List<Cannon> _leftCannons;
     protected List<Cannon> _rightCannons;

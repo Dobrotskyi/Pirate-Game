@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private ShipCameraController _shipCameraContoller;
