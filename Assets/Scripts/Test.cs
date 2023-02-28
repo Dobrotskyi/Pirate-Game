@@ -6,6 +6,6 @@ public class Test : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log(collision.gameObject.tag);
+        Debug.Log(collision.gameObject.tag);
     }
 }
