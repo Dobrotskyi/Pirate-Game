@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
+    [SerializeField] protected float[] _targetXLimits = new float[2];
     [SerializeField] protected float[] _targetYLimits = new float[2];
     [SerializeField] protected float[] _targetZLimits = new float[2];
 
@@ -72,6 +73,7 @@ public class ShipController : MonoBehaviour
 
     public virtual void AimLeftCannons(Vector2 mouseInput)
     {
+        mouseInput.y = -mouseInput.y;
         AimCannons(mouseInput, _mainLeftTarget, _leftCannons);
     }
 
@@ -83,10 +85,15 @@ public class ShipController : MonoBehaviour
 
     public void AimCannons(Vector2 mouseInput, Transform target, List<Cannon> cannons)
     {
+        float newX = target.localPosition.x + (mouseInput.y * 10f * Time.deltaTime);
+        if (target.localPosition.x > 0)
+            newX = Mathf.Clamp(newX, _targetXLimits[0], _targetXLimits[1]);
+        else
+            newX = Mathf.Clamp(newX, -_targetXLimits[1], -_targetXLimits[0]);
         float newZ = Mathf.Clamp(target.localPosition.z + (mouseInput.x * 10f * Time.deltaTime), _targetZLimits[0], _targetZLimits[1]);
-        float newY = Mathf.Clamp(target.localPosition.y + (mouseInput.y * 10f * Time.deltaTime), _targetYLimits[0], _targetYLimits[1]);
+        //float newY = Mathf.Clamp(target.localPosition.y + (mouseInput.y * 10f * Time.deltaTime), _targetYLimits[0], _targetYLimits[1]);
 
-        target.localPosition = new Vector3(target.localPosition.x, newY, newZ);
+        target.localPosition = new Vector3(newX, target.localPosition.y, newZ);
 
         foreach (Cannon cannon in cannons)
             cannon.Aim();
