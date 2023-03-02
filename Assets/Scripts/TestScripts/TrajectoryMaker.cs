@@ -22,7 +22,7 @@ public class TrajectoryMaker : MonoBehaviour
         for (int i = 0; i < points.Length; i++)
         {
             float time = i * 0.1f;
-            points[i] = origin + (velocity / 2) * time + Physics.gravity * (time * time / 2f);//2 - масса ядра, надо исправить
+            points[i] = origin + velocity * time + Physics.gravity * (time * time / 2f);
 
             if (points[i].y < 0)
             {

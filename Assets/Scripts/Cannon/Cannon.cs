@@ -40,19 +40,19 @@ public class Cannon : MonoBehaviour
         Vector3 direction = _barrel.transform.position - _target.transform.position;
         Quaternion rotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), 5 * Time.deltaTime);
-        //_barrel.transform.rotation = Quaternion.Lerp(_barrel.transform.rotation, Quaternion.Euler(rotation.eulerAngles.x, _barrel.transform.rotation.eulerAngles.y, _barrel.transform.rotation.eulerAngles.z), 5 * Time.deltaTime);
 
-        Vector3 launchVector = _cannonShotForce * _cannonballSpawner.forward;
+        Vector3 launchVector = _cannonShotForce * _cannonballSpawner.forward / _cannonball.GetComponent<Rigidbody>().mass;
+        float launchAngle = CannonLaunchAngleCounter.GetLaunchAngle(_cannonballSpawner, _target.transform, launchVector);
 
-        
-
-        float launchAngle = CannonLaunchAngleCounter.GetLaunchAngle(_cannonballSpawner,_target.transform,launchVector);
-        _barrel.transform.localRotation = Quaternion.Euler(launchAngle,0,0);
+        if (float.IsNaN(launchAngle))
+            Debug.Log("Target out of reach");
+        else
+            _barrel.transform.localRotation = Quaternion.Euler(launchAngle, 0, 0);
 
         _trajectoryMaker.ShowTrajectory(_cannonballSpawner.position, launchVector);
     }
 
-    public void SetTarget(GameObject target) 
+    public void SetTarget(GameObject target)
     {
         _target = target;
     }

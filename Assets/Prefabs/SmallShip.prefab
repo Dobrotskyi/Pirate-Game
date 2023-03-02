@@ -1576,6 +1576,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229332e87344ed047a337347aa5012c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _targetXLimits:
+  - 0
+  - 0
   _targetYLimits:
   - 0
   - 8
@@ -1598,7 +1601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 10
   _shipRotationSpeed: 60
-  _cannonShotForce: 50
+  _cannonShotForce: 500
   _cannonsCooldown: 2
 --- !u!114 &-1948268447820406476
 MonoBehaviour:

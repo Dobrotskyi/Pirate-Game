@@ -87,12 +87,14 @@ public class ShipController : MonoBehaviour
     {
         float newX = target.localPosition.x + (mouseInput.y * 10f * Time.deltaTime);
         if (target.localPosition.x > 0)
+        {
             newX = Mathf.Clamp(newX, _targetXLimits[0], _targetXLimits[1]);
+        }
         else
+        {
             newX = Mathf.Clamp(newX, -_targetXLimits[1], -_targetXLimits[0]);
+        }
         float newZ = Mathf.Clamp(target.localPosition.z + (mouseInput.x * 10f * Time.deltaTime), _targetZLimits[0], _targetZLimits[1]);
-        //float newY = Mathf.Clamp(target.localPosition.y + (mouseInput.y * 10f * Time.deltaTime), _targetYLimits[0], _targetYLimits[1]);
-
         target.localPosition = new Vector3(newX, target.localPosition.y, newZ);
 
         foreach (Cannon cannon in cannons)

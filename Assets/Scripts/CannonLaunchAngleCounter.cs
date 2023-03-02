@@ -4,45 +4,48 @@ public static class CannonLaunchAngleCounter
 {
     private const float G = 9.81f;
 
-    public static float LaunchAngle(float xDist,float yDist, Vector3 velocity)
+    public static float GetLaunchAngle(Transform origin, Transform target, Vector3 velocity)
     {
-        float mag = (velocity/2).magnitude;
-        Debug.Log($"{xDist}, {yDist}");
-        //float g = Physics.gravity.magnitude;
+        float xDist = RelativeToMainDistanceX(origin, target);
+        float yDist = target.position.y - origin.position.y;
 
+        float mag = velocity.magnitude;
         float underSqr = Mathf.Pow(mag, 4) - G * (G * xDist * xDist + 2 * yDist * mag * mag);
-        Debug.Log(underSqr);
 
         if (underSqr < 0)
             return float.NaN;
 
-        float underATan = (mag * mag + Mathf.Sqrt(underSqr)) / (G * xDist);
+        float underATan = (mag * mag - Mathf.Sqrt(underSqr)) / (G * xDist);
         float launchAngle = Mathf.Atan(underATan) * Mathf.Rad2Deg;
         return launchAngle;
     }
 
-    public static float GetLaunchAngle(Transform origin, Transform target, Vector3 velocity) 
+    private static float RelativeToMainDistanceX(Transform origin, Transform target)
     {
-        float originX = GetXPosRelativeToMainGameObject(origin);
-        float originY = GetYPosRelativeToMainGameObject(origin);
+        if (HaveSameMainParent(origin, target) == false)
+            return -1;
 
-        float targetX = GetXPosRelativeToMainGameObject(target);
-        float targetY = GetYPosRelativeToMainGameObject(target);
-
-        float mag = (velocity/2).magnitude;//2 - Масса ядра
-
-        return 0;
-    }   
-    
-    private static float GetXPosRelativeToMainGameObject(Transform transform) 
-    {
-
-
-        return 0;
+        float distance = Vector3.Distance(origin.position, target.position);
+        float xDistance = Mathf.Sqrt(Mathf.Pow(distance,2) - Mathf.Pow(target.position.y - origin.position.y,2));
+        return xDistance;
     }
 
-    private static float GetYPosRelativeToMainGameObject(Transform transform) 
+    private static bool HaveSameMainParent(Transform first, Transform second)
     {
-        return 0;
+        Transform firstMainParent = first;
+        Transform secondMainParent = second;
+
+        while (firstMainParent.parent != null)
+            firstMainParent = firstMainParent.parent;
+
+        while (secondMainParent.parent != null)
+            secondMainParent = secondMainParent.parent;
+
+        if (firstMainParent.gameObject != secondMainParent.gameObject)
+        {
+            Debug.Log("Error: Objects have different main parents");
+            return false;
+        }
+        return true;
     }
 }

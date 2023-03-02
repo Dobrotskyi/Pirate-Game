@@ -1279,7 +1279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetXLimits:
   - 2
-  - 10
+  - 40
   _targetYLimits:
   - 0
   - 4
@@ -1301,7 +1301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 10
   _shipRotationSpeed: 70
-  _cannonShotForce: 70
+  _cannonShotForce: 500
   _cannonsCooldown: 2
 --- !u!114 &4502848386172879422
 MonoBehaviour:
