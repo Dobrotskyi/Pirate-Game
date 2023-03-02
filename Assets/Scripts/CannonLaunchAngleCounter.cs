@@ -26,7 +26,7 @@ public static class CannonLaunchAngleCounter
             return -1;
 
         float distance = Vector3.Distance(origin.position, target.position);
-        float xDistance = Mathf.Sqrt(Mathf.Pow(distance,2) - Mathf.Pow(target.position.y - origin.position.y,2));
+        float xDistance = Mathf.Sqrt(Mathf.Pow(distance, 2) - Mathf.Pow(target.position.y - origin.position.y, 2));
         return xDistance;
     }
 
