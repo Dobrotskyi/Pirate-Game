@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraSetter : MonoBehaviour
@@ -10,21 +9,22 @@ public class CameraSetter : MonoBehaviour
 
     private void OnEnable()
     {
-        _createdCamera = Instantiate(_mainCamera, Vector3.zero, Quaternion.identity);
-        _createdCamera.name = "MainCamera";
-
         _createdParentCMCameras = Instantiate(_parentCMCameras, Vector3.zero, Quaternion.identity);
         _createdParentCMCameras.name = "CinemachineCameras";
-
         _createdParentCMCameras.transform.GetChild(0).name = "BackCamera";
         _createdParentCMCameras.transform.GetChild(1).name = "LeftCannonsCamera";
         _createdParentCMCameras.transform.GetChild(2).name = "RightCannonsCamera";
 
-        List<GameObject> cameras = new List<GameObject>();
-        cameras.Add(_createdParentCMCameras.transform.GetChild(0).gameObject);
-        cameras.Add(_createdParentCMCameras.transform.GetChild(1).gameObject);
-        cameras.Add(_createdParentCMCameras.transform.GetChild(2).gameObject);
-        _createdCamera.GetComponent<ShipCameraController>().SetCinemachineCameras(cameras);
+        _createdCamera = Instantiate(_mainCamera, Vector3.zero, Quaternion.identity);
+        _createdCamera.name = "MainCamera";
+
+
+
+        //List<GameObject> cameras = new List<GameObject>();
+        //cameras.Add(_createdParentCMCameras.transform.GetChild(0).gameObject);
+        //cameras.Add(_createdParentCMCameras.transform.GetChild(1).gameObject);
+        //cameras.Add(_createdParentCMCameras.transform.GetChild(2).gameObject);
+        //_createdCamera.GetComponent<ShipCameraController>().SetCinemachineCameras(cameras);
     }
 
     private void OnDisable()

@@ -23,13 +23,16 @@ public class ShipCameraController : MonoBehaviour
         _cinemachineCameras[0].SetActive(true);
     }
 
-    public void SetCinemachineCameras(List<GameObject> cameras) 
+    public void SetCinemachineCameras(List<GameObject> cameras)
     {
         _cinemachineCameras = cameras;
     }
 
     private void OnEnable()
     {
+        GameObject cmCameras = GameObject.Find("CinemachineCameras");
+        for (int i = 0; i < cmCameras.transform.childCount; i++)
+            _cinemachineCameras.Add(cmCameras.transform.GetChild(i).gameObject);
         GameObject.Find("Player").GetComponent<PlayerInput>().SetShipCameraController(this);
     }
 
