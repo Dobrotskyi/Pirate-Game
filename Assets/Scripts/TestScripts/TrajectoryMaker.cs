@@ -31,7 +31,7 @@ public class TrajectoryMaker : MonoBehaviour
         _trajectoryLine.SetPositions(points.ToArray());
     }
 
-    public void HideLines()
+    public void HideTrajectory()
     {
         _trajectoryLine.enabled = false;
     }

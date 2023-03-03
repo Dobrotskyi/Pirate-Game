@@ -1,40 +1,41 @@
-using Cinemachine;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipCameraController : MonoBehaviour
 {
-    private List<GameObject> _cinemachineCamera = new List<GameObject>();
-
-    private void Start()
-    {
-        GameObject cameras = GameObject.Find("CinemachineCameras");
-        _cinemachineCamera.Add(cameras.transform.Find("BackCamera").gameObject);
-        _cinemachineCamera.Add(cameras.transform.Find("LeftCannonsCamera").gameObject);
-        _cinemachineCamera.Add(cameras.transform.Find("RightCannonsCamera").gameObject);
-    }
+    private List<GameObject> _cinemachineCameras = new List<GameObject>();
 
     public void SetCameraLeftCannons()
     {
         SetAllFalse();
-        _cinemachineCamera[1].SetActive(true);
+        _cinemachineCameras[1].SetActive(true);
     }
 
     public void SetCameraRightCannons()
     {
         SetAllFalse();
-        _cinemachineCamera[2].SetActive(true);
+        _cinemachineCameras[2].SetActive(true);
     }
 
     public void SetBackCamera()
     {
         SetAllFalse();
-        _cinemachineCamera[0].SetActive(true);
+        _cinemachineCameras[0].SetActive(true);
+    }
+
+    public void SetCinemachineCameras(List<GameObject> cameras) 
+    {
+        _cinemachineCameras = cameras;
+    }
+
+    private void OnEnable()
+    {
+        GameObject.Find("Player").GetComponent<PlayerInput>().SetShipCameraController(this);
     }
 
     private void SetAllFalse()
     {
-        foreach (GameObject obj in _cinemachineCamera)
+        foreach (GameObject obj in _cinemachineCameras)
         {
             obj.SetActive(false);
         }

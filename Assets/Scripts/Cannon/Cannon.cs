@@ -32,7 +32,7 @@ public class Cannon : MonoBehaviour
     public void RestoreDefaultPosition()
     {
         transform.localRotation = Quaternion.Lerp(transform.localRotation, _defaultRotation, 0.05f);
-        _trajectoryMaker.HideLines();
+        _trajectoryMaker.HideTrajectory();
     }
 
     public void Aim()

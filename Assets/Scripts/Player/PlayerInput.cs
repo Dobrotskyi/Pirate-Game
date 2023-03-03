@@ -3,12 +3,17 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField] private ShipCameraController _shipCameraContoller;
+    private ShipCameraController _shipCameraContoller;
     private ShipController _shipController;
 
     public void SetShipController(ShipController shipController)
     {
         _shipController = shipController;
+    }
+
+    public void SetShipCameraController(ShipCameraController shipCameraController)
+    {
+        _shipCameraContoller = shipCameraController;
     }
 
     private void FixedUpdate()
