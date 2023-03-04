@@ -6815,7 +6815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1e-45
+      value: -1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_LocalRotation.z
@@ -6901,6 +6901,14 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 4350310416063003365}
+    - target: {fileID: 6957137698508460261, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: m_ZDamping
+      value: 5.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957137698508460261, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: m_YawDamping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6957137698508460261, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_FollowOffset.y
       value: 18.04

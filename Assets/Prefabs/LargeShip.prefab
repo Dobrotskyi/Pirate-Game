@@ -3358,6 +3358,22 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 3613701304156612208}
+    - target: {fileID: 6957137698508460261, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: m_XDamping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957137698508460261, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: m_YDamping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957137698508460261, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: m_ZDamping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957137698508460261, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: m_YawDamping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9026736857547346344, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: CameraDistance
       value: -8
