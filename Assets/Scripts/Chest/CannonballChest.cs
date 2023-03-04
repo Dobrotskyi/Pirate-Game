@@ -12,6 +12,5 @@ public class CannonballChest : MonoBehaviour
             collision.transform.GetComponentInParent<ShipСharacteristics>().AddCannonballs(amount);
             Destroy(gameObject);
         }
-    }
-           
+    }          
 }

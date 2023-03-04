@@ -17,14 +17,6 @@ public class CameraSetter : MonoBehaviour
 
         _createdCamera = Instantiate(_mainCamera, Vector3.zero, Quaternion.identity);
         _createdCamera.name = "MainCamera";
-
-
-
-        //List<GameObject> cameras = new List<GameObject>();
-        //cameras.Add(_createdParentCMCameras.transform.GetChild(0).gameObject);
-        //cameras.Add(_createdParentCMCameras.transform.GetChild(1).gameObject);
-        //cameras.Add(_createdParentCMCameras.transform.GetChild(2).gameObject);
-        //_createdCamera.GetComponent<ShipCameraController>().SetCinemachineCameras(cameras);
     }
 
     private void OnDisable()
