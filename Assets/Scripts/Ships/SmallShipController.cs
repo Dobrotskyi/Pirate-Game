@@ -23,18 +23,8 @@ public class SmallShipController : ShipController
 
     public override void AimLeftCannons(Vector2 mouseInput)
     {
-        AimCannons(mouseInput);
-    }
-
-    public override void AimRightCannons(Vector2 mouseInput)
-    {
-        AimCannons(mouseInput);
-    }
-
-    private void AimCannons(Vector2 mouseInput)
-    {
-
-        _targetRotationPoint.localRotation = Quaternion.Euler(0, mouseInput.x * 0.5f + _targetRotationPoint.localRotation.eulerAngles.y, 0);
+        float xRotation = AngleClamper.ClampAngle(mouseInput.x * 0.5f + _targetRotationPoint.localRotation.eulerAngles.y, 90, -90);
+        _targetRotationPoint.localRotation = Quaternion.Euler(0, xRotation, 0);
 
         float newX = _mainRightTarget.localPosition.x + (mouseInput.y * 10f * Time.deltaTime);
         if (_mainRightTarget.localPosition.x > 0)
@@ -45,12 +35,32 @@ public class SmallShipController : ShipController
         {
             newX = Mathf.Clamp(newX, -_targetXLimits[1], -_targetXLimits[0]);
         }
-       _mainRightTarget.localPosition = new Vector3(newX, _mainRightTarget.localPosition.y, _mainRightTarget.localPosition.z);
+        _mainRightTarget.localPosition = new Vector3(newX, _mainRightTarget.localPosition.y, _mainRightTarget.localPosition.z);
 
         foreach (Cannon cannon in _rightCannons)
             cannon.Aim();
     }
 
+    public override void AimRightCannons(Vector2 mouseInput)
+    {
+        float xRotation = AngleClamper.ClampAngle(mouseInput.x * 0.5f + _targetRotationPoint.localRotation.eulerAngles.y, -90, 90);
+        _targetRotationPoint.localRotation = Quaternion.Euler(0, xRotation, 0);
+
+        float newX = _mainRightTarget.localPosition.x + (mouseInput.y * 10f * Time.deltaTime);
+        if (_mainRightTarget.localPosition.x > 0)
+        {
+            newX = Mathf.Clamp(newX, _targetXLimits[0], _targetXLimits[1]);
+        }
+        else
+        {
+            newX = Mathf.Clamp(newX, -_targetXLimits[1], -_targetXLimits[0]);
+        }
+        _mainRightTarget.localPosition = new Vector3(newX, _mainRightTarget.localPosition.y, _mainRightTarget.localPosition.z);
+
+        foreach (Cannon cannon in _rightCannons)
+            cannon.Aim();
+    }
+      
     protected override void OnEnable()
     {
         base.OnEnable();
