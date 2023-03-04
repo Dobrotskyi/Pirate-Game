@@ -1617,6 +1617,7 @@ MonoBehaviour:
   _shipRotationSpeed: 60
   _cannonShotForce: 500
   _cannonsCooldown: 2
+  _cannonFOV: -1
 --- !u!54 &2078796908654853011
 Rigidbody:
   m_ObjectHideFlags: 0

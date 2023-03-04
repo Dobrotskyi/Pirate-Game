@@ -1292,7 +1292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetXLimits:
-  - 2
+  - 5.6
   - 40
   _targetYLimits:
   - 0
@@ -1317,6 +1317,7 @@ MonoBehaviour:
   _shipRotationSpeed: 70
   _cannonShotForce: 500
   _cannonsCooldown: 2
+  _cannonFOV: 100
 --- !u!54 &151820541849368297
 Rigidbody:
   m_ObjectHideFlags: 0

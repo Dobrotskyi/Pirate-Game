@@ -8,6 +8,8 @@ public class Ship—haracteristics : MonoBehaviour
     [SerializeField] private float _cannonShotForce;
     [SerializeField] private float _cannonsCooldown;
 
+    [SerializeField] private float _cannonFOV;
+
     private int _cannonBallsAmt;
     private int _maxCannonBallsAmt;
 
@@ -18,6 +20,11 @@ public class Ship—haracteristics : MonoBehaviour
     public float Speed
     {
         get { return _speed; }
+    }
+
+    public float CannonFOV 
+    {
+        get { return _cannonFOV;}
     }
 
     public Vector3 TrackVelocity
