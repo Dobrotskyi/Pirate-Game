@@ -6931,7 +6931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9026736857547346344, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: ShoulderOffset.x
-      value: -6
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9026736857547346344, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: ShoulderOffset.y

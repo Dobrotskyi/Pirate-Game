@@ -3229,11 +3229,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000017109125
+      value: -0.000000017109
       objectReference: {fileID: 0}
     - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000018280399
+      value: 0.0000000018280266
       objectReference: {fileID: 0}
     - target: {fileID: 2489862403879658654, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_RootOrder
@@ -3283,6 +3283,10 @@ PrefabInstance:
       propertyPath: CameraDistance
       value: -4
       objectReference: {fileID: 0}
+    - target: {fileID: 4221017268426851737, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: ShoulderOffset.x
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 5660080978853756105, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_Name
       value: CinemachineCameras
@@ -3306,6 +3310,10 @@ PrefabInstance:
     - target: {fileID: 9026736857547346344, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: CameraDistance
       value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026736857547346344, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: ShoulderOffset.x
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 824d9314236432b479bc61fef7528ee8, type: 3}

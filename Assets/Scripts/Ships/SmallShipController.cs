@@ -40,7 +40,7 @@ public class SmallShipController : ShipController
     {
         if (!_facingRight)
         {
-            _targetRotationPoint.localRotation = Quaternion.Euler(0, 180, 0);
+            _targetRotationPoint.localRotation = Quaternion.Euler(0, 0, 0);
             _facingRight = true;
         }
 
