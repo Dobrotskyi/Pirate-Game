@@ -37,6 +37,12 @@ public class Cannon : MonoBehaviour
 
     public void Aim()
     {
+        MainPartAim();
+        BarrelAim();               
+    }
+
+    private void MainPartAim() 
+    {
         Vector3 direction = _barrel.transform.position - _target.position;
         Quaternion rotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), 5 * Time.deltaTime);
@@ -45,8 +51,11 @@ public class Cannon : MonoBehaviour
         {
             float xRotation = AngleClamper.ClampAngle(transform.localRotation.eulerAngles.y, _defaultRotation.eulerAngles.y - _ship—haracteristics.CannonFOV / 2, _defaultRotation.eulerAngles.y + _ship—haracteristics.CannonFOV / 2);
             transform.localRotation = Quaternion.Euler(0, xRotation, 0);
-        }  
-        
+        }
+    }
+
+    private void BarrelAim() 
+    {
         Vector3 launchVector = _cannonShotForce * _cannonballSpawner.forward / _cannonball.GetComponent<Rigidbody>().mass;
         float launchAngle = CannonLaunchAngleCounter.GetLaunchAngle(_cannonballSpawner, _target, launchVector);
 
