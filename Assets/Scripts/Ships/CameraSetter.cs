@@ -1,27 +1,22 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraSetter : MonoBehaviour
 {
-    [SerializeField] private GameObject _mainCamera;
-    [SerializeField] private GameObject _parentCMCameras;
-    private GameObject _createdCamera;
-    private GameObject _createdParentCMCameras;
+    [SerializeField] private GameObject _createdParentCMCameras;
 
     private void OnEnable()
     {
-        _createdParentCMCameras = Instantiate(_parentCMCameras, Vector3.zero, Quaternion.identity);
-        _createdParentCMCameras.name = "CinemachineCameras";
-        _createdParentCMCameras.transform.GetChild(0).name = "BackCamera";
-        _createdParentCMCameras.transform.GetChild(1).name = "LeftCannonsCamera";
-        _createdParentCMCameras.transform.GetChild(2).name = "RightCannonsCamera";
+        List<GameObject> cameras = new List<GameObject>();
+        for (int i = 0; i < _createdParentCMCameras.transform.childCount; i++)
+            cameras.Add(_createdParentCMCameras.transform.GetChild(i).gameObject);
 
-        _createdCamera = Instantiate(_mainCamera, Vector3.zero, Quaternion.identity);
-        _createdCamera.name = "MainCamera";
+        GameObject.Find("MainCamera").GetComponent<ShipCameraController>().SetCameras(cameras);
+            _createdParentCMCameras.transform.parent = null;
     }
 
     private void OnDisable()
     {
-        Destroy(_createdCamera);
         Destroy(_createdParentCMCameras);
     }
 }

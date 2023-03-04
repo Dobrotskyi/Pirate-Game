@@ -26,9 +26,11 @@ public class SmallShipController : ShipController
 
     public override void AimLeftCannons(Vector2 mouseInput)
     {
-        if (_facingRight)
-            _mainRightTarget.localPosition = new Vector3(-_startingTargetPosition.x, _startingTargetPosition.y, _startingTargetPosition.z);
-
+        if (_facingRight) 
+        {
+            _facingRight = false;
+            _targetRotationPoint.localRotation = Quaternion.Euler(0,180,0);
+        }
         float xRotation = AngleClamper.ClampAngle(mouseInput.x * 0.5f + _targetRotationPoint.localRotation.eulerAngles.y, 90, -90);
         _targetRotationPoint.localRotation = Quaternion.Euler(0, xRotation, 0);
         AimCannons(mouseInput);
@@ -36,8 +38,11 @@ public class SmallShipController : ShipController
 
     public override void AimRightCannons(Vector2 mouseInput)
     {
-        if(!_facingRight)
-            _mainRightTarget.localPosition = _startingTargetPosition;
+        if (!_facingRight)
+        {
+            _targetRotationPoint.localRotation = Quaternion.Euler(0, 180, 0);
+            _facingRight = true;
+        }
 
         float xRotation = AngleClamper.ClampAngle(mouseInput.x * 0.5f + _targetRotationPoint.localRotation.eulerAngles.y, -90, 90);
         _targetRotationPoint.localRotation = Quaternion.Euler(0, xRotation, 0);
