@@ -1532,7 +1532,6 @@ GameObject:
   - component: {fileID: 6099351496539468288}
   - component: {fileID: 6945444189762270189}
   - component: {fileID: 3100386504847990009}
-  - component: {fileID: -1948268447820406476}
   - component: {fileID: 2078796908654853011}
   - component: {fileID: -6829133362175366618}
   - component: {fileID: -9019026795433361350}
@@ -1618,24 +1617,6 @@ MonoBehaviour:
   _shipRotationSpeed: 60
   _cannonShotForce: 500
   _cannonsCooldown: 2
---- !u!114 &-1948268447820406476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3234836930430135051}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7d0d7ee66ed00d46a5a21fb6266b844, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _backBody: {x: 0, y: 5.66, z: -8.93}
-  _leftBody: {x: 7, y: 5.66, z: 0}
-  _rightBody: {x: -7, y: 5.66, z: 0}
-  _aim: {x: 0, y: 0, z: 0}
-  _mainLeftTarget: {fileID: 2163028208580977982}
-  _mainRightTarget: {fileID: 2163028208580977982}
 --- !u!54 &2078796908654853011
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3226,6 +3207,34 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 938030686587429756}
+    - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9943404
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.10624119
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.000000017109125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0000000018280399
+      objectReference: {fileID: 0}
     - target: {fileID: 2489862403879658654, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -3270,6 +3279,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4221017268426851737, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: CameraDistance
+      value: -4
+      objectReference: {fileID: 0}
     - target: {fileID: 5660080978853756105, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_Name
       value: CinemachineCameras
@@ -3290,6 +3303,10 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 3234836930430135050}
+    - target: {fileID: 9026736857547346344, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
+      propertyPath: CameraDistance
+      value: -4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
 --- !u!4 &1771127372664021319 stripped
