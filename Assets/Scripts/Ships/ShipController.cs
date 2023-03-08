@@ -6,6 +6,8 @@ public class ShipController : MonoBehaviour
     [SerializeField] protected float[] _targetXLimits = new float[2];
     [SerializeField] protected float[] _targetYLimits = new float[2];
     [SerializeField] protected float[] _targetZLimits = new float[2];
+    [SerializeField] GameObject _nose;
+    [SerializeField] GameObject _steeringWheel;
 
     protected List<Cannon> _leftCannons;
     protected List<Cannon> _rightCannons;
@@ -13,7 +15,7 @@ public class ShipController : MonoBehaviour
     protected Transform _mainLeftTarget;
     protected Transform _mainRightTarget;
 
-    [SerializeField] private Ship—haracteristics _ship—haracteristics;
+    [SerializeField] private ShipCharacteristics _ship—haracteristics;
     private Rigidbody _rigidbody;
     private bool _canMoveForward = true;
 
@@ -39,16 +41,15 @@ public class ShipController : MonoBehaviour
     {
         if (_canMoveForward)
         {
-            Vector3 directionVec = transform.forward * direction;
-            _rigidbody.MovePosition(_rigidbody.position + (directionVec * (_ship—haracteristics.Speed * Time.deltaTime)));
+            Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
+            _rigidbody.AddForce(forward * _ship—haracteristics.Speed, ForceMode.Force);
+            _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _ship—haracteristics.MaxSpeed);
         }
     }
 
     public void Rotate(float rotationSide)
     {
-        Vector3 direction = new Vector3(0, transform.position.y + rotationSide, 0);
-        Quaternion deltaRotation = Quaternion.Euler(direction * (_ship—haracteristics.RotationSpeed * Time.deltaTime));
-        _rigidbody.MoveRotation(_rigidbody.rotation * deltaRotation);
+        _rigidbody.AddForceAtPosition(rotationSide * Time.deltaTime * -_steeringWheel.transform.right * _ship—haracteristics.RotationSpeed, _steeringWheel.transform.position);
     }
 
     public void ShootLeft()
@@ -148,5 +149,10 @@ public class ShipController : MonoBehaviour
     {
         if (other.CompareTag("Rock"))
             _canMoveForward = true;
+    }
+
+    private void Update()
+    {
+        _rigidbody.AddForce(_rigidbody.velocity.magnitude * Time.deltaTime * transform.forward, ForceMode.VelocityChange);
     }
 }

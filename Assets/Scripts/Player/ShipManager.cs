@@ -9,7 +9,7 @@ public class ShipManager : MonoBehaviour
         GameObject ship = Instantiate(_ship);
         transform.SetParent(ship.transform);
         ship.transform.SetParent(transform);
-        ship.transform.localPosition = Vector3.zero;
+        ship.transform.localPosition = transform.position;
         ship.transform.localRotation = Quaternion.identity;
     }
     private void Start()

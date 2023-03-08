@@ -7,7 +7,7 @@ public class Cannon : MonoBehaviour
     private float _cannonShotForce;
     private float _lastShotTime;
 
-    private ShipÑharacteristics _shipÑharacteristics;
+    private ShipCharacteristics _shipÑharacteristics;
     private Transform _cannonballSpawner;
     private TrajectoryMaker _trajectoryMaker;
 
@@ -38,10 +38,10 @@ public class Cannon : MonoBehaviour
     public void Aim()
     {
         MainPartAim();
-        BarrelAim();               
+        BarrelAim();
     }
 
-    private void MainPartAim() 
+    private void MainPartAim()
     {
         Vector3 direction = _barrel.transform.position - _target.position;
         Quaternion rotation = Quaternion.LookRotation(direction);
@@ -54,7 +54,7 @@ public class Cannon : MonoBehaviour
         }
     }
 
-    private void BarrelAim() 
+    private void BarrelAim()
     {
         Vector3 launchVector = _cannonShotForce * _cannonballSpawner.forward / _cannonball.GetComponent<Rigidbody>().mass;
         float launchAngle = CannonLaunchAngleCounter.GetLaunchAngle(_cannonballSpawner, _target, launchVector);
@@ -66,6 +66,7 @@ public class Cannon : MonoBehaviour
 
         _trajectoryMaker.ShowTrajectory(_cannonballSpawner.position, launchVector);
     }
+    //Óáğàòü â ñàìûé íèç, ïğèâàòíûå ìåòîäû íèæå ïóáëè÷íûõ
 
     public void SetTarget(GameObject target)
     {
@@ -75,7 +76,7 @@ public class Cannon : MonoBehaviour
     private void OnEnable()
     {
         _cannonballSpawner = transform.GetChild(0).GetChild(0).transform;
-        _shipÑharacteristics = transform.parent.parent.GetComponent<ShipÑharacteristics>();
+        _shipÑharacteristics = transform.parent.parent.GetComponent<ShipCharacteristics>();
         _lastShotTime = -_shipÑharacteristics.GetCannonsCooldown();
         _cannonShotForce = _shipÑharacteristics.GetCannonsShotForce();
 

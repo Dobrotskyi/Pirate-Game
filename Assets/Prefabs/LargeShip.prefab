@@ -1310,14 +1310,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3613701304156612209}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ca87a2f4fd81c94db167e40cbc5abd6, type: 3}
+  m_Script: {fileID: 11500000, guid: bf73340571883274db53e338afbead40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
-  _shipRotationSpeed: 70
-  _cannonShotForce: 500
-  _cannonsCooldown: 2
-  _cannonFOV: 100
+  _speed: 40
+  _maxSpeed: 120
+  _shipRotationSpeed: 80
+  _cannonShotForce: 450
+  _cannonsCooldown: 1.4
+  _cannonFOV: 80
 --- !u!54 &151820541849368297
 Rigidbody:
   m_ObjectHideFlags: 0

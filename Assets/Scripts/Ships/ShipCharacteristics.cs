@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ship—haracteristics : MonoBehaviour
+public class ShipCharacteristics : MonoBehaviour
 {
     [SerializeField] private float _speed;
+    [SerializeField] private float _maxSpeed;
     [SerializeField] private float _shipRotationSpeed;
     [SerializeField] private float _cannonShotForce;
     [SerializeField] private float _cannonsCooldown;
@@ -22,9 +23,14 @@ public class Ship—haracteristics : MonoBehaviour
         get { return _speed; }
     }
 
-    public float CannonFOV 
+    public float MaxSpeed
     {
-        get { return _cannonFOV;}
+        get { return _maxSpeed; }
+    }
+
+    public float CannonFOV
+    {
+        get { return _cannonFOV; }
     }
 
     public Vector3 TrackVelocity

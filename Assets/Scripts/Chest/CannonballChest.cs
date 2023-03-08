@@ -9,7 +9,7 @@ public class CannonballChest : MonoBehaviour
         if (collision.transform.CompareTag("PlayerShip")) 
         {
             int amount = Random.Range(2, 10);
-            collision.transform.GetComponentInParent<ShipСharacteristics>().AddCannonballs(amount);
+            collision.transform.GetComponentInParent<ShipCharacteristics>().AddCannonballs(amount);
             Destroy(gameObject);
         }
     }          
