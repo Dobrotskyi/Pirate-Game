@@ -1263,6 +1263,7 @@ Transform:
   - {fileID: 2181917780214901247}
   - {fileID: 558698790473681896}
   - {fileID: 5424778434050446406}
+  - {fileID: 6298944302053257270}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1300,6 +1301,7 @@ MonoBehaviour:
   _targetZLimits:
   - -7
   - 7
+  _steeringWheel: {fileID: 7838277141564036832}
   "_ship\u0421haracteristics": {fileID: 3874441641790378371}
 --- !u!114 &3874441641790378371
 MonoBehaviour:
@@ -1313,9 +1315,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf73340571883274db53e338afbead40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 40
-  _maxSpeed: 120
-  _shipRotationSpeed: 80
+  _speed: 500
+  _maxSpeed: 1000
+  _shipRotationSpeed: 60
   _cannonShotForce: 450
   _cannonsCooldown: 1.4
   _cannonFOV: 80
@@ -1328,12 +1330,12 @@ Rigidbody:
   m_GameObject: {fileID: 3613701304156612209}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_Drag: 0.5
+  m_AngularDrag: 3
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!65 &4609445624197162844
 BoxCollider:
@@ -2639,6 +2641,37 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.14
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7838277141564036832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6298944302053257270}
+  m_Layer: 0
+  m_Name: SteeringWheel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6298944302053257270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7838277141564036832}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.97}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3613701304156612208}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7984036737635715020
 GameObject:
   m_ObjectHideFlags: 0
@@ -3274,15 +3307,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.10624119
+      value: 0.10624121
       objectReference: {fileID: 0}
     - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017109
+      value: 0.000000012074104
       objectReference: {fileID: 0}
     - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000018280266
+      value: -0.0000000012900685
       objectReference: {fileID: 0}
     - target: {fileID: 2489862403879658654, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_RootOrder

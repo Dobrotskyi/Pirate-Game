@@ -6,7 +6,6 @@ public class ShipController : MonoBehaviour
     [SerializeField] protected float[] _targetXLimits = new float[2];
     [SerializeField] protected float[] _targetYLimits = new float[2];
     [SerializeField] protected float[] _targetZLimits = new float[2];
-    [SerializeField] GameObject _nose;
     [SerializeField] GameObject _steeringWheel;
 
     protected List<Cannon> _leftCannons;
@@ -42,14 +41,15 @@ public class ShipController : MonoBehaviour
         if (_canMoveForward)
         {
             Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
-            _rigidbody.AddForce(forward * _ship—haracteristics.Speed, ForceMode.Force);
+            _rigidbody.AddForceAtPosition(forward * _ship—haracteristics.Speed * Time.deltaTime, _steeringWheel.transform.position, ForceMode.Acceleration);
             _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _ship—haracteristics.MaxSpeed);
         }
     }
 
     public void Rotate(float rotationSide)
     {
-        _rigidbody.AddForceAtPosition(rotationSide * Time.deltaTime * -_steeringWheel.transform.right * _ship—haracteristics.RotationSpeed, _steeringWheel.transform.position);
+        Vector3 side = -_steeringWheel.transform.right * rotationSide;
+        _rigidbody.AddForceAtPosition(side * Time.deltaTime * _ship—haracteristics.RotationSpeed, _steeringWheel.transform.position);
     }
 
     public void ShootLeft()
@@ -151,8 +151,9 @@ public class ShipController : MonoBehaviour
             _canMoveForward = true;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        _rigidbody.AddForce(_rigidbody.velocity.magnitude * Time.deltaTime * transform.forward, ForceMode.VelocityChange);
+        Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
+        _rigidbody.velocity = forward * _rigidbody.velocity.magnitude;
     }
 }
