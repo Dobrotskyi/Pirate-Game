@@ -1632,7 +1632,6 @@ MonoBehaviour:
   _targetZLimits:
   - -10
   - 10
-  _nose: {fileID: 2988524796329036596}
   _steeringWheel: {fileID: 3590812491753273915}
   "_ship\u0421haracteristics": {fileID: 3100386504847990009}
   _targetPrefab: {fileID: 5905824303975257117, guid: 59d12362ceda2784ca56d3cf29d7b4f5, type: 3}
@@ -1650,7 +1649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 700
   _maxSpeed: 900
-  _shipRotationSpeed: 120
+  _shipRotationSpeed: 35
   _cannonShotForce: 430
   _cannonsCooldown: 1
   _cannonFOV: -1
@@ -1662,7 +1661,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3234836930430135051}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 30
   m_Drag: 1
   m_AngularDrag: 3
   m_UseGravity: 0

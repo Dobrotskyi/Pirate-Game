@@ -1316,8 +1316,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 500
-  _maxSpeed: 1000
-  _shipRotationSpeed: 60
+  _maxSpeed: 800
+  _shipRotationSpeed: 30
   _cannonShotForce: 450
   _cannonsCooldown: 1.4
   _cannonFOV: 80
@@ -1329,7 +1329,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3613701304156612209}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 60
   m_Drag: 0.5
   m_AngularDrag: 3
   m_UseGravity: 0
@@ -1348,8 +1348,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.83297, y: 0.35663152, z: 2.8690028}
-  m_Center: {x: -0.0056952834, y: 0.54425085, z: -0.028888464}
+  m_Size: {x: 1.83297, y: 0.7512015, z: 3.6262808}
+  m_Center: {x: -0.0056952834, y: 0.34696585, z: -0.40752745}
 --- !u!65 &2024363454746561856
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3307,15 +3307,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.10624121
+      value: 0.10624119
       objectReference: {fileID: 0}
     - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000012074104
+      value: -0.000000017109
       objectReference: {fileID: 0}
     - target: {fileID: 2488884370650933246, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000012900685
+      value: 0.0000000018280266
       objectReference: {fileID: 0}
     - target: {fileID: 2489862403879658654, guid: 824d9314236432b479bc61fef7528ee8, type: 3}
       propertyPath: m_RootOrder

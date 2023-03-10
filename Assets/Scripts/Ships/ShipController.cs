@@ -48,8 +48,9 @@ public class ShipController : MonoBehaviour
 
     public void Rotate(float rotationSide)
     {
-        Vector3 side = -_steeringWheel.transform.right * rotationSide;
-        _rigidbody.AddForceAtPosition(side * Time.deltaTime * _ship—haracteristics.RotationSpeed, _steeringWheel.transform.position);
+        Vector3 direction = new Vector3(0, transform.position.y + rotationSide, 0);
+        Quaternion deltaRotation = Quaternion.Euler(direction * (_ship—haracteristics.RotationSpeed * Time.deltaTime));
+        _rigidbody.MoveRotation(_rigidbody.rotation * deltaRotation);
     }
 
     public void ShootLeft()
@@ -137,6 +138,9 @@ public class ShipController : MonoBehaviour
 
         _mainLeftTarget = transform.Find("MainLeftTarget");
         _mainRightTarget = transform.Find("MainRightTarget");
+
+        _steeringWheel.transform.localPosition = new Vector3(_rigidbody.centerOfMass.x, _rigidbody.centerOfMass.y, _steeringWheel.transform.localPosition.z);
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -155,5 +159,6 @@ public class ShipController : MonoBehaviour
     {
         Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
         _rigidbody.velocity = forward * _rigidbody.velocity.magnitude;
+
     }
 }
