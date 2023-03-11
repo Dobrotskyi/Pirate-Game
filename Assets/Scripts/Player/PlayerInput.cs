@@ -31,8 +31,6 @@ public class PlayerInput : MonoBehaviour
         {
             _shipCameraContoller.SetBackCamera();
             _shipController.RestoreCannonsPosition();
-            if (Input.GetKeyDown(KeyCode.Space))
-                _shipController.ShootAllCannons();
         }
     }
 

@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class ShipController : MonoBehaviour
@@ -7,6 +9,7 @@ public class ShipController : MonoBehaviour
     [SerializeField] protected float[] _targetYLimits = new float[2];
     [SerializeField] protected float[] _targetZLimits = new float[2];
     [SerializeField] GameObject _steeringWheel;
+    [SerializeField] private float _delayBetweenShotsInSeconds = 0.3f;
 
     protected List<Cannon> _leftCannons;
     protected List<Cannon> _rightCannons;
@@ -14,9 +17,10 @@ public class ShipController : MonoBehaviour
     protected Transform _mainLeftTarget;
     protected Transform _mainRightTarget;
 
-    [SerializeField] private ShipCharacteristics _ship—haracteristics;
+    [SerializeField] private ShipCharacteristics _shipCharacteristics;
     private Rigidbody _rigidbody;
     private bool _canMoveForward = true;
+
 
     public virtual void SetLeftCannons()
     {
@@ -41,29 +45,19 @@ public class ShipController : MonoBehaviour
         if (_canMoveForward)
         {
             Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
-            _rigidbody.AddForceAtPosition(forward * _ship—haracteristics.Speed * Time.deltaTime, _steeringWheel.transform.position, ForceMode.Acceleration);
-            _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _ship—haracteristics.MaxSpeed);
+            _rigidbody.AddForceAtPosition(forward * _shipCharacteristics.Speed * Time.deltaTime, _steeringWheel.transform.position, ForceMode.Acceleration);
+            _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _shipCharacteristics.MaxSpeed);
         }
     }
 
     public void Rotate(float rotationSide)
     {
         Vector3 direction = new Vector3(0, transform.position.y + rotationSide, 0);
-        Quaternion deltaRotation = Quaternion.Euler(direction * (_ship—haracteristics.RotationSpeed * Time.deltaTime));
+        Quaternion deltaRotation = Quaternion.Euler(direction * (_shipCharacteristics.RotationSpeed * Time.deltaTime));
         _rigidbody.MoveRotation(_rigidbody.rotation * deltaRotation);
     }
 
-    public void ShootLeft()
-    {
-        foreach (Cannon canon in _leftCannons)
-            canon.Shoot();
-    }
 
-    public void ShootRight()
-    {
-        foreach (Cannon canon in _rightCannons)
-            canon.Shoot();
-    }
 
     public void RestoreCannonsPosition()
     {
@@ -103,24 +97,22 @@ public class ShipController : MonoBehaviour
             cannon.Aim();
     }
 
-    public virtual void ShootAllCannons()
+    public void ShootLeft()
     {
-        int maxCannons = Mathf.Max(_leftCannons.Count, _rightCannons.Count);
-        for (int i = 0; i < maxCannons; i++)
+        StartCoroutine("ShootWithCannons", _leftCannons);
+    }
+
+    public void ShootRight()
+    {
+        StartCoroutine("ShootWithCannons", _rightCannons);
+    }
+
+    private IEnumerator ShootWithCannons(List<Cannon> cannons)
+    {
+        foreach (Cannon canon in cannons)
         {
-            if (_leftCannons[i] == _rightCannons[i])
-            {
-                _leftCannons[i].Shoot();
-                continue;
-            }
-            if (i < _leftCannons.Count)
-            {
-                _leftCannons[i].Shoot();
-            }
-            if (i < _rightCannons.Count)
-            {
-                _rightCannons[i].Shoot();
-            }
+            canon.Shoot();
+            yield return new WaitForSeconds(_delayBetweenShotsInSeconds);
         }
     }
 
@@ -159,6 +151,5 @@ public class ShipController : MonoBehaviour
     {
         Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
         _rigidbody.velocity = forward * _rigidbody.velocity.magnitude;
-
     }
 }

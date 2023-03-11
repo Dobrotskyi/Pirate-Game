@@ -3,6 +3,8 @@ using UnityEngine;
 public class Cannon : MonoBehaviour
 {
     [SerializeField] private GameObject _cannonball;
+    [SerializeField] private GameObject _explosionEffect;
+    [SerializeField] private AudioClip _shotAudio;
 
     private float _cannonShotForce;
     private float _lastShotTime;
@@ -26,6 +28,11 @@ public class Cannon : MonoBehaviour
 
             _shipСharacteristics.CannonballFired();
             _lastShotTime = Time.time;
+
+            GameObject explosion = Instantiate(_explosionEffect, _cannonballSpawner.position, _cannonballSpawner.rotation);
+            explosion.GetComponent<Rigidbody>().velocity = _shipСharacteristics.TrackVelocity * 0.8f;
+
+            GetComponent<AudioSource>().PlayOneShot(_shotAudio);
         }
     }
 
@@ -33,6 +40,11 @@ public class Cannon : MonoBehaviour
     {
         transform.localRotation = Quaternion.Lerp(transform.localRotation, _defaultRotation, 0.05f);
         _trajectoryMaker.HideTrajectory();
+    }
+
+    public void SetTarget(GameObject target)
+    {
+        _target = target.transform;
     }
 
     public void Aim()
@@ -66,13 +78,6 @@ public class Cannon : MonoBehaviour
 
         _trajectoryMaker.ShowTrajectory(_cannonballSpawner.position, launchVector);
     }
-    //Убрать в самый низ, приватные методы ниже публичных
-
-    public void SetTarget(GameObject target)
-    {
-        _target = target.transform;
-    }
-
     private void OnEnable()
     {
         _cannonballSpawner = transform.GetChild(0).GetChild(0).transform;
