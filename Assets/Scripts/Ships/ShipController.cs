@@ -57,8 +57,6 @@ public class ShipController : MonoBehaviour
         _rigidbody.MoveRotation(_rigidbody.rotation * deltaRotation);
     }
 
-
-
     public void RestoreCannonsPosition()
     {
         foreach (Cannon cannon in _leftCannons)
@@ -132,7 +130,6 @@ public class ShipController : MonoBehaviour
         _mainRightTarget = transform.Find("MainRightTarget");
 
         _steeringWheel.transform.localPosition = new Vector3(_rigidbody.centerOfMass.x, _rigidbody.centerOfMass.y, _steeringWheel.transform.localPosition.z);
-
     }
 
     private void OnTriggerEnter(Collider other)

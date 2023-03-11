@@ -78,6 +78,7 @@ public class Cannon : MonoBehaviour
 
         _trajectoryMaker.ShowTrajectory(_cannonballSpawner.position, launchVector);
     }
+
     private void OnEnable()
     {
         _cannonballSpawner = transform.GetChild(0).GetChild(0).transform;
@@ -89,5 +90,4 @@ public class Cannon : MonoBehaviour
         _defaultRotation = transform.localRotation;
         _trajectoryMaker = GetComponent<TrajectoryMaker>();
     }
-
 }
