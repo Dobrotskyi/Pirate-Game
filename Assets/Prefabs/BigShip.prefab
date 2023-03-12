@@ -2283,7 +2283,7 @@ MonoBehaviour:
   - -10
   - 10
   _steeringWheel: {fileID: 6918861571719121809}
-  _delayBetweenShotsInSeconds: 0.3
+  _delayBetweenShotsInSeconds: 0.2
   _shipCharacteristics: {fileID: 4304828075367370006}
 --- !u!114 &4304828075367370006
 MonoBehaviour:

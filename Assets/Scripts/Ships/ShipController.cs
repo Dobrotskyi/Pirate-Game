@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ShipController : MonoBehaviour
 {
+    public UnityEvent PlayerCannonShot;
+
     [SerializeField] protected float[] _targetXLimits = new float[2];
     [SerializeField] protected float[] _targetYLimits = new float[2];
     [SerializeField] protected float[] _targetZLimits = new float[2];
     [SerializeField] GameObject _steeringWheel;
     [SerializeField] private float _delayBetweenShotsInSeconds = 0.3f;
+    [SerializeField] private ShipCharacteristics _shipCharacteristics;
 
     protected List<Cannon> _leftCannons;
     protected List<Cannon> _rightCannons;
@@ -17,7 +21,6 @@ public class ShipController : MonoBehaviour
     protected Transform _mainLeftTarget;
     protected Transform _mainRightTarget;
 
-    [SerializeField] private ShipCharacteristics _shipCharacteristics;
     private Rigidbody _rigidbody;
     private bool _canMoveForward = true;
 
@@ -110,6 +113,7 @@ public class ShipController : MonoBehaviour
         foreach (Cannon canon in cannons)
         {
             canon.Shoot();
+            PlayerCannonShot?.Invoke();
             yield return new WaitForSeconds(_delayBetweenShotsInSeconds);
         }
     }
@@ -130,6 +134,13 @@ public class ShipController : MonoBehaviour
         _mainRightTarget = transform.Find("MainRightTarget");
 
         _steeringWheel.transform.localPosition = new Vector3(_rigidbody.centerOfMass.x, _rigidbody.centerOfMass.y, _steeringWheel.transform.localPosition.z);
+
+        PlayerCannonShot.AddListener(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<ScreenShake>().Shake);
+    }
+
+    private void OnDisable()
+    {
+        PlayerCannonShot.RemoveAllListeners();
     }
 
     private void OnTriggerEnter(Collider other)

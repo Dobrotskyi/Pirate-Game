@@ -9,7 +9,7 @@ public class Cannon : MonoBehaviour
     private float _cannonShotForce;
     private float _lastShotTime;
 
-    private ShipCharacteristics _ship—haracteristics;
+    private ShipCharacteristics _shipCharacteristics;
     private Transform _cannonballSpawner;
     private TrajectoryMaker _trajectoryMaker;
 
@@ -19,20 +19,21 @@ public class Cannon : MonoBehaviour
 
     public void Shoot()
     {
-        if (_ship—haracteristics.CannonballsLeftAmt() > 0 && Time.time - _lastShotTime >= _ship—haracteristics.GetCannonsCooldown())
+        if (_shipCharacteristics.CannonballsLeftAmt() > 0 && Time.time - _lastShotTime >= _shipCharacteristics.GetCannonsCooldown())
         {
             GameObject cannonBall = Instantiate(_cannonball, _cannonballSpawner);
             cannonBall.transform.parent = null;
-            cannonBall.GetComponent<Rigidbody>().velocity = _ship—haracteristics.TrackVelocity;
+            cannonBall.GetComponent<Rigidbody>().velocity = _shipCharacteristics.TrackVelocity;
             cannonBall.GetComponent<Rigidbody>().AddForce(_cannonballSpawner.forward * _cannonShotForce, ForceMode.Impulse);
 
-            _ship—haracteristics.CannonballFired();
+            _shipCharacteristics.CannonballFired();
             _lastShotTime = Time.time;
 
-            GameObject explosion = Instantiate(_explosionEffect, _cannonballSpawner.position, _cannonballSpawner.rotation);
-            explosion.GetComponent<Rigidbody>().velocity = _ship—haracteristics.TrackVelocity * 0.8f;
 
+            GameObject explosion = Instantiate(_explosionEffect, _cannonballSpawner.position, _cannonballSpawner.rotation);
+            explosion.GetComponent<Rigidbody>().velocity = _shipCharacteristics.TrackVelocity * 0.8f;
             GetComponent<AudioSource>().PlayOneShot(_shotAudio);
+
         }
     }
 
@@ -59,9 +60,9 @@ public class Cannon : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), 5 * Time.deltaTime);
 
-        if (_ship—haracteristics.CannonFOV != -1)
+        if (_shipCharacteristics.CannonFOV != -1)
         {
-            float xRotation = AngleClamper.ClampAngle(transform.localRotation.eulerAngles.y, _defaultRotation.eulerAngles.y - _ship—haracteristics.CannonFOV / 2, _defaultRotation.eulerAngles.y + _ship—haracteristics.CannonFOV / 2);
+            float xRotation = AngleClamper.ClampAngle(transform.localRotation.eulerAngles.y, _defaultRotation.eulerAngles.y - _shipCharacteristics.CannonFOV / 2, _defaultRotation.eulerAngles.y + _shipCharacteristics.CannonFOV / 2);
             transform.localRotation = Quaternion.Euler(0, xRotation, 0);
         }
     }
@@ -82,9 +83,9 @@ public class Cannon : MonoBehaviour
     private void OnEnable()
     {
         _cannonballSpawner = transform.GetChild(0).GetChild(0).transform;
-        _ship—haracteristics = transform.parent.parent.GetComponent<ShipCharacteristics>();
-        _lastShotTime = -_ship—haracteristics.GetCannonsCooldown();
-        _cannonShotForce = _ship—haracteristics.GetCannonsShotForce();
+        _shipCharacteristics = transform.parent.parent.GetComponent<ShipCharacteristics>();
+        _lastShotTime = -_shipCharacteristics.GetCannonsCooldown();
+        _cannonShotForce = _shipCharacteristics.GetCannonsShotForce();
 
         _barrel = transform.Find("barrel").gameObject;
         _defaultRotation = transform.localRotation;
