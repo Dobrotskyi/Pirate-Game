@@ -6,8 +6,8 @@ using UnityEngine;
 public class Waves : MonoBehaviour
 {
     [SerializeField] private int _dimensions = 10;
-    [SerializeField] private Octave[] _octaves;
     [SerializeField] private float UVScale;
+    [SerializeField] private Octave[] _octaves;
 
     protected MeshFilter _meshFilter;
     protected Mesh _mesh;
@@ -120,24 +120,24 @@ public class Waves : MonoBehaviour
         return x * (_dimensions + 1) + z;
     }
 
-    private void Update()//Should try fixedUpdate
+    private void FixedUpdate()//Should try fixedUpdate
     {
         var verts = _mesh.vertices;
         for (int x = 0; x <= _dimensions; x++)
             for (int z = 0; z <= _dimensions; z++)
             {
                 float y = 0f;
-                for (int index = 0; index < _octaves.Length; index++)// should tty foreach
+                foreach (var octave in _octaves)
                 {
-                    if (_octaves[index].Alternate)
+                    if (octave.Alternate)
                     {
-                        var perl = Mathf.PerlinNoise((x * _octaves[index].Scale.x) / _dimensions, (z * _octaves[index].Scale.y) / _dimensions) * Mathf.PI * 2f;
-                        y += Mathf.Cos(perl + _octaves[index].Speed.magnitude * Time.time) * _octaves[index].Height;
+                        var perl = Mathf.PerlinNoise((x * octave.Scale.x) / _dimensions, (z * octave.Scale.y) / _dimensions) * Mathf.PI * 2f;
+                        y += Mathf.Cos(perl + octave.Speed.magnitude * Time.time) * octave.Height;
                     }
                     else
                     {
-                        var perl = Mathf.PerlinNoise((x * _octaves[index].Scale.x + Time.time * _octaves[index].Speed.x) / _dimensions, (z * _octaves[index].Scale.y + Time.time * _octaves[index].Speed.y) / _dimensions) - 0.5f;
-                        y += perl * _octaves[index].Height;
+                        var perl = Mathf.PerlinNoise((x * octave.Scale.x + Time.time * octave.Speed.x) / _dimensions, (z * octave.Scale.y + Time.time * octave.Speed.y) / _dimensions) - 0.5f;
+                        y += perl * octave.Height;
                     }
                 }
                 verts[MatrixIndex(x, z)] = new Vector3(x, y, z);

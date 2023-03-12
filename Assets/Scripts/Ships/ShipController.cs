@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class ShipController : MonoBehaviour
 {
+    [HideInInspector]
     public UnityEvent PlayerCannonShot;
 
     [SerializeField] protected float[] _targetXLimits = new float[2];
@@ -160,6 +161,9 @@ public class ShipController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
-        _rigidbody.velocity = forward * _rigidbody.velocity.magnitude;
+        Vector3 horizontalVelocity = Vector3.Scale(new Vector3(1, 0, 1), _rigidbody.velocity);
+        horizontalVelocity = forward * horizontalVelocity.magnitude;
+        float verticalVelocity = _rigidbody.velocity.y;
+        _rigidbody.velocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
     }
 }
