@@ -110,11 +110,14 @@ public class ShipController : MonoBehaviour
 
     private IEnumerator ShootWithCannons(List<Cannon> cannons)
     {
-        foreach (Cannon canon in cannons)
+        foreach (Cannon cannon in cannons)
         {
-            canon.Shoot();
-            PlayerCannonShot?.Invoke();
-            yield return new WaitForSeconds(_delayBetweenShotsInSeconds);
+            if (cannon.CanShoot())
+            {
+                cannon.Shoot();
+                PlayerCannonShot?.Invoke();
+                yield return new WaitForSeconds(_delayBetweenShotsInSeconds);
+            }
         }
     }
 

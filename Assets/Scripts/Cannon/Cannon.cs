@@ -19,22 +19,24 @@ public class Cannon : MonoBehaviour
 
     public void Shoot()
     {
+        GameObject cannonBall = Instantiate(_cannonball, _cannonballSpawner);
+        cannonBall.transform.parent = null;
+        cannonBall.GetComponent<Rigidbody>().velocity = _shipCharacteristics.TrackVelocity;
+        cannonBall.GetComponent<Rigidbody>().AddForce(_cannonballSpawner.forward * _cannonShotForce, ForceMode.Impulse);
+
+        _shipCharacteristics.CannonballFired();
+        _lastShotTime = Time.time;
+
+        GameObject explosion = Instantiate(_explosionEffect, _cannonballSpawner.position, _cannonballSpawner.rotation);
+        explosion.GetComponent<Rigidbody>().velocity = _shipCharacteristics.TrackVelocity;
+        GetComponent<AudioSource>().PlayOneShot(_shotAudio);
+    }
+
+    public bool CanShoot()
+    {
         if (_shipCharacteristics.CannonballsLeftAmt() > 0 && Time.time - _lastShotTime >= _shipCharacteristics.GetCannonsCooldown())
-        {
-            GameObject cannonBall = Instantiate(_cannonball, _cannonballSpawner);
-            cannonBall.transform.parent = null;
-            cannonBall.GetComponent<Rigidbody>().velocity = _shipCharacteristics.TrackVelocity;
-            cannonBall.GetComponent<Rigidbody>().AddForce(_cannonballSpawner.forward * _cannonShotForce, ForceMode.Impulse);
-
-            _shipCharacteristics.CannonballFired();
-            _lastShotTime = Time.time;
-
-
-            GameObject explosion = Instantiate(_explosionEffect, _cannonballSpawner.position, _cannonballSpawner.rotation);
-            explosion.GetComponent<Rigidbody>().velocity = _shipCharacteristics.TrackVelocity * 0.8f;
-            GetComponent<AudioSource>().PlayOneShot(_shotAudio);
-
-        }
+            return true;
+        else return false;
     }
 
     public void RestoreDefaultPosition()
