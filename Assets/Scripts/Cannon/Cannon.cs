@@ -29,7 +29,7 @@ public class Cannon : MonoBehaviour
         _lastShotTime = Time.time;
 
         GameObject explosion = Instantiate(_explosionEffect, _cannonballSpawner.position, _cannonballSpawner.rotation);
-        explosion.GetComponent<Rigidbody>().velocity = _shipCharacteristics.TrackVelocity;
+        explosion.GetComponent<Rigidbody>().velocity = _shipCharacteristics.TrackVelocity * 0.7f;
         GetComponent<AudioSource>().PlayOneShot(_shotAudio);
     }
 

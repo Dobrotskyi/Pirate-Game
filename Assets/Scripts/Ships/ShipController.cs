@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,7 +23,6 @@ public class ShipController : MonoBehaviour
 
     private Rigidbody _rigidbody;
     private bool _canMoveForward = true;
-
 
     public virtual void SetLeftCannons()
     {
