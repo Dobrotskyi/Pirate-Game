@@ -108,7 +108,7 @@ public class ShipController : MonoBehaviour
         StartCoroutine("ShootWithCannons", _rightCannons);
     }
 
-    private IEnumerator ShootWithCannons(List<Cannon> cannons)
+    protected IEnumerator ShootWithCannons(List<Cannon> cannons)
     {
         foreach (Cannon cannon in cannons)
         {

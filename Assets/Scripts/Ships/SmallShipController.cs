@@ -26,10 +26,10 @@ public class SmallShipController : ShipController
 
     public override void AimLeftCannons(Vector2 mouseInput)
     {
-        if (_facingRight) 
+        if (_facingRight)
         {
             _facingRight = false;
-            _targetRotationPoint.localRotation = Quaternion.Euler(0,180,0);
+            _targetRotationPoint.localRotation = Quaternion.Euler(0, 180, 0);
         }
         float xRotation = AngleClamper.ClampAngle(mouseInput.x * 0.5f + _targetRotationPoint.localRotation.eulerAngles.y, 90, -90);
         _targetRotationPoint.localRotation = Quaternion.Euler(0, xRotation, 0);
@@ -49,7 +49,7 @@ public class SmallShipController : ShipController
         AimCannons(mouseInput);
     }
 
-    private void AimCannons(Vector2 mouseInput) 
+    private void AimCannons(Vector2 mouseInput)
     {
         float newX = _mainRightTarget.localPosition.x + (mouseInput.y * 10f * Time.deltaTime);
         if (_mainRightTarget.localPosition.x > 0)
@@ -65,7 +65,7 @@ public class SmallShipController : ShipController
         foreach (Cannon cannon in _rightCannons)
             cannon.Aim();
     }
-     
+
     protected override void OnEnable()
     {
         base.OnEnable();

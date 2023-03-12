@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Cannon : MonoBehaviour
 {
     [SerializeField] private GameObject _cannonball;
