@@ -9,8 +9,9 @@ public class Waves : MonoBehaviour
     [SerializeField] private float UVScale;
     [SerializeField] private Octave[] _octaves;
 
-    protected MeshFilter _meshFilter;
-    protected Mesh _mesh;
+    private MeshFilter _meshFilter;
+    private Mesh _mesh;
+    private WavesComputeShader _shader;
 
     [Serializable]
     public struct Octave
@@ -59,7 +60,7 @@ public class Waves : MonoBehaviour
         return height * transform.lossyScale.y / dist;
     }
 
-    private void Start()
+    private void Awake()
     {
         _mesh = new Mesh();
         _mesh.name = gameObject.name;

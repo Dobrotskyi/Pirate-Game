@@ -44,37 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5ac0a5c71b06d49a7aeaac9d09c2e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trajectoryDrawer: {fileID: 7094704382743686202, guid: c6c2f7533572aa64f89c3d677d85cb1d, type: 3}
-  _trajectory:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.009185791
-      value: 0.0007324219
-      inSlope: -0.15081789
-      outSlope: -0.15081789
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.30792156
-    - serializedVersion: 3
-      time: 0.73059726
-      value: -0.38878125
-      inSlope: -1.2706242
-      outSlope: -1.2706242
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.22979654
-      outWeight: 0.63950163
-    - serializedVersion: 3
-      time: 1.0140018
-      value: -1.5067015
-      inSlope: -8.879282
-      outSlope: -8.879282
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.16967447
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  _trajectoryLine: {fileID: 7094704382743686202, guid: c6c2f7533572aa64f89c3d677d85cb1d, type: 3}

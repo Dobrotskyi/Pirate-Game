@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrajectoryLinesCreator : MonoBehaviour
 {
-    [SerializeField] private GameObject _trajectoryDrawer;
+    [SerializeField] private GameObject _trajectoryLine;
 
     private void OnEnable()
     {
@@ -12,7 +12,7 @@ public class TrajectoryLinesCreator : MonoBehaviour
 
         for (int i = 0; i < cannons.transform.childCount; i++)
         {
-            GameObject line = Instantiate(_trajectoryDrawer, transform);
+            GameObject line = Instantiate(_trajectoryLine, transform);
             cannons.transform.GetChild(i).GetComponent<TrajectoryMaker>().SetTrajectoryLine(line.GetComponent<LineRenderer>());
         }
     }
