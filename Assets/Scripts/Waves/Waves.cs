@@ -120,7 +120,7 @@ public class Waves : MonoBehaviour
         return x * (_dimensions + 1) + z;
     }
 
-    private void FixedUpdate()//Should try fixedUpdate
+    private void FixedUpdate()
     {
         var verts = _mesh.vertices;
         for (int x = 0; x <= _dimensions; x++)

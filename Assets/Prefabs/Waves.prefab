@@ -87,14 +87,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab29f49e66258344b1a74559ebe4869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dimensions: 40
+  _dimensions: 100
   UVScale: 30
   _octaves:
   - Speed: {x: 1, y: 1}
-    Scale: {x: 1, y: 1}
-    Height: 1
+    Scale: {x: 4, y: 4}
+    Height: 0.1
     Alternate: 1
-  - Speed: {x: 1, y: 0.5}
-    Scale: {x: 1, y: 0.5}
-    Height: 0.4
-    Alternate: 0
+  - Speed: {x: 1, y: 1}
+    Scale: {x: 8, y: 8}
+    Height: 0.1
+    Alternate: 1
+  - Speed: {x: 1, y: 1}
+    Scale: {x: 8, y: 8}
+    Height: 0.1
+    Alternate: 1
+  - Speed: {x: 1, y: 1}
+    Scale: {x: 12, y: 5}
+    Height: 0.1
+    Alternate: 1
+  - Speed: {x: 1, y: 1}
+    Scale: {x: 10, y: 20}
+    Height: 0.1
+    Alternate: 1
+  - Speed: {x: 1, y: 1}
+    Scale: {x: 4, y: 3}
+    Height: 0.1
+    Alternate: 1

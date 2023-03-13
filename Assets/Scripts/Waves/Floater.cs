@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WavesFloater : MonoBehaviour
+public class Floater : MonoBehaviour
 {
     [SerializeField] private bool _attachToSurface = false;
     [SerializeField] private Transform[] _floatPoints;
@@ -17,7 +17,6 @@ public class WavesFloater : MonoBehaviour
     private Vector3 _centerOffset;
     private Vector3 _smoothVectorRotation;
     private Vector3 _targetUp;
-
 
     public Vector3 Center { get { return transform.position + _centerOffset; } }
 
