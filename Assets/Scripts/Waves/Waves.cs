@@ -9,10 +9,6 @@ public class Waves : MonoBehaviour
     [SerializeField] private float UVScale;
     [SerializeField] private Octave[] _octaves;
 
-    private MeshFilter _meshFilter;
-    private Mesh _mesh;
-    private WavesComputeShader _shader;
-
     [Serializable]
     public struct Octave
     {
@@ -21,6 +17,11 @@ public class Waves : MonoBehaviour
         public float Height;
         public bool Alternate;
     }
+
+    private MeshFilter _meshFilter;
+    private Mesh _mesh;
+
+
 
     public float GetHeight(Vector3 position)
     {
@@ -72,7 +73,6 @@ public class Waves : MonoBehaviour
 
         _meshFilter = gameObject.AddComponent<MeshFilter>();
         _meshFilter.mesh = _mesh;
-
     }
 
     private Vector3[] GenerateVerts()
@@ -119,31 +119,5 @@ public class Waves : MonoBehaviour
     private int MatrixIndex(int x, int z)
     {
         return x * (_dimensions + 1) + z;
-    }
-
-    private void FixedUpdate()
-    {
-        var verts = _mesh.vertices;
-        for (int x = 0; x <= _dimensions; x++)
-            for (int z = 0; z <= _dimensions; z++)
-            {
-                float y = 0f;
-                foreach (var octave in _octaves)
-                {
-                    if (octave.Alternate)
-                    {
-                        var perl = Mathf.PerlinNoise((x * octave.Scale.x) / _dimensions, (z * octave.Scale.y) / _dimensions) * Mathf.PI * 2f;
-                        y += Mathf.Cos(perl + octave.Speed.magnitude * Time.time) * octave.Height;
-                    }
-                    else
-                    {
-                        var perl = Mathf.PerlinNoise((x * octave.Scale.x + Time.time * octave.Speed.x) / _dimensions, (z * octave.Scale.y + Time.time * octave.Speed.y) / _dimensions) - 0.5f;
-                        y += perl * octave.Height;
-                    }
-                }
-                verts[MatrixIndex(x, z)] = new Vector3(x, y, z);
-            }
-        _mesh.vertices = verts;
-        _mesh.RecalculateNormals();
     }
 }

@@ -94,23 +94,4 @@ MonoBehaviour:
     Scale: {x: 4, y: 4}
     Height: 0.1
     Alternate: 1
-  - Speed: {x: 1, y: 1}
-    Scale: {x: 8, y: 8}
-    Height: 0.1
-    Alternate: 1
-  - Speed: {x: 1, y: 1}
-    Scale: {x: 8, y: 8}
-    Height: 0.1
-    Alternate: 1
-  - Speed: {x: 1, y: 1}
-    Scale: {x: 12, y: 5}
-    Height: 0.1
-    Alternate: 1
-  - Speed: {x: 1, y: 1}
-    Scale: {x: 10, y: 20}
-    Height: 0.1
-    Alternate: 1
-  - Speed: {x: 1, y: 1}
-    Scale: {x: 4, y: 3}
-    Height: 0.1
-    Alternate: 1
+  _shader: {fileID: 7200000, guid: 374c379b1936fca49abf5bf4a6db09d8, type: 3}
