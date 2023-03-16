@@ -7,58 +7,58 @@ public class Waves : MonoBehaviour
 {
     [SerializeField] private int _dimensions = 10;
     [SerializeField] private float UVScale;
-    [SerializeField] private Octave[] _octaves;
 
     [Serializable]
-    public struct Octave
+    public struct GerstenerWave
     {
-        public Vector2 Speed;
-        public Vector2 Scale;
-        public float Height;
-        public bool Alternate;
+        public readonly Vector2 Direction;
+        public readonly float Steepness;
+        public readonly float Length;
+        public readonly float Speed;
+
+        public GerstenerWave(Vector2 direction, float steepness, float length, float speed)
+        {
+            Direction = direction;
+            Steepness = steepness;
+            Length = length;
+            Speed = speed;
+        }
     }
 
+    private GerstenerWave[] _waves;
     private MeshFilter _meshFilter;
     private Mesh _mesh;
 
-
-
     public float GetHeight(Vector3 position)
     {
-        //scale factor and position in local space
-        var scale = new Vector3(1 / transform.lossyScale.x, 0, 1 / transform.lossyScale.z);
-        var localPos = Vector3.Scale((position - transform.position), scale);
+        float time = Time.timeSinceLevelLoad;
+        Vector3 currentPosition = GetWaveAddition(position, time);
 
-        //get edge points
-        var p1 = new Vector3(Mathf.Floor(localPos.x), 0, Mathf.Floor(localPos.z));
-        var p2 = new Vector3(Mathf.Floor(localPos.x), 0, Mathf.Ceil(localPos.z));
-        var p3 = new Vector3(Mathf.Ceil(localPos.x), 0, Mathf.Floor(localPos.z));
-        var p4 = new Vector3(Mathf.Ceil(localPos.x), 0, Mathf.Ceil(localPos.z));
+        for (int i = 0; i < 3; i++)
+        {
+            Vector3 diff = new Vector3(position.x - currentPosition.x, 0, position.z - currentPosition.z);
+            currentPosition = GetWaveAddition(diff, time);
+        }
 
-        //clamp if the position is outside the plane
-        p1.x = Mathf.Clamp(p1.x, 0, _dimensions);
-        p1.z = Mathf.Clamp(p1.z, 0, _dimensions);
-        p2.x = Mathf.Clamp(p2.x, 0, _dimensions);
-        p2.z = Mathf.Clamp(p2.z, 0, _dimensions);
-        p3.x = Mathf.Clamp(p3.x, 0, _dimensions);
-        p3.z = Mathf.Clamp(p3.z, 0, _dimensions);
-        p4.x = Mathf.Clamp(p4.x, 0, _dimensions);
-        p4.z = Mathf.Clamp(p4.z, 0, _dimensions);
+        return currentPosition.y;
+    }
 
-        //get the max distance to one of the edges and take that to compute max - dist
-        var max = Mathf.Max(Vector3.Distance(p1, localPos), Vector3.Distance(p2, localPos), Vector3.Distance(p3, localPos), Vector3.Distance(p4, localPos) + Mathf.Epsilon);
-        var dist = (max - Vector3.Distance(p1, localPos))
-                 + (max - Vector3.Distance(p2, localPos))
-                 + (max - Vector3.Distance(p3, localPos))
-                 + (max - Vector3.Distance(p4, localPos) + Mathf.Epsilon);
-        //weighted sum
-        var height = _mesh.vertices[MatrixIndex((int)p1.x, (int)p1.z)].y * (max - Vector3.Distance(p1, localPos))
-                   + _mesh.vertices[MatrixIndex((int)p2.x, (int)p2.z)].y * (max - Vector3.Distance(p2, localPos))
-                   + _mesh.vertices[MatrixIndex((int)p3.x, (int)p3.z)].y * (max - Vector3.Distance(p3, localPos))
-                   + _mesh.vertices[MatrixIndex((int)p4.x, (int)p4.z)].y * (max - Vector3.Distance(p4, localPos));
+    private Vector3 GetWaveAddition(Vector3 position, float time)
+    {
+        Vector3 result = Vector3.zero;
 
-        //scale
-        return height * transform.lossyScale.y / dist;
+        foreach (GerstenerWave wave in _waves)
+        {
+            float k = 2 * Mathf.PI / wave.Length;
+
+            Vector2 normalizedDirection = wave.Direction.normalized;
+
+            float f = k * (Vector2.Dot(normalizedDirection, new Vector2(position.x, position.z)) - (wave.Speed * time));
+            float a = wave.Steepness / k;
+
+            result += new Vector3(normalizedDirection.x * a * Mathf.Cos(f), a * Mathf.Sin(f), normalizedDirection.y * a * Mathf.Cos(f));
+        }
+        return result;
     }
 
     private void Awake()
@@ -73,6 +73,24 @@ public class Waves : MonoBehaviour
 
         _meshFilter = gameObject.AddComponent<MeshFilter>();
         _meshFilter.mesh = _mesh;
+        _mesh.vertices = _meshFilter.mesh.vertices;
+
+        _waves = GetWaveDataFromMaterial();
+    }
+
+    private GerstenerWave[] GetWaveDataFromMaterial()
+    {
+        Material material = GetComponent<Renderer>().material;
+        if (material != null)
+        {
+            GerstenerWave[] waves = {
+                new GerstenerWave(new Vector2(material.GetVector("_WaveA").x,material.GetVector("_WaveA").y ),material.GetVector("_WaveA").z,material.GetVector("_WaveA").w, material.GetFloat("_Speed1")),
+                new GerstenerWave(new Vector2(material.GetVector("_WaveB").x,material.GetVector("_WaveB").y ),material.GetVector("_WaveB").z,material.GetVector("_WaveB").w, material.GetFloat("_Speed2")),
+                new GerstenerWave(new Vector2(material.GetVector("_WaveC").x,material.GetVector("_WaveC").y ),material.GetVector("_WaveC").z,material.GetVector("_WaveC").w, material.GetFloat("_Speed3"))
+            };
+            return waves;
+        }
+        else return null;
     }
 
     private Vector3[] GenerateVerts()

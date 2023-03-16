@@ -14,7 +14,10 @@ public class FloaterPoint : MonoBehaviour
     private void OnEnable()
     {
         _waves = FindObjectOfType<Waves>();
-        _rb = transform.parent.parent.GetComponent<Rigidbody>();
+        Transform baseTransform = transform;
+        while (baseTransform.parent != null)
+            baseTransform = baseTransform.parent;
+        _rb = baseTransform.GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()

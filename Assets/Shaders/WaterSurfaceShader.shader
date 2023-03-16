@@ -7,8 +7,11 @@ Shader "Custom/WaterSurfaceShader"
 		_Glossiness("Smoothness", Range(0,1)) = 0.5
 		_Metallic("Metallic", Range(0,1)) = 0.0
 			_WaveA("Wave A (dir, steepness, wavelength)", Vector) = (1,0,0.5,10)
+			_Speed1("WaveA Speed", float) = 2
 			_WaveB("Wave B", Vector) = (0,1,0.25,20)
+			_Speed2("WaveB Speed", float) = 1
 			_WaveC("Wave C", Vector) = (1,1,0.15,10)
+			_Speed3("WaveC Speed", float) = 2.3
 	}
 		SubShader
 		{
@@ -34,6 +37,7 @@ Shader "Custom/WaterSurfaceShader"
 			fixed4 _Color;
 
 			float4 _WaveA, _WaveB, _WaveC;
+			float _Speed1, _Speed2, _Speed3;
 
 			// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
 			// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -43,14 +47,13 @@ Shader "Custom/WaterSurfaceShader"
 				UNITY_INSTANCING_BUFFER_END(Props)
 
 				float3 GerstnerWave(
-					float4 wave, float3 p, inout float3 tangent, inout float3 binormal
+					float4 wave,float speed , float3 p, inout float3 tangent, inout float3 binormal
 				) {
 				float steepness = wave.z;
 				float wavelength = wave.w;
 				float k = 2 * UNITY_PI / wavelength;
-				float c = sqrt(9.8 / k);
 				float2 d = normalize(wave.xy);
-				float f = k * (dot(d, p.xz) - c * _Time.y);
+				float f = k * (dot(d, p.xz) - (speed * _Time.y));
 				float a = steepness / k;
 
 				tangent += float3(
@@ -76,9 +79,9 @@ Shader "Custom/WaterSurfaceShader"
 				float3 tangent = float3(1, 0, 0);
 				float3 binormal = float3(0, 0, 1);
 				float3 p = gridPoint;
-				p += GerstnerWave(_WaveA, gridPoint, tangent, binormal);
-				p += GerstnerWave(_WaveB, gridPoint, tangent, binormal);
-				p += GerstnerWave(_WaveC, gridPoint, tangent, binormal);
+				p += GerstnerWave(_WaveA,_Speed1, gridPoint, tangent, binormal);
+				p += GerstnerWave(_WaveB, _Speed2, gridPoint, tangent, binormal);
+				p += GerstnerWave(_WaveC, _Speed3, gridPoint, tangent, binormal);
 				float3 normal = normalize(cross(binormal, tangent));
 				vertexData.vertex.xyz = p;
 				vertexData.normal = normal;
