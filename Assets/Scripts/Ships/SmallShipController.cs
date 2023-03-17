@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SmallShipController : ShipController
 {
-    [SerializeField] private GameObject _targetPrefab;
+    [SerializeField] private GameObject _rotationalPointPrefab;
     private Transform _targetRotationPoint;
     private Vector3 _startingTargetPosition;
     private bool _facingRight = true;
@@ -31,6 +31,7 @@ public class SmallShipController : ShipController
             _facingRight = false;
             _targetRotationPoint.localRotation = Quaternion.Euler(0, 180, 0);
         }
+        
         float xRotation = AngleClamper.ClampAngle(mouseInput.x * 0.5f + _targetRotationPoint.localRotation.eulerAngles.y, 90, -90);
         _targetRotationPoint.localRotation = Quaternion.Euler(0, xRotation, 0);
         AimCannons(mouseInput);
@@ -72,7 +73,8 @@ public class SmallShipController : ShipController
         _startingTargetPosition = _mainRightTarget.localPosition;
 
         Destroy(_mainLeftTarget.gameObject);
-        _targetRotationPoint = Instantiate(_targetPrefab, transform).transform;
+        _targetRotationPoint = Instantiate(_rotationalPointPrefab, transform).transform;
         _mainRightTarget.parent = _targetRotationPoint;
+        _rightCannons[_rightCannons.Count - 1].SetTarget(_mainRightTarget.gameObject);
     }
 }

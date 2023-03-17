@@ -81,9 +81,9 @@ Material:
     - _SmoothnessTextureChannel: 1
     - _SpecularHighlights: 1
     - _Speed: 10
-    - _Speed1: 12
-    - _Speed2: 14
-    - _Speed3: 13.2
+    - _Speed1: 5
+    - _Speed2: 3
+    - _Speed3: 2
     - _SrcBlend: 1
     - _Steepness: 0.144
     - _UVSec: 0
@@ -101,7 +101,7 @@ Material:
     - _InvFadeParemeter: {r: 0.2, g: 0.39, b: 0.5, a: 1}
     - _SpecColor: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
     - _Wave1: {r: 1, g: 0, b: 0.5, a: 10}
-    - _WaveA: {r: 0, g: 1, b: 0.03, a: 43}
-    - _WaveB: {r: 1, g: 0, b: 0.04, a: 70}
-    - _WaveC: {r: 3, g: 1, b: 0.02, a: 63}
+    - _WaveA: {r: 1, g: 0, b: 0.05, a: 8}
+    - _WaveB: {r: 1, g: 1, b: 0.01, a: 10}
+    - _WaveC: {r: 1, g: 0.6, b: -0.04, a: 20}
   m_BuildTextureStacks: []

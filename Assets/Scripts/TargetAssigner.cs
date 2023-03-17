@@ -15,10 +15,10 @@ public class TargetAssigner : MonoBehaviour
 
         for (int i = 0; i < cannons.Count; i++)
         {
-            if (cannons[i].transform.position.x < 0)            
+            if (cannons[i].transform.position.x < 0)
                 cannons[i].GetComponent<Cannon>().SetTarget(_mainLeftTarget);
             else
-                    cannons[i].GetComponent<Cannon>().SetTarget(_mainRightTarget);
+                cannons[i].GetComponent<Cannon>().SetTarget(_mainRightTarget);//Надо перенести в методы SetLeftCannons и SetRightCannons
         }
     }
 }

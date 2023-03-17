@@ -30,7 +30,10 @@ public class ShipController : MonoBehaviour
         for (int i = 0; i < transform.Find("Cannons").childCount; i++)
         {
             if (transform.Find("Cannons").GetChild(i).localPosition.x < 0)
+            {
                 _leftCannons.Add(transform.Find("Cannons").GetChild(i).GetComponent<Cannon>());
+                _leftCannons[_leftCannons.Count - 1].SetTarget(_mainLeftTarget.gameObject);
+            }
         }
     }
 
@@ -39,7 +42,10 @@ public class ShipController : MonoBehaviour
         for (int i = 0; i < transform.Find("Cannons").childCount; i++)
         {
             if (transform.Find("Cannons").GetChild(i).position.x > 0)
+            {
                 _rightCannons.Add(transform.Find("Cannons").GetChild(i).GetComponent<Cannon>());
+                _rightCannons[_rightCannons.Count - 1].SetTarget(_mainRightTarget.gameObject);
+            }
         }
     }
 
@@ -127,16 +133,15 @@ public class ShipController : MonoBehaviour
 
         _rigidbody = GetComponent<Rigidbody>();
 
-        SetLeftCannons();
-        SetRightCannons();
-
         GameObject.Find("Player").GetComponent<PlayerInput>().SetShipController(this);
 
         _mainLeftTarget = transform.Find("MainLeftTarget");
         _mainRightTarget = transform.Find("MainRightTarget");
 
-        _steeringWheel.transform.localPosition = new Vector3(_rigidbody.centerOfMass.x, _rigidbody.centerOfMass.y, _steeringWheel.transform.localPosition.z);
+        SetLeftCannons();
+        SetRightCannons();
 
+        _steeringWheel.transform.localPosition = new Vector3(_rigidbody.centerOfMass.x, _rigidbody.centerOfMass.y, _steeringWheel.transform.localPosition.z);
         PlayerCannonShot.AddListener(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<ScreenShake>().Shake);
     }
 
@@ -158,6 +163,11 @@ public class ShipController : MonoBehaviour
     }
 
     private void FixedUpdate()
+    {
+        KeepHorizontalVelocityForward();
+    }
+
+    private void KeepHorizontalVelocityForward()
     {
         Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
         Vector3 horizontalVelocity = Vector3.Scale(new Vector3(1, 0, 1), _rigidbody.velocity);
