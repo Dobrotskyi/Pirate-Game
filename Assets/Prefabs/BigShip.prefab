@@ -534,6 +534,8 @@ Transform:
   - {fileID: 1640191763589775941}
   - {fileID: 5877237111363603486}
   - {fileID: 6040792108417949938}
+  - {fileID: 6359192614433604859}
+  - {fileID: 67450279549330006}
   m_Father: {fileID: 4350310416063003365}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -666,9 +668,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   depthBeforeSubmerged: 1.4
   cubeVolume: 1.4
-  floaterCount: 1
+  floaterCount: 6
   waterDrag: 0.95
   waterAngularDrag: 2
+  _attachToSurface: 0
 --- !u!1 &1596163278646578871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,9 +1250,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   depthBeforeSubmerged: 1.4
   cubeVolume: 1.4
-  floaterCount: 1
+  floaterCount: 6
   waterDrag: 0.95
   waterAngularDrag: 2
+  _attachToSurface: 0
 --- !u!1 &2465834216152361365
 GameObject:
   m_ObjectHideFlags: 0
@@ -1755,7 +1759,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3227007055206198400}
-  m_LocalRotation: {x: 0.16317855, y: 0.0000000137401415, z: -0.000000002272557, w: 0.9865966}
+  m_LocalRotation: {x: 0.16317855, y: 0.00000001897947, z: -0.0000000031391176, w: 0.9865966}
   m_LocalPosition: {x: 0, y: 18.04, z: -20.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2331,6 +2335,56 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4199867362971667251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 67450279549330006}
+  - component: {fileID: 9067091162421292165}
+  m_Layer: 0
+  m_Name: RightBack (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &67450279549330006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4199867362971667251}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.27, y: 0, z: 0.4699998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8320687057472911539}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9067091162421292165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4199867362971667251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  depthBeforeSubmerged: 1.4
+  cubeVolume: 1.4
+  floaterCount: 6
+  waterDrag: 0.95
+  waterAngularDrag: 2
+  _attachToSurface: 0
 --- !u!1 &4350310416063003364
 GameObject:
   m_ObjectHideFlags: 0
@@ -5774,9 +5828,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   depthBeforeSubmerged: 1.4
   cubeVolume: 1.4
-  floaterCount: 1
+  floaterCount: 6
   waterDrag: 0.95
   waterAngularDrag: 2
+  _attachToSurface: 0
 --- !u!1 &6271681194662971398
 GameObject:
   m_ObjectHideFlags: 0
@@ -5823,9 +5878,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   depthBeforeSubmerged: 1.4
   cubeVolume: 1.4
-  floaterCount: 1
+  floaterCount: 6
   waterDrag: 0.95
   waterAngularDrag: 2
+  _attachToSurface: 0
 --- !u!1 &6398080815935572970
 GameObject:
   m_ObjectHideFlags: 0
@@ -7841,6 +7897,56 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &9169706709180309218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6359192614433604859}
+  - component: {fileID: 8976701468854461778}
+  m_Layer: 0
+  m_Name: LeftBack (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6359192614433604859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169706709180309218}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.27, y: 0, z: 0.47}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8320687057472911539}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8976701468854461778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169706709180309218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  depthBeforeSubmerged: 1.4
+  cubeVolume: 1.4
+  floaterCount: 6
+  waterDrag: 0.95
+  waterAngularDrag: 2
+  _attachToSurface: 0
 --- !u!1001 &4869281314462106902
 PrefabInstance:
   m_ObjectHideFlags: 0

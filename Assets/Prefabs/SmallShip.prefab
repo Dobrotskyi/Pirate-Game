@@ -638,7 +638,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849810191513464607}
-  m_LocalRotation: {x: 0.10624121, y: 0.000000012074104, z: -0.0000000012900685, w: 0.9943404}
+  m_LocalRotation: {x: 0.10624119, y: 0.000000017109, z: -0.0000000018280266, w: 0.9943404}
   m_LocalPosition: {x: 0, y: 5.66, z: -8.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -907,7 +907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depthBeforeSubmerged: 0.2
+  depthBeforeSubmerged: 0.1
   cubeVolume: 1.5
   floaterCount: 1
   waterDrag: 0.95
@@ -1855,8 +1855,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf73340571883274db53e338afbead40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 700
-  _maxSpeed: 900
+  _speed: 900
+  _maxSpeed: 1200
   _shipRotationSpeed: 35
   _cannonShotForce: 430
   _cannonsCooldown: 1
@@ -2314,7 +2314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depthBeforeSubmerged: 0.2
+  depthBeforeSubmerged: 0.1
   cubeVolume: 1.5
   floaterCount: 1
   waterDrag: 0.95
@@ -3655,7 +3655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depthBeforeSubmerged: 0.2
+  depthBeforeSubmerged: 0.1
   cubeVolume: 1.5
   floaterCount: 1
   waterDrag: 0.95
@@ -3775,7 +3775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depthBeforeSubmerged: 0.2
+  depthBeforeSubmerged: 0.1
   cubeVolume: 1.5
   floaterCount: 1
   waterDrag: 0.95

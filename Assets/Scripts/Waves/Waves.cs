@@ -45,7 +45,7 @@ public class Waves : MonoBehaviour
 
     private Vector3 GetWaveAddition(Vector3 position, float time)
     {
-        Vector3 result = Vector3.zero;
+        Vector3 result = new Vector3();
 
         foreach (GerstenerWave wave in _waves)
         {
@@ -56,7 +56,7 @@ public class Waves : MonoBehaviour
             float f = k * (Vector2.Dot(normalizedDirection, new Vector2(position.x, position.z)) - (wave.Speed * time));
             float a = wave.Steepness / k;
 
-            result += new Vector3(normalizedDirection.x * a * Mathf.Cos(f), a * Mathf.Sin(f), normalizedDirection.y * a * Mathf.Cos(f));
+            result += new Vector3(normalizedDirection.x * (a * Mathf.Cos(f)), a * Mathf.Sin(f), normalizedDirection.y * (a * Mathf.Cos(f)));
         }
         return result;
     }
@@ -76,21 +76,6 @@ public class Waves : MonoBehaviour
         _mesh.vertices = _meshFilter.mesh.vertices;
 
         _waves = GetWaveDataFromMaterial();
-    }
-
-    private GerstenerWave[] GetWaveDataFromMaterial()
-    {
-        Material material = GetComponent<Renderer>().material;
-        if (material != null)
-        {
-            GerstenerWave[] waves = {
-                new GerstenerWave(new Vector2(material.GetVector("_WaveA").x,material.GetVector("_WaveA").y ),material.GetVector("_WaveA").z,material.GetVector("_WaveA").w, material.GetFloat("_Speed1")),
-                new GerstenerWave(new Vector2(material.GetVector("_WaveB").x,material.GetVector("_WaveB").y ),material.GetVector("_WaveB").z,material.GetVector("_WaveB").w, material.GetFloat("_Speed2")),
-                new GerstenerWave(new Vector2(material.GetVector("_WaveC").x,material.GetVector("_WaveC").y ),material.GetVector("_WaveC").z,material.GetVector("_WaveC").w, material.GetFloat("_Speed3"))
-            };
-            return waves;
-        }
-        else return null;
     }
 
     private Vector3[] GenerateVerts()
@@ -138,4 +123,20 @@ public class Waves : MonoBehaviour
     {
         return x * (_dimensions + 1) + z;
     }
+
+    private GerstenerWave[] GetWaveDataFromMaterial()
+    {
+        Material material = GetComponent<Renderer>().material;
+        if (material != null)
+        {
+            GerstenerWave[] waves = {
+                new GerstenerWave(new Vector2(material.GetVector("_WaveA").x,material.GetVector("_WaveA").y ),material.GetVector("_WaveA").z,material.GetVector("_WaveA").w, material.GetFloat("_Speed1")),
+                new GerstenerWave(new Vector2(material.GetVector("_WaveB").x,material.GetVector("_WaveB").y ),material.GetVector("_WaveB").z,material.GetVector("_WaveB").w, material.GetFloat("_Speed2")),
+                new GerstenerWave(new Vector2(material.GetVector("_WaveC").x,material.GetVector("_WaveC").y ),material.GetVector("_WaveC").z,material.GetVector("_WaveC").w, material.GetFloat("_Speed3"))
+            };
+            return waves;
+        }
+        else return null;
+    }
+
 }

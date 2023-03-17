@@ -4,6 +4,7 @@ using UnityEngine;
 public class TrajectoryMaker : MonoBehaviour
 {
     private LineRenderer _trajectoryLine;
+    private const float _displacement = 5f;
 
     public void SetTrajectoryLine(LineRenderer trajectoryLine)
     {
@@ -20,7 +21,7 @@ public class TrajectoryMaker : MonoBehaviour
         points.Add(origin + velocity * time + Physics.gravity * (time * time / 2f));
         i++;
 
-        while (points[points.Count - 1].y > transform.parent.parent.position.y - 5f)
+        while (points[points.Count - 1].y > transform.parent.parent.position.y - _displacement)
         {
             time = i * 0.1f;
             points.Add(origin + velocity * time + Physics.gravity * (time * time / 2f));
