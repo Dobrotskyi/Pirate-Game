@@ -12,7 +12,7 @@ public class ShipManager : MonoBehaviour
         ship.transform.localPosition = transform.position;
         ship.transform.localRotation = Quaternion.identity;
     }
-    private void Start()
+    private void Awake()
     {
         SetShip();
     }

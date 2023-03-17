@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class ShipController : MonoBehaviour
 {
     [HideInInspector]
-    public UnityEvent PlayerCannonShot;
+    public UnityEvent  PlayerCannonShot;
 
     [SerializeField] protected float[] _targetXLimits = new float[2];
     [SerializeField] protected float[] _targetYLimits = new float[2];
