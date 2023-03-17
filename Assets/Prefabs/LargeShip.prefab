@@ -1755,7 +1755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 1000
   _maxSpeed: 1300
-  _shipRotationSpeed: 30
+  _shipRotationSpeed: 200
   _cannonShotForce: 450
   _cannonsCooldown: 1.4
   _cannonFOV: 80

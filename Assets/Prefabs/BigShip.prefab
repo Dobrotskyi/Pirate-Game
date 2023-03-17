@@ -671,7 +671,6 @@ MonoBehaviour:
   floaterCount: 6
   waterDrag: 0.95
   waterAngularDrag: 2
-  _attachToSurface: 0
 --- !u!1 &1596163278646578871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,7 +1252,6 @@ MonoBehaviour:
   floaterCount: 6
   waterDrag: 0.95
   waterAngularDrag: 2
-  _attachToSurface: 0
 --- !u!1 &2465834216152361365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2384,7 +2382,6 @@ MonoBehaviour:
   floaterCount: 6
   waterDrag: 0.95
   waterAngularDrag: 2
-  _attachToSurface: 0
 --- !u!1 &4350310416063003364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2490,7 +2487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 1000
   _maxSpeed: 1200
-  _shipRotationSpeed: 20
+  _shipRotationSpeed: 180
   _cannonShotForce: 700
   _cannonsCooldown: 2
   _cannonFOV: 40
@@ -5831,7 +5828,6 @@ MonoBehaviour:
   floaterCount: 6
   waterDrag: 0.95
   waterAngularDrag: 2
-  _attachToSurface: 0
 --- !u!1 &6271681194662971398
 GameObject:
   m_ObjectHideFlags: 0
@@ -5881,7 +5877,6 @@ MonoBehaviour:
   floaterCount: 6
   waterDrag: 0.95
   waterAngularDrag: 2
-  _attachToSurface: 0
 --- !u!1 &6398080815935572970
 GameObject:
   m_ObjectHideFlags: 0
@@ -7946,7 +7941,6 @@ MonoBehaviour:
   floaterCount: 6
   waterDrag: 0.95
   waterAngularDrag: 2
-  _attachToSurface: 0
 --- !u!1001 &4869281314462106902
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -55,9 +55,8 @@ public class ShipController : MonoBehaviour
 
     public void Rotate(float rotationSide)
     {
-        float direction = rotationSide * _shipCharacteristics.RotationSpeed * Time.deltaTime;
-        Quaternion rotation = Quaternion.Euler(_rigidbody.rotation.eulerAngles.x, _rigidbody.rotation.eulerAngles.y + direction, _rigidbody.rotation.eulerAngles.x);
-        _rigidbody.MoveRotation(rotation);
+        Vector3 side = -_steeringWheel.transform.right * rotationSide;
+        _rigidbody.AddForceAtPosition(side * Time.deltaTime * _shipCharacteristics.RotationSpeed, _steeringWheel.transform.position, ForceMode.Acceleration);
     }
 
     public void RestoreCannonsPosition()

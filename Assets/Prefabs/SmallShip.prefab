@@ -907,7 +907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depthBeforeSubmerged: 0.1
+  depthBeforeSubmerged: 0.15
   cubeVolume: 1.5
   floaterCount: 1
   waterDrag: 0.95
@@ -1855,9 +1855,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf73340571883274db53e338afbead40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 900
-  _maxSpeed: 1200
-  _shipRotationSpeed: 35
+  _speed: 1900
+  _maxSpeed: 2400
+  _shipRotationSpeed: 500
   _cannonShotForce: 430
   _cannonsCooldown: 1
   _cannonFOV: -1
@@ -1870,7 +1870,7 @@ Rigidbody:
   m_GameObject: {fileID: 3234836930430135051}
   serializedVersion: 2
   m_Mass: 30
-  m_Drag: 1
+  m_Drag: 0.5
   m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -2314,7 +2314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depthBeforeSubmerged: 0.1
+  depthBeforeSubmerged: 0.15
   cubeVolume: 1.5
   floaterCount: 1
   waterDrag: 0.95
@@ -3655,7 +3655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depthBeforeSubmerged: 0.1
+  depthBeforeSubmerged: 0.15
   cubeVolume: 1.5
   floaterCount: 1
   waterDrag: 0.95
@@ -3775,7 +3775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depthBeforeSubmerged: 0.1
+  depthBeforeSubmerged: 0.15
   cubeVolume: 1.5
   floaterCount: 1
   waterDrag: 0.95
