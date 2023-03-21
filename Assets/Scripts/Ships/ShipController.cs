@@ -22,6 +22,7 @@ public class ShipController : MonoBehaviour
     }
 
     [SerializeField] private ScreenShakeParameters _screenShakeParameters;
+    [SerializeField] private Vector2 _sensivity = new Vector2(10f,100f);
 
     protected List<Cannon> _leftCannons;
     protected List<Cannon> _rightCannons;
@@ -94,7 +95,7 @@ public class ShipController : MonoBehaviour
 
     public void AimCannons(Vector2 mouseInput, Transform target, List<Cannon> cannons)
     {
-        float newX = target.localPosition.x + (mouseInput.y * 10f * Time.deltaTime);
+        float newX = target.localPosition.x + (mouseInput.y * _sensivity.x * Time.deltaTime);
         if (target.localPosition.x > 0)
         {
             newX = Mathf.Clamp(newX, _targetXLimits[0], _targetXLimits[1]);
@@ -103,7 +104,7 @@ public class ShipController : MonoBehaviour
         {
             newX = Mathf.Clamp(newX, -_targetXLimits[1], -_targetXLimits[0]);
         }
-        float newZ = Mathf.Clamp(target.localPosition.z + (mouseInput.x * 10f * Time.deltaTime), _targetZLimits[0], _targetZLimits[1]);
+        float newZ = Mathf.Clamp(target.localPosition.z + (mouseInput.x * _sensivity.y * Time.deltaTime), _targetZLimits[0], _targetZLimits[1]);
         target.localPosition = new Vector3(newX, target.localPosition.y, newZ);
 
         foreach (Cannon cannon in cannons)

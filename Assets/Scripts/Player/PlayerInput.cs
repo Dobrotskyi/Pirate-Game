@@ -61,8 +61,7 @@ public class PlayerInput : MonoBehaviour
                 _shipController.ShootLeft();
             }
         }
-
-        if (Input.GetMouseButton(1))
+        else if (Input.GetMouseButton(1))
         {
             _shipController.AimRightCannons(mouseInput);
             if (Input.GetKeyDown(KeyCode.Space))
