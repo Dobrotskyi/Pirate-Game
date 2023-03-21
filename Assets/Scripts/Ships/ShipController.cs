@@ -130,6 +130,8 @@ public class ShipController : MonoBehaviour
                 OnCannonFired?.Invoke(_screenShakeParameters.Duration, _screenShakeParameters.Strength);
                 yield return new WaitForSeconds(_delayBetweenShotsInSeconds);
             }
+            else
+                yield break;
         }
     }
 
