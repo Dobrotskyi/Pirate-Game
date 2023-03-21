@@ -1,15 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Waves : MonoBehaviour
 {
-    [SerializeField] private int _dimensions = 10;
-    [SerializeField] private float UVScale;
-
-    [Serializable]
-    public struct GerstenerWave
+public struct GerstenerWave
     {
         public readonly Vector2 Direction;
         public readonly float Steepness;
@@ -26,8 +21,6 @@ public class Waves : MonoBehaviour
     }
 
     private GerstenerWave[] _waves;
-    private MeshFilter _meshFilter;
-    private Mesh _mesh;
 
     public float GetHeight(Vector3 position)
     {
@@ -61,69 +54,6 @@ public class Waves : MonoBehaviour
         return result;
     }
 
-    private void Awake()
-    {
-        _mesh = new Mesh();
-        _mesh.name = gameObject.name;
-        _mesh.vertices = GenerateVerts();
-        _mesh.triangles = GenerateTriangles();
-        _mesh.RecalculateBounds();
-        _mesh.RecalculateNormals();
-        _mesh.uv = ReacalculateUVs();
-
-        _meshFilter = gameObject.AddComponent<MeshFilter>();
-        _meshFilter.mesh = _mesh;
-        _mesh.vertices = _meshFilter.mesh.vertices;
-
-        _waves = GetWaveDataFromMaterial();
-    }
-
-    private Vector3[] GenerateVerts()
-    {
-        var verts = new Vector3[(_dimensions + 1) * (_dimensions + 1)];
-        for (int x = 0; x <= _dimensions; x++)
-            for (int z = 0; z <= _dimensions; z++)
-                verts[MatrixIndex(x, z)] = new Vector3(x, 0, z);
-
-        return verts;
-    }
-
-    private int[] GenerateTriangles()
-    {
-        var triangles = new int[_mesh.vertices.Length * 6];
-
-        for (int x = 0; x < _dimensions; x++)
-            for (int z = 0; z < _dimensions; z++)
-            {
-                triangles[MatrixIndex(x, z) * 6 + 0] = MatrixIndex(x, z);
-                triangles[MatrixIndex(x, z) * 6 + 1] = MatrixIndex(x + 1, z + 1);
-                triangles[MatrixIndex(x, z) * 6 + 2] = MatrixIndex(x + 1, z);
-                triangles[MatrixIndex(x, z) * 6 + 3] = MatrixIndex(x, z);
-                triangles[MatrixIndex(x, z) * 6 + 4] = MatrixIndex(x, z + 1);
-                triangles[MatrixIndex(x, z) * 6 + 5] = MatrixIndex(x + 1, z + 1);
-            }
-        return triangles;
-    }
-
-    private Vector2[] ReacalculateUVs()
-    {
-        var uvs = new Vector2[_mesh.vertices.Length];
-
-        for (int x = 0; x <= _dimensions; x++)
-            for (int z = 0; z <= _dimensions; z++)
-            {
-                var vec = new Vector2((x / UVScale) % 2, (z / UVScale) % 2);
-                uvs[MatrixIndex(x, z)] = new Vector2(vec.x <= 1 ? vec.x : 2 - vec.x, vec.y <= 1 ? vec.y : 2 - vec.y);
-            }
-
-        return uvs;
-    }
-
-    private int MatrixIndex(int x, int z)
-    {
-        return x * (_dimensions + 1) + z;
-    }
-
     private GerstenerWave[] GetWaveDataFromMaterial()
     {
         Material material = GetComponent<Renderer>().material;
@@ -139,4 +69,8 @@ public class Waves : MonoBehaviour
         else return null;
     }
 
+    private void Awake()
+    {
+        _waves = GetWaveDataFromMaterial();
+    }
 }

@@ -14,16 +14,12 @@ public class FloaterPoint : MonoBehaviour
 
     [SerializeField] private float waterAngularDrag = 0.5f;
 
-    //private Waves _waves;
-
-    private WaterTest _waves;
+    private Waves _waves;
 
 
     private void OnEnable()
     {
-        //_waves = FindObjectOfType<Waves>();
-
-        _waves = FindObjectOfType<WaterTest>();
+        _waves = FindObjectOfType<Waves>();
 
         Transform baseTransform = transform;
         while (baseTransform.parent != null)

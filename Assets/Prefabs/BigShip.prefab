@@ -2484,8 +2484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf73340571883274db53e338afbead40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1000
-  _maxSpeed: 1200
+  _speed: 1400
+  _maxSpeed: 2000
   _shipRotationSpeed: 180
   _cannonShotForce: 700
   _cannonsCooldown: 2
