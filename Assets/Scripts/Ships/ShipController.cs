@@ -6,15 +6,23 @@ using UnityEngine.Events;
 
 public class ShipController : MonoBehaviour
 {
-    [HideInInspector]
-    public UnityEvent  PlayerCannonShot;
+    public delegate void CannonFired(float duration, float strength);
+    public event CannonFired OnCannonFired;
 
     [SerializeField] protected float[] _targetXLimits = new float[2];
-    [SerializeField] protected float[] _targetYLimits = new float[2];
     [SerializeField] protected float[] _targetZLimits = new float[2];
     [SerializeField] GameObject _steeringWheel;
     [SerializeField] private float _delayBetweenShotsInSeconds = 0.3f;
     [SerializeField] private ShipCharacteristics _shipCharacteristics;
+
+    [Serializable]
+    private struct ScreenShakeParameters
+    {
+        public float Duration;
+        public float Strength;
+    }
+
+    [SerializeField] private ScreenShakeParameters _screenShakeParameters;
 
     protected List<Cannon> _leftCannons;
     protected List<Cannon> _rightCannons;
@@ -120,7 +128,7 @@ public class ShipController : MonoBehaviour
             if (cannon.CanShoot())
             {
                 cannon.Shoot();
-                PlayerCannonShot?.Invoke();
+                OnCannonFired?.Invoke(_screenShakeParameters.Duration, _screenShakeParameters.Strength);
                 yield return new WaitForSeconds(_delayBetweenShotsInSeconds);
             }
         }
@@ -142,12 +150,6 @@ public class ShipController : MonoBehaviour
         SetRightCannons();
 
         _steeringWheel.transform.localPosition = new Vector3(_rigidbody.centerOfMass.x, _rigidbody.centerOfMass.y, _steeringWheel.transform.localPosition.z);
-        PlayerCannonShot.AddListener(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<ScreenShake>().Shake);
-    }
-
-    private void OnDisable()
-    {
-        PlayerCannonShot.RemoveAllListeners();
     }
 
     private void OnTriggerEnter(Collider other)

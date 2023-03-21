@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 969061148a94ffa429d795851a237951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ship: {fileID: 3613701304156612209, guid: 2e3d4461bb9fa634c9cabdbec698a19c, type: 3}
+  _ship: {fileID: 4350310416063003364, guid: c482348849033584b9057b0a49948b72, type: 3}
 --- !u!1 &542023667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,7 +1052,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2598892912681948814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f096d42bd2a0f645abb38edf0295e8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ab29f49e66258344b1a74559ebe4869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2598892912681948814
@@ -1233,7 +1233,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4535528615655833500}
   m_LocalRotation: {x: 0.16317858, y: 3.0593012e-29, z: -6.533524e-30, w: 0.9865966}
-  m_LocalPosition: {x: 4.061471, y: 13.790786, z: -88.519775}
+  m_LocalPosition: {x: -2.0520682, y: 10.901963, z: -90.65059}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1346,26 +1346,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 4535528615655833500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 820e6990fb3725d4ba89a9039d6eba94, type: 3}
+  m_Script: {fileID: 11500000, guid: 8207020608deb4448ab584c6a22c9af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0.39923096
-      inSlope: -0.38272858
-      outSlope: -0.38272858
+      time: 0.002456665
+      value: 0.29992676
+      inSlope: -0.30276826
+      outSlope: -0.30276826
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 0.01650238
-      inSlope: -0.38272858
-      outSlope: -0.38272858
+      time: 1.0056458
+      value: -0.0038070679
+      inSlope: -0.30276826
+      outSlope: -0.30276826
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -1501,7 +1501,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2598892912681948814}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3.6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

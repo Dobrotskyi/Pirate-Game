@@ -1826,21 +1826,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229332e87344ed047a337347aa5012c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerCannonShot:
-    m_PersistentCalls:
-      m_Calls: []
   _targetXLimits:
   - 3
   - 30
-  _targetYLimits:
-  - 0
-  - 8
   _targetZLimits:
   - -10
   - 10
   _steeringWheel: {fileID: 3590812491753273915}
   _delayBetweenShotsInSeconds: 0.3
   _shipCharacteristics: {fileID: 3100386504847990009}
+  _screenShakeParameters:
+    Duration: 1
+    Strength: 0.6
   _rotationalPointPrefab: {fileID: 5905824303975257117, guid: 59d12362ceda2784ca56d3cf29d7b4f5, type: 3}
 --- !u!114 &3100386504847990009
 MonoBehaviour:
