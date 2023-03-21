@@ -35,7 +35,7 @@ public class Cannon : MonoBehaviour
 
     public bool CanShoot()
     {
-        if (_shipCharacteristics.CannonballsLeftAmt() > 0 && Time.time - _lastShotTime >= _shipCharacteristics.GetCannonsCooldown())
+        if (_shipCharacteristics.CannonballsAmt > 0 && Time.time - _lastShotTime >= _shipCharacteristics.GetCannonsCooldown())
             return true;
         else return false;
     }

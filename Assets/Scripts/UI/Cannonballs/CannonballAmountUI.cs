@@ -6,30 +6,24 @@ public class CannonballAmountUI : MonoBehaviour
     private ShipCharacteristics _currentShipCharacteristics;
     private TextMeshProUGUI _TMP;
 
-    // public void UpdateCannonballsAmount()
-    // {
-    //     Debug.Log(_currentShipCharacteristics);
-    //     if (_currentShipCharacteristics == null)
-    //         _currentShipCharacteristics = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<ShipCharacteristics>();
-
-    //     _TMP.text = _currentShipCharacteristics.CannonballsLeftAmt().ToString();
-    // }
-
-    private void Start()
+    public void UpdateCannonballsAmount()
     {
-        // Debug.Log(GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<ShipCharacteristics>());
-        // _currentShipCharacteristics = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<ShipCharacteristics>();
-        // _TMP = GetComponent<TextMeshProUGUI>();
-        
-        _TMP = GetComponent<TextMeshProUGUI>();
-        _currentShipCharacteristics = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<ShipCharacteristics>();
-        _TMP.text = _currentShipCharacteristics.CannonballsLeftAmt().ToString();
+        if (_currentShipCharacteristics == null)
+            _currentShipCharacteristics = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<ShipCharacteristics>();
+
+        _TMP.text = _currentShipCharacteristics.CannonballsAmt.ToString();
     }
 
-    private void FixedUpdate()
+    private void OnEnable()
     {
-        // if (_currentShipCharacteristics == null)
-        //     _currentShipCharacteristics = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<ShipCharacteristics>();
-        //     UpdateCannonballsAmount();
+        _TMP = GetComponent<TextMeshProUGUI>();
+        _currentShipCharacteristics = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<ShipCharacteristics>();
+        _TMP.text = _currentShipCharacteristics.CannonballsAmt.ToString();
+        _currentShipCharacteristics.OnCannonballsAmtChanged += UpdateCannonballsAmount;
+    }
+
+    private void OnDisable()
+    {
+        _currentShipCharacteristics.OnCannonballsAmtChanged -= UpdateCannonballsAmount;
     }
 }

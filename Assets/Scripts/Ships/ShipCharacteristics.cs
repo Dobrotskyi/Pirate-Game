@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class ShipCharacteristics : MonoBehaviour
 {
+    public delegate void CannonballsAmtChanged();
+    public event CannonballsAmtChanged OnCannonballsAmtChanged;
+
     [SerializeField] private float _speed;
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _shipRotationSpeed;
     [SerializeField] private float _cannonShotForce;
     [SerializeField] private float _cannonsCooldown;
-
     [SerializeField] private float _cannonFOV;
 
     private int _cannonBallsAmt;
@@ -17,6 +19,23 @@ public class ShipCharacteristics : MonoBehaviour
     private List<GameObject> _cannonballs = new List<GameObject>();
     private Vector3 _lastPosition;
     private Vector3 _trackVelocity;
+
+    public int CannonballsAmt
+    {
+        get { return _cannonBallsAmt; }
+        private set
+        {
+            if (value < 0)
+                _cannonBallsAmt = 0;
+            else
+            {
+                _cannonBallsAmt = value;
+                if (_cannonBallsAmt > _maxCannonBallsAmt)
+                    _cannonBallsAmt = _maxCannonBallsAmt;
+            }
+            OnCannonballsAmtChanged?.Invoke();
+        }
+    }
 
     public float Speed
     {
@@ -53,29 +72,20 @@ public class ShipCharacteristics : MonoBehaviour
 
     public void CannonballFired()
     {
-        _cannonBallsAmt--;
-        _cannonballs[_cannonBallsAmt].SetActive(false);
+        CannonballsAmt--;
+        _cannonballs[CannonballsAmt].SetActive(false);
     }
 
     public void AddCannonballs(int amount)
     {
-        _cannonBallsAmt += amount;
-
-        if (_cannonBallsAmt > _maxCannonBallsAmt)
-            _cannonBallsAmt = _maxCannonBallsAmt;
-
-        for (int i = 0; i < _cannonBallsAmt; i++)
+        CannonballsAmt += amount;
+        for (int i = 0; i < CannonballsAmt; i++)
         {
             if (_cannonballs[i].activeSelf == false)
                 _cannonballs[i].SetActive(true);
         }
     }
-
-    public int CannonballsLeftAmt()
-    {
-        return _cannonBallsAmt;
-    }
-
+    
     public float GetCannonsShotForce()
     {
         return _cannonShotForce;
