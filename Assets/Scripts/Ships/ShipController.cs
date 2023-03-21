@@ -6,8 +6,7 @@ using UnityEngine.Events;
 
 public class ShipController : MonoBehaviour
 {
-    public delegate void CannonFired(float duration, float strength);
-    public event CannonFired OnCannonFired;
+    public static event Action<float, float> OnCannonFired;
 
     [SerializeField] protected float[] _targetXLimits = new float[2];
     [SerializeField] protected float[] _targetZLimits = new float[2];

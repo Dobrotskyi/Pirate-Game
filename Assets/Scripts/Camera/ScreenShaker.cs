@@ -26,11 +26,11 @@ public class ScreenShaker : MonoBehaviour
 
     private void OnEnable()
     {
-        FindObjectOfType<ShipController>().OnCannonFired += Shake;
+        ShipController.OnCannonFired += Shake;
     }
 
     private void OnDisable()
     {
-        FindObjectOfType<ShipController>().OnCannonFired -= Shake;
+        ShipController.OnCannonFired -= Shake;
     }
 }
