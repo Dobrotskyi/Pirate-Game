@@ -1362,7 +1362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cannonball: {fileID: 3117916111400691833, guid: 7d3a11b2826497a43a9360e95667f0f6, type: 3}
-  _explosionEffect: {fileID: 2771661109152740402, guid: 496c4524bcb980b42ab365b2c0b539bf, type: 3}
+  _afterShotSmokeEffect: {fileID: 2771661109152740402, guid: 496c4524bcb980b42ab365b2c0b539bf, type: 3}
   _shotAudio: {fileID: 8300000, guid: c8b31720b2c466a4e948c40e6cbe7f2e, type: 3}
 --- !u!114 &449230267894693732
 MonoBehaviour:
@@ -2469,6 +2469,7 @@ MonoBehaviour:
   _screenShakeParameters:
     Duration: 1
     Strength: 1.3
+  _sensivity: {x: 10, y: 100}
 --- !u!114 &4304828075367370006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2923,7 +2924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cannonball: {fileID: 3117916111400691833, guid: 7d3a11b2826497a43a9360e95667f0f6, type: 3}
-  _explosionEffect: {fileID: 2771661109152740402, guid: 496c4524bcb980b42ab365b2c0b539bf, type: 3}
+  _afterShotSmokeEffect: {fileID: 2771661109152740402, guid: 496c4524bcb980b42ab365b2c0b539bf, type: 3}
   _shotAudio: {fileID: 8300000, guid: c8b31720b2c466a4e948c40e6cbe7f2e, type: 3}
 --- !u!114 &518855883591205323
 MonoBehaviour:
@@ -4236,7 +4237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cannonball: {fileID: 3117916111400691833, guid: 7d3a11b2826497a43a9360e95667f0f6, type: 3}
-  _explosionEffect: {fileID: 2771661109152740402, guid: 496c4524bcb980b42ab365b2c0b539bf, type: 3}
+  _afterShotSmokeEffect: {fileID: 2771661109152740402, guid: 496c4524bcb980b42ab365b2c0b539bf, type: 3}
   _shotAudio: {fileID: 8300000, guid: c8b31720b2c466a4e948c40e6cbe7f2e, type: 3}
 --- !u!114 &6800639457025012089
 MonoBehaviour:
@@ -4619,7 +4620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cannonball: {fileID: 3117916111400691833, guid: 7d3a11b2826497a43a9360e95667f0f6, type: 3}
-  _explosionEffect: {fileID: 2771661109152740402, guid: 496c4524bcb980b42ab365b2c0b539bf, type: 3}
+  _afterShotSmokeEffect: {fileID: 2771661109152740402, guid: 496c4524bcb980b42ab365b2c0b539bf, type: 3}
   _shotAudio: {fileID: 8300000, guid: c8b31720b2c466a4e948c40e6cbe7f2e, type: 3}
 --- !u!114 &8233411004011571810
 MonoBehaviour:
@@ -4918,7 +4919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cannonball: {fileID: 3117916111400691833, guid: 7d3a11b2826497a43a9360e95667f0f6, type: 3}
-  _explosionEffect: {fileID: 2771661109152740402, guid: 496c4524bcb980b42ab365b2c0b539bf, type: 3}
+  _afterShotSmokeEffect: {fileID: 2771661109152740402, guid: 496c4524bcb980b42ab365b2c0b539bf, type: 3}
   _shotAudio: {fileID: 8300000, guid: c8b31720b2c466a4e948c40e6cbe7f2e, type: 3}
 --- !u!114 &7800626471919433314
 MonoBehaviour:
@@ -5299,7 +5300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cannonball: {fileID: 3117916111400691833, guid: 7d3a11b2826497a43a9360e95667f0f6, type: 3}
-  _explosionEffect: {fileID: 2771661109152740402, guid: 496c4524bcb980b42ab365b2c0b539bf, type: 3}
+  _afterShotSmokeEffect: {fileID: 2771661109152740402, guid: 496c4524bcb980b42ab365b2c0b539bf, type: 3}
   _shotAudio: {fileID: 8300000, guid: c8b31720b2c466a4e948c40e6cbe7f2e, type: 3}
 --- !u!114 &5510807423371398739
 MonoBehaviour:

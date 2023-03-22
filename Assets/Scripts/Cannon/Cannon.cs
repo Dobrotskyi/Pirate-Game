@@ -4,7 +4,7 @@ using UnityEngine;
 public class Cannon : MonoBehaviour
 {
     [SerializeField] private GameObject _cannonball;
-    [SerializeField] private GameObject _explosionEffect;
+    [SerializeField] private GameObject _afterShotSmokeEffect;
     [SerializeField] private AudioClip _shotAudio;
 
     private float _cannonShotForce;
@@ -31,7 +31,7 @@ public class Cannon : MonoBehaviour
         _shipCharacteristics.CannonballFired();
         _lastShotTime = Time.time;
 
-        GameObject explosion = Instantiate(_explosionEffect, _cannonballSpawner.position, _cannonballSpawner.rotation);
+        GameObject explosion = Instantiate(_afterShotSmokeEffect, _cannonballSpawner.position, _cannonballSpawner.rotation);
         explosion.GetComponent<Rigidbody>().velocity = _shipRb.velocity * 0.7f;
         _audioSource.PlayOneShot(_shotAudio);
     }
