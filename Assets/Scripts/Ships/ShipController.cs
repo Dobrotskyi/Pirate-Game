@@ -22,7 +22,7 @@ public class ShipController : MonoBehaviour
     }
 
     [SerializeField] private ScreenShakeParameters _screenShakeParameters;
-    [SerializeField] private Vector2 _sensivity = new Vector2(10f,100f);
+    [SerializeField] private Vector2 _sensivity = new Vector2(10f, 100f);
 
     protected List<Cannon> _leftCannons;
     protected List<Cannon> _rightCannons;
@@ -33,7 +33,7 @@ public class ShipController : MonoBehaviour
     private Rigidbody _rigidbody;
     private bool _canMoveForward = true;
 
-    public virtual void SetLeftCannons()
+    protected virtual void SetCannons()
     {
         for (int i = 0; i < transform.Find("Cannons").childCount; i++)
         {
@@ -42,14 +42,7 @@ public class ShipController : MonoBehaviour
                 _leftCannons.Add(transform.Find("Cannons").GetChild(i).GetComponent<Cannon>());
                 _leftCannons[_leftCannons.Count - 1].SetTarget(_mainLeftTarget.gameObject);
             }
-        }
-    }
-
-    public virtual void SetRightCannons()
-    {
-        for (int i = 0; i < transform.Find("Cannons").childCount; i++)
-        {
-            if (transform.Find("Cannons").GetChild(i).position.x > 0)
+            else
             {
                 _rightCannons.Add(transform.Find("Cannons").GetChild(i).GetComponent<Cannon>());
                 _rightCannons[_rightCannons.Count - 1].SetTarget(_mainRightTarget.gameObject);
@@ -106,6 +99,7 @@ public class ShipController : MonoBehaviour
         }
         float newZ = Mathf.Clamp(target.localPosition.z + (mouseInput.x * _sensivity.y * Time.deltaTime), _targetZLimits[0], _targetZLimits[1]);
         target.localPosition = new Vector3(newX, target.localPosition.y, newZ);
+        target.position = new Vector3(target.position.x, 0, target.position.z);
 
         foreach (Cannon cannon in cannons)
             cannon.Aim();
@@ -148,8 +142,9 @@ public class ShipController : MonoBehaviour
         _mainLeftTarget = transform.Find("MainLeftTarget");
         _mainRightTarget = transform.Find("MainRightTarget");
 
-        SetLeftCannons();
-        SetRightCannons();
+        // SetLeftCannons();
+        // SetRightCannons();
+        SetCannons();
 
         _steeringWheel.transform.localPosition = new Vector3(_rigidbody.centerOfMass.x, _rigidbody.centerOfMass.y, _steeringWheel.transform.localPosition.z);
     }

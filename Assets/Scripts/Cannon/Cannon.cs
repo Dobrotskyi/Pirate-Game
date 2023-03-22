@@ -17,20 +17,23 @@ public class Cannon : MonoBehaviour
     private GameObject _barrel;
     private Quaternion _defaultRotation;
     private Transform _target;
+    private Rigidbody _shipRb;
+    private AudioSource _audioSource;
 
     public void Shoot()
     {
         GameObject cannonBall = Instantiate(_cannonball, _cannonballSpawner);
         cannonBall.transform.parent = null;
-        cannonBall.GetComponent<Rigidbody>().velocity = _shipCharacteristics.TrackVelocity;
-        cannonBall.GetComponent<Rigidbody>().AddForce(_cannonballSpawner.forward * _cannonShotForce, ForceMode.Impulse);
+        Rigidbody cannonballRb = cannonBall.GetComponent<Rigidbody>();
+        cannonballRb.velocity = _shipRb.velocity;
+        cannonballRb.AddForce(_cannonballSpawner.forward * _cannonShotForce, ForceMode.Impulse);
 
         _shipCharacteristics.CannonballFired();
         _lastShotTime = Time.time;
 
         GameObject explosion = Instantiate(_explosionEffect, _cannonballSpawner.position, _cannonballSpawner.rotation);
-        explosion.GetComponent<Rigidbody>().velocity = _shipCharacteristics.TrackVelocity * 0.7f;
-        GetComponent<AudioSource>().PlayOneShot(_shotAudio);
+        explosion.GetComponent<Rigidbody>().velocity = _shipRb.velocity * 0.7f;
+        _audioSource.PlayOneShot(_shotAudio);
     }
 
     public bool CanShoot()
@@ -93,5 +96,11 @@ public class Cannon : MonoBehaviour
         _barrel = transform.Find("barrel").gameObject;
         _defaultRotation = transform.localRotation;
         _trajectoryMaker = GetComponent<TrajectoryMaker>();
+        Transform baseObj = transform;
+        while (baseObj.parent != null)
+            baseObj = baseObj.parent;
+        _shipRb = baseObj.GetComponent<Rigidbody>();
+
+        _audioSource = GetComponent<AudioSource>();
     }
 }

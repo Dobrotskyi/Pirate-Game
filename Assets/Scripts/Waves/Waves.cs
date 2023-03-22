@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Waves : MonoBehaviour
 {
-public struct GerstenerWave
+    public struct GerstenerWave
     {
         public readonly Vector2 Direction;
         public readonly float Steepness;

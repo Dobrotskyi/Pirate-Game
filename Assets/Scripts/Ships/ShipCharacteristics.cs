@@ -52,14 +52,6 @@ public class ShipCharacteristics : MonoBehaviour
         get { return _cannonFOV; }
     }
 
-    public Vector3 TrackVelocity
-    {
-        get
-        {
-            return _trackVelocity;
-        }
-    }
-
     public float RotationSpeed
     {
         get { return _shipRotationSpeed; }
@@ -85,7 +77,7 @@ public class ShipCharacteristics : MonoBehaviour
                 _cannonballs[i].SetActive(true);
         }
     }
-    
+
     public float GetCannonsShotForce()
     {
         return _cannonShotForce;

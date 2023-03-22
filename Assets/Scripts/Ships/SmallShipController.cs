@@ -8,22 +8,6 @@ public class SmallShipController : ShipController
     private Vector3 _startingTargetPosition;
     private bool _facingRight = true;
 
-    public override void SetLeftCannons()
-    {
-        for (int i = 0; i < transform.Find("Cannons").transform.childCount; i++)
-        {
-            _leftCannons.Add(transform.Find("Cannons").transform.GetChild(i).GetComponent<Cannon>());
-        }
-    }
-
-    public override void SetRightCannons()
-    {
-        for (int i = 0; i < transform.Find("Cannons").transform.childCount; i++)
-        {
-            _rightCannons.Add(transform.Find("Cannons").transform.GetChild(i).GetComponent<Cannon>());
-        }
-    }
-
     public override void AimLeftCannons(Vector2 mouseInput)
     {
         if (_facingRight)
@@ -31,7 +15,7 @@ public class SmallShipController : ShipController
             _facingRight = false;
             _targetRotationPoint.localRotation = Quaternion.Euler(0, 180, 0);
         }
-        
+
         float xRotation = AngleClamper.ClampAngle(mouseInput.x * 0.5f + _targetRotationPoint.localRotation.eulerAngles.y, 90, -90);
         _targetRotationPoint.localRotation = Quaternion.Euler(0, xRotation, 0);
         AimCannons(mouseInput);
@@ -67,6 +51,17 @@ public class SmallShipController : ShipController
             cannon.Aim();
     }
 
+    protected override void SetCannons()
+    {
+        for (int i = 0; i < transform.Find("Cannons").transform.childCount; i++)
+        {
+            Cannon cannon = transform.Find("Cannons").transform.GetChild(i).GetComponent<Cannon>();
+            cannon.SetTarget(_mainRightTarget.gameObject);
+            _rightCannons.Add(cannon);
+            _leftCannons.Add(cannon);
+        }
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -75,6 +70,5 @@ public class SmallShipController : ShipController
         Destroy(_mainLeftTarget.gameObject);
         _targetRotationPoint = Instantiate(_rotationalPointPrefab, transform).transform;
         _mainRightTarget.parent = _targetRotationPoint;
-        _rightCannons[_rightCannons.Count - 1].SetTarget(_mainRightTarget.gameObject);
     }
 }

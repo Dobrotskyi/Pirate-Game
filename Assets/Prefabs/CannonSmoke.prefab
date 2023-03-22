@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2781434771700105685}
   - component: {fileID: 7068965237396061699}
   m_Layer: 0
-  m_Name: Explosion
+  m_Name: CannonSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
