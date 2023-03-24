@@ -8,6 +8,7 @@ public class CannonballAmountUI : MonoBehaviour
 
     public void UpdateCannonballsAmount()
     {
+        Debug.Log("Here");
         if (_currentShipCharacteristics == null)
             _currentShipCharacteristics = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<ShipCharacteristics>();
 
@@ -18,6 +19,7 @@ public class CannonballAmountUI : MonoBehaviour
     {
         _TMP = GetComponent<TextMeshProUGUI>();
         _currentShipCharacteristics = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<ShipCharacteristics>();
+        Debug.Log( _currentShipCharacteristics.CannonballsAmt.ToString());
         _TMP.text = _currentShipCharacteristics.CannonballsAmt.ToString();
         _currentShipCharacteristics.OnCannonballsAmtChanged += UpdateCannonballsAmount;
     }
