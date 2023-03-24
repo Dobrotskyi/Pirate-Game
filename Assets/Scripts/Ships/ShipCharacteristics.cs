@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ShipCharacteristics : MonoBehaviour
 {
-    public delegate void CannonballsAmtChanged();
-    public event CannonballsAmtChanged OnCannonballsAmtChanged;
+    public static event Action<int> OnCannonballsAmtChanged;
 
     [SerializeField] private float _speed;
     [SerializeField] private float _maxSpeed;
@@ -33,7 +33,7 @@ public class ShipCharacteristics : MonoBehaviour
                 if (_cannonBallsAmt > _maxCannonBallsAmt)
                     _cannonBallsAmt = _maxCannonBallsAmt;
             }
-            OnCannonballsAmtChanged?.Invoke();
+            OnCannonballsAmtChanged?.Invoke(_cannonBallsAmt);
         }
     }
 

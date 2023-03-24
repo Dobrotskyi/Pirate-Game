@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class ShipController : MonoBehaviour
 {
@@ -142,8 +141,6 @@ public class ShipController : MonoBehaviour
         _mainLeftTarget = transform.Find("MainLeftTarget");
         _mainRightTarget = transform.Find("MainRightTarget");
 
-        // SetLeftCannons();
-        // SetRightCannons();
         SetCannons();
 
         _steeringWheel.transform.localPosition = new Vector3(_rigidbody.centerOfMass.x, _rigidbody.centerOfMass.y, _steeringWheel.transform.localPosition.z);
