@@ -106,11 +106,11 @@ Material:
     - _UVSec: 0
     - _WINDMASKONOFF: 0
     - _WindDensity: 0.5
-    - _WindDensity1: 0.2
+    - _WindDensity1: 0.18
     - _WindMovement: 1
-    - _WindMovement1: 0.5
+    - _WindMovement1: 6.84
     - _WindStrength: 0.1
-    - _WindStrength1: 0.3
+    - _WindStrength1: 0.341
     - _ZWrite: 0
     - __dirty: 0
     m_Colors:
