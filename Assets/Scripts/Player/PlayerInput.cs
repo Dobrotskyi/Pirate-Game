@@ -32,6 +32,25 @@ public class PlayerInput : MonoBehaviour
             _shipCameraContoller.SetBackCamera();
             _shipController.RestoreCannonsPosition();
         }
+
+        float mouseVerticalInput = Input.GetAxis("Mouse Y");
+        float mouseHorizontalInput = Input.GetAxis("Mouse X");
+        Vector2 mouseInput = new Vector2(mouseHorizontalInput, mouseVerticalInput);
+
+
+        if (Input.GetMouseButton(0))
+        {
+            _shipController.AimLeftCannons(mouseInput);
+
+        }
+        else if (Input.GetMouseButton(1))
+        {
+            _shipController.AimRightCannons(mouseInput);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _shipController.ShootRight();
+            }
+        }
     }
 
     private void Update()
@@ -49,25 +68,10 @@ public class PlayerInput : MonoBehaviour
             }
         }
 
-        float mouseVerticalInput = Input.GetAxis("Mouse Y");
-        float mouseHorizontalInput = Input.GetAxis("Mouse X");
-        Vector2 mouseInput = new Vector2(mouseHorizontalInput, mouseVerticalInput);
+        if (Input.GetKeyDown(KeyCode.Space) && Input.GetMouseButton(0))
+            _shipController.ShootLeft();
 
-        if (Input.GetMouseButton(0))
-        {
-            _shipController.AimLeftCannons(mouseInput);
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _shipController.ShootLeft();
-            }
-        }
-        else if (Input.GetMouseButton(1))
-        {
-            _shipController.AimRightCannons(mouseInput);
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _shipController.ShootRight();
-            }
-        }
+        else if (Input.GetKeyDown(KeyCode.Space) && Input.GetMouseButton(1))
+            _shipController.ShootRight();
     }
 }

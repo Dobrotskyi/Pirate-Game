@@ -1838,7 +1838,7 @@ MonoBehaviour:
   _screenShakeParameters:
     Duration: 1
     Strength: 0.6
-  _sensivity: {x: 10, y: 100}
+  _sensivity: {x: 50, y: 200}
   _rotationalPointPrefab: {fileID: 5905824303975257117, guid: 59d12362ceda2784ca56d3cf29d7b4f5, type: 3}
 --- !u!114 &3100386504847990009
 MonoBehaviour:

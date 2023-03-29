@@ -1737,7 +1737,7 @@ MonoBehaviour:
   _screenShakeParameters:
     Duration: 1
     Strength: 0.8
-  _sensivity: {x: 10, y: 100}
+  _sensivity: {x: 50, y: 200}
 --- !u!114 &3874441641790378371
 MonoBehaviour:
   m_ObjectHideFlags: 0
