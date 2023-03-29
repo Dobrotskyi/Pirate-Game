@@ -22,15 +22,15 @@ public class PlayerInput : MonoBehaviour
         float horizontalInput = (float)Math.Round(Input.GetAxis("Horizontal"), 3);
 
         if (verticalInput > 0)
-            _shipController.MoveForward(verticalInput);
+            _shipController.MoveForward();
 
         if (horizontalInput != 0)
             _shipController.Rotate(horizontalInput);
 
         if ((!Input.GetMouseButton(0) && !Input.GetMouseButton(1)) == true)
         {
-            _shipCameraContoller.SetBackCamera();
-            _shipController.RestoreCannonsPosition();
+            _shipCameraContoller.SetCameraBehind();
+            _shipController.StopCannonsAiming();
         }
 
         float mouseVerticalInput = Input.GetAxis("Mouse Y");

@@ -17,7 +17,7 @@ public class ShipCameraController : MonoBehaviour
         _cinemachineCameras[2].SetActive(true);
     }
 
-    public void SetBackCamera()
+    public void SetCameraBehind()
     {
         SetAllFalse();
         _cinemachineCameras[0].SetActive(true);
@@ -31,6 +31,7 @@ public class ShipCameraController : MonoBehaviour
     private void OnEnable()
     {
         GameObject.Find("Player").GetComponent<PlayerInput>().SetShipCameraController(this);
+        GameObject.Find("Player").GetComponent<PlayerOnShipInputHandler>().SetShipCameraController(this);
     }
 
     private void SetAllFalse()

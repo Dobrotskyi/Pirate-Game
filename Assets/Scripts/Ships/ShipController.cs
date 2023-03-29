@@ -49,7 +49,7 @@ public class ShipController : MonoBehaviour
         }
     }
 
-    public void MoveForward(float direction)
+    public void MoveForward()
     {
         if (_canMoveForward)
         {
@@ -65,12 +65,12 @@ public class ShipController : MonoBehaviour
         _rigidbody.AddForceAtPosition(side * Time.deltaTime * _shipCharacteristics.RotationSpeed, _steeringWheel.transform.position, ForceMode.Acceleration);
     }
 
-    public void RestoreCannonsPosition()
+    public void StopCannonsAiming()
     {
         foreach (Cannon cannon in _leftCannons)
-            cannon.RestoreDefaultPosition();
+            cannon.StopAiming();
         foreach (Cannon cannon in _rightCannons)
-            cannon.RestoreDefaultPosition();
+            cannon.StopAiming();
     }
 
     public virtual void AimLeftCannons(Vector2 mouseInput)
@@ -83,25 +83,6 @@ public class ShipController : MonoBehaviour
     {
         mouseInput.x = -mouseInput.x;
         AimCannons(mouseInput, _mainRightTarget, _rightCannons);
-    }
-
-    public void AimCannons(Vector2 mouseInput, Transform target, List<Cannon> cannons)
-    {
-        float newX = target.localPosition.x + (mouseInput.y * _sensivity.y * Time.deltaTime);
-        if (target.localPosition.x > 0)
-        {
-            newX = Mathf.Clamp(newX, _targetXLimits[0], _targetXLimits[1]);
-        }
-        else
-        {
-            newX = Mathf.Clamp(newX, -_targetXLimits[1], -_targetXLimits[0]);
-        }
-        float newZ = Mathf.Clamp(target.localPosition.z + (mouseInput.x * _sensivity.x * Time.deltaTime), _targetZLimits[0], _targetZLimits[1]);
-        target.localPosition = new Vector3(newX, target.localPosition.y, newZ);
-        target.position = new Vector3(target.position.x, 0, target.position.z);
-
-        foreach (Cannon cannon in cannons)
-            cannon.Aim();
     }
 
     public void ShootLeft()
@@ -137,6 +118,7 @@ public class ShipController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
 
         GameObject.Find("Player").GetComponent<PlayerInput>().SetShipController(this);
+        GameObject.Find("Player").GetComponent<PlayerOnShipInputHandler>().SetShipController(this);
 
         _mainLeftTarget = transform.Find("MainLeftTarget");
         _mainRightTarget = transform.Find("MainRightTarget");
@@ -144,6 +126,25 @@ public class ShipController : MonoBehaviour
         SetCannons();
 
         _steeringWheel.transform.localPosition = new Vector3(_rigidbody.centerOfMass.x, _rigidbody.centerOfMass.y, _steeringWheel.transform.localPosition.z);
+    }
+
+    private void AimCannons(Vector2 mouseInput, Transform target, List<Cannon> cannons)
+    {
+        float newX = target.localPosition.x + (mouseInput.y * _sensivity.y * Time.deltaTime);
+        if (target.localPosition.x > 0)
+        {
+            newX = Mathf.Clamp(newX, _targetXLimits[0], _targetXLimits[1]);
+        }
+        else
+        {
+            newX = Mathf.Clamp(newX, -_targetXLimits[1], -_targetXLimits[0]);
+        }
+        float newZ = Mathf.Clamp(target.localPosition.z + (mouseInput.x * _sensivity.x * Time.deltaTime), _targetZLimits[0], _targetZLimits[1]);
+        target.localPosition = new Vector3(newX, target.localPosition.y, newZ);
+        target.position = new Vector3(target.position.x, 0, target.position.z);
+
+        foreach (Cannon cannon in cannons)
+            cannon.Aim();
     }
 
     private void OnTriggerEnter(Collider other)

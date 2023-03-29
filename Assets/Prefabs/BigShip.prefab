@@ -2461,8 +2461,8 @@ MonoBehaviour:
   - 10
   - 50
   _targetZLimits:
-  - -10
-  - 10
+  - -20
+  - 20
   _steeringWheel: {fileID: 6918861571719121809}
   _delayBetweenShotsInSeconds: 0.2
   _shipCharacteristics: {fileID: 4304828075367370006}
