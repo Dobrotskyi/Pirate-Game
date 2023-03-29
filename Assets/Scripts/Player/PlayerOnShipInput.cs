@@ -78,6 +78,5 @@ public class PlayerOnShipInput : MonoBehaviour
             rotate = true;
         else
             rotate = false;
-
     }
 }

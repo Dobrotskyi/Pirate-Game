@@ -37,7 +37,6 @@ public class PlayerInput : MonoBehaviour
         float mouseHorizontalInput = Input.GetAxis("Mouse X");
         Vector2 mouseInput = new Vector2(mouseHorizontalInput, mouseVerticalInput);
 
-
         if (Input.GetMouseButton(0))
         {
             _shipController.AimLeftCannons(mouseInput);

@@ -9,6 +9,7 @@ public class ShipController : MonoBehaviour
 
     [SerializeField] protected float[] _targetXLimits = new float[2];
     [SerializeField] protected float[] _targetZLimits = new float[2];
+    [SerializeField] protected Vector2 _sensivity = new Vector2(10f, 100f);
     [SerializeField] GameObject _steeringWheel;
     [SerializeField] private float _delayBetweenShotsInSeconds = 0.3f;
     [SerializeField] private ShipCharacteristics _shipCharacteristics;
@@ -21,7 +22,7 @@ public class ShipController : MonoBehaviour
     }
 
     [SerializeField] private ScreenShakeParameters _screenShakeParameters;
-    [SerializeField] private Vector2 _sensivity = new Vector2(10f, 100f);
+
 
     protected List<Cannon> _leftCannons;
     protected List<Cannon> _rightCannons;

@@ -15,7 +15,7 @@ public class SmallShipController : ShipController
             _targetRotationPoint.localRotation = Quaternion.Euler(0, 180, 0);
         }
 
-        float xRotation = AngleClamper.ClampAngle(mouseInput.x * 0.5f + _targetRotationPoint.localRotation.eulerAngles.y, 90, -90);
+        float xRotation = AngleClamper.ClampAngle(mouseInput.x * _sensivity.x + _targetRotationPoint.localRotation.eulerAngles.y, 90, -90);
         _targetRotationPoint.localRotation = Quaternion.Euler(0, xRotation, 0);
         AimCannons(mouseInput);
     }
@@ -28,14 +28,14 @@ public class SmallShipController : ShipController
             _facingRight = true;
         }
 
-        float xRotation = AngleClamper.ClampAngle(mouseInput.x * 0.5f + _targetRotationPoint.localRotation.eulerAngles.y, -90, 90);
+        float xRotation = AngleClamper.ClampAngle(mouseInput.x * _sensivity.x + _targetRotationPoint.localRotation.eulerAngles.y, -90, 90);
         _targetRotationPoint.localRotation = Quaternion.Euler(0, xRotation, 0);
         AimCannons(mouseInput);
     }
 
     private void AimCannons(Vector2 mouseInput)
     {
-        float newX = _mainRightTarget.localPosition.x + (mouseInput.y * 10f * Time.deltaTime);
+        float newX = _mainRightTarget.localPosition.x + (mouseInput.y * _sensivity.y * Time.deltaTime);
         if (_mainRightTarget.localPosition.x > 0)
         {
             newX = Mathf.Clamp(newX, _targetXLimits[0], _targetXLimits[1]);
@@ -45,6 +45,7 @@ public class SmallShipController : ShipController
             newX = Mathf.Clamp(newX, -_targetXLimits[1], -_targetXLimits[0]);
         }
         _mainRightTarget.localPosition = new Vector3(newX, _mainRightTarget.localPosition.y, _mainRightTarget.localPosition.z);
+        _mainRightTarget.position = new Vector3(_mainRightTarget.position.x, 0, _mainRightTarget.position.z);
 
         foreach (Cannon cannon in _rightCannons)
             cannon.Aim();

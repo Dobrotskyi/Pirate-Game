@@ -495,7 +495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4845120234433593321
 Transform:
   m_ObjectHideFlags: 0
@@ -1053,7 +1053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4225666180424009299
 Transform:
   m_ObjectHideFlags: 0
@@ -1731,13 +1731,13 @@ MonoBehaviour:
   _targetZLimits:
   - -7
   - 7
+  _sensivity: {x: 50, y: 120}
   _steeringWheel: {fileID: 7838277141564036832}
   _delayBetweenShotsInSeconds: 0.3
   _shipCharacteristics: {fileID: 3874441641790378371}
   _screenShakeParameters:
     Duration: 1
     Strength: 0.8
-  _sensivity: {x: 50, y: 200}
 --- !u!114 &3874441641790378371
 MonoBehaviour:
   m_ObjectHideFlags: 0

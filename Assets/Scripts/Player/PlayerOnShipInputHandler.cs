@@ -62,7 +62,6 @@ public class PlayerOnShipInputHandler : MonoBehaviour
             }
         }
 
-
         if (_playerInput.goForward)
             _shipController.MoveForward();
 
