@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FloaterPoint : MonoBehaviour
 {
-    private Rigidbody _rb;
+    [SerializeField] private Rigidbody _rb;
 
     [SerializeField] private float depthBeforeSubmerged = 1f;
 
@@ -21,10 +21,13 @@ public class FloaterPoint : MonoBehaviour
     {
         _waves = FindObjectOfType<Waves>();
 
-        Transform baseTransform = transform;
-        while (baseTransform.parent != null)
-            baseTransform = baseTransform.parent;
-        _rb = baseTransform.GetComponent<Rigidbody>();
+        if (_rb == null)
+        {
+            Transform baseTransform = transform;
+            while (baseTransform.parent != null)
+                baseTransform = baseTransform.parent;
+            _rb = baseTransform.GetComponent<Rigidbody>();
+        }
     }
 
     private void FixedUpdate()

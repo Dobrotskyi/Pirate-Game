@@ -88,19 +88,19 @@ public class Cannon : MonoBehaviour
 
     private void OnEnable()
     {
-        _cannonballSpawner = transform.GetChild(0).GetChild(0).transform;
-        _shipCharacteristics = transform.parent.parent.GetComponent<ShipCharacteristics>();
-        _lastShotTime = -_shipCharacteristics.GetCannonsCooldown();
-        _cannonShotForce = _shipCharacteristics.GetCannonsShotForce();
-
         _barrel = transform.Find("barrel").gameObject;
+        _cannonballSpawner = _barrel.transform.Find("CannonballSpawner");
         _defaultRotation = transform.localRotation;
         _trajectoryMaker = GetComponent<TrajectoryMaker>();
+
         Transform baseObj = transform;
         while (baseObj.parent != null)
             baseObj = baseObj.parent;
         _shipRb = baseObj.GetComponent<Rigidbody>();
-
+        _shipCharacteristics = baseObj.GetComponent<ShipCharacteristics>();
+        _lastShotTime = -_shipCharacteristics.GetCannonsCooldown();
+        _cannonShotForce = _shipCharacteristics.GetCannonsShotForce();
+        
         _audioSource = GetComponent<AudioSource>();
     }
 }

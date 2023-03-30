@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(ShipCharacteristics))]
 public class ShipController : MonoBehaviour
 {
     public static event Action<float, float> OnCannonFired;
