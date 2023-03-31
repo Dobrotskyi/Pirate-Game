@@ -56,7 +56,7 @@ public class SmallShipController : ShipController
         for (int i = 0; i < transform.Find("Cannons").transform.childCount; i++)
         {
             Cannon cannon = transform.Find("Cannons").transform.GetChild(i).GetComponent<Cannon>();
-            cannon.SetTarget(_mainRightTarget.gameObject);
+            cannon.SetTarget(_mainRightTarget);
             _rightCannons.Add(cannon);
             _leftCannons.Add(cannon);
         }

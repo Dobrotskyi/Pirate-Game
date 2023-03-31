@@ -41,12 +41,12 @@ public class ShipController : MonoBehaviour
             if (transform.Find("Cannons").GetChild(i).localPosition.x < 0)
             {
                 _leftCannons.Add(transform.Find("Cannons").GetChild(i).GetComponent<Cannon>());
-                _leftCannons[_leftCannons.Count - 1].SetTarget(_mainLeftTarget.gameObject);
+                _leftCannons[_leftCannons.Count - 1].SetTarget(_mainLeftTarget);
             }
             else
             {
                 _rightCannons.Add(transform.Find("Cannons").GetChild(i).GetComponent<Cannon>());
-                _rightCannons[_rightCannons.Count - 1].SetTarget(_mainRightTarget.gameObject);
+                _rightCannons[_rightCannons.Count - 1].SetTarget(_mainRightTarget);
             }
         }
     }
@@ -119,7 +119,6 @@ public class ShipController : MonoBehaviour
 
         _rigidbody = GetComponent<Rigidbody>();
 
-        GameObject.Find("Player").GetComponent<PlayerInput>().SetShipController(this);
         GameObject.Find("Player").GetComponent<PlayerOnShipInputHandler>().SetShipController(this);
 
         _mainLeftTarget = transform.Find("MainLeftTarget");

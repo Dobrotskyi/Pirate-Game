@@ -11,6 +11,7 @@ public class ShipManager : MonoBehaviour
         ship.transform.SetParent(transform);
         ship.transform.localPosition = transform.position;
         ship.transform.localRotation = Quaternion.identity;
+        transform.localPosition = Vector3.zero;
     }
     private void Awake()
     {

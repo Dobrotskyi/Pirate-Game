@@ -30,7 +30,6 @@ public class ShipCameraController : MonoBehaviour
 
     private void OnEnable()
     {
-        GameObject.Find("Player").GetComponent<PlayerInput>().SetShipCameraController(this);
         GameObject.Find("Player").GetComponent<PlayerOnShipInputHandler>().SetShipCameraController(this);
     }
 

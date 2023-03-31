@@ -11,6 +11,7 @@ TagManager:
   - PlayerShip
   - Cannonball
   - CannonBall
+  - EnemyShip
   layers:
   - Default
   - TransparentFX

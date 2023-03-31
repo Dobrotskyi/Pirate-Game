@@ -49,9 +49,9 @@ public class Cannon : MonoBehaviour
         _trajectoryMaker.HideTrajectory();
     }
 
-    public void SetTarget(GameObject target)
+    public void SetTarget(Transform target)
     {
-        _target = target.transform;
+        _target = target;
     }
 
     public void Aim()

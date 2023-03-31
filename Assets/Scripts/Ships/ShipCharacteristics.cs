@@ -17,8 +17,6 @@ public class ShipCharacteristics : MonoBehaviour
     private int _maxCannonBallsAmt;
 
     private List<GameObject> _cannonballs = new List<GameObject>();
-    private Vector3 _lastPosition;
-    private Vector3 _trackVelocity;
 
     public int CannonballsAmt
     {
@@ -91,12 +89,6 @@ public class ShipCharacteristics : MonoBehaviour
             _cannonballs.Add(cannonballs.GetChild(i).gameObject);
         }
         _maxCannonBallsAmt = cannonballs.childCount;
-        _cannonBallsAmt = _maxCannonBallsAmt;
-    }
-
-    private void FixedUpdate()
-    {
-        _trackVelocity = ((transform.GetComponent<Rigidbody>().position - _lastPosition) * 50);
-        _lastPosition = transform.GetComponent<Rigidbody>().position;
+        CannonballsAmt = _maxCannonBallsAmt;
     }
 }
