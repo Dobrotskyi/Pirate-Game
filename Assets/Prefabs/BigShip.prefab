@@ -2395,8 +2395,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4350310416063003365}
   - component: {fileID: 2258845133873674692}
-  - component: {fileID: 7200357498220823757}
-  - component: {fileID: 4304828075367370006}
   - component: {fileID: 892352146455587452}
   - component: {fileID: 3567150149396544457}
   - component: {fileID: 1328247021507744213}
@@ -2404,6 +2402,8 @@ GameObject:
   - component: {fileID: 8937686167017942491}
   - component: {fileID: 2469045392194281551}
   - component: {fileID: 767730977930598948}
+  - component: {fileID: 8350686668509390744}
+  - component: {fileID: 198888999831717636}
   m_Layer: 0
   m_Name: BigShip
   m_TagString: PlayerShip
@@ -2449,49 +2449,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _createdParentCMCameras: {fileID: 6023195036229122703}
---- !u!114 &7200357498220823757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4350310416063003364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f8137d94063ff04fad1ec0018a9d7e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _targetXLimits:
-  - 10
-  - 50
-  _targetZLimits:
-  - -20
-  - 20
-  _sensivity: {x: 100, y: 400}
-  _steeringWheel: {fileID: 6918861571719121809}
-  _delayBetweenShotsInSeconds: 0.2
-  _shipCharacteristics: {fileID: 4304828075367370006}
-  _screenShakeParameters:
-    Duration: 1
-    Strength: 1.3
---- !u!114 &4304828075367370006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4350310416063003364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf73340571883274db53e338afbead40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 1400
-  _maxSpeed: 2000
-  _shipRotationSpeed: 180
-  _cannonShotForce: 700
-  _cannonsCooldown: 2
-  _cannonFOV: 40
 --- !u!54 &892352146455587452
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2589,6 +2546,48 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &8350686668509390744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4350310416063003364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7edff39db649384789743709bc04d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetXLimits:
+  - 10
+  - 50
+  _targetZLimits:
+  - 10
+  - 50
+  _sensivity: {x: 100, y: 400}
+  _delayBetweenShotsInSeconds: 0.2
+  _screenShakeParameters:
+    Duration: 1
+    Strength: 1.3
+  _steeringWheel: {fileID: 6918861571719121809}
+--- !u!114 &198888999831717636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4350310416063003364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970ba3723171a1c4397cf8d590971ae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cannonShotForce: 700
+  _cannonsCooldown: 2
+  _cannonFOV: 40
+  _speed: 800
+  _maxSpeed: 1200
+  _shipRotationSpeed: 130
 --- !u!1 &4350310416745252302
 GameObject:
   m_ObjectHideFlags: 0

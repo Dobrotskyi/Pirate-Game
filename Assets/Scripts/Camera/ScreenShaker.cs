@@ -27,12 +27,12 @@ public class ScreenShaker : MonoBehaviour
     private void OnEnable()
     {
         ShipController.OnCannonFired += Shake;
-        EnemyShipShooter.OnCannonFired += Shake;
+        EnemyShipController.OnCannonFired += Shake;
     }
 
     private void OnDisable()
     {
         ShipController.OnCannonFired -= Shake;
-        EnemyShipShooter.OnCannonFired -= Shake;
+        EnemyShipController.OnCannonFired -= Shake;
     }
 }

@@ -4,11 +4,6 @@ using System;
 
 public class ShipCharacteristics : MonoBehaviour
 {
-    public static event Action<int> OnCannonballsAmtChanged;
-
-    [SerializeField] private float _speed;
-    [SerializeField] private float _maxSpeed;
-    [SerializeField] private float _shipRotationSpeed;
     [SerializeField] private float _cannonShotForce;
     [SerializeField] private float _cannonsCooldown;
     [SerializeField] private float _cannonFOV;
@@ -18,10 +13,10 @@ public class ShipCharacteristics : MonoBehaviour
 
     private List<GameObject> _cannonballs = new List<GameObject>();
 
-    public int CannonballsAmt
+    public virtual int CannonballsAmt
     {
         get { return _cannonBallsAmt; }
-        private set
+        protected set
         {
             if (value < 0)
                 _cannonBallsAmt = 0;
@@ -31,28 +26,12 @@ public class ShipCharacteristics : MonoBehaviour
                 if (_cannonBallsAmt > _maxCannonBallsAmt)
                     _cannonBallsAmt = _maxCannonBallsAmt;
             }
-            OnCannonballsAmtChanged?.Invoke(_cannonBallsAmt);
         }
-    }
-
-    public float Speed
-    {
-        get { return _speed; }
-    }
-
-    public float MaxSpeed
-    {
-        get { return _maxSpeed; }
     }
 
     public float CannonFOV
     {
         get { return _cannonFOV; }
-    }
-
-    public float RotationSpeed
-    {
-        get { return _shipRotationSpeed; }
     }
 
     public float GetCannonsCooldown()

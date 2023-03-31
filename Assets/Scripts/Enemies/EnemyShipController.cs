@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class EnemyShipShooter : MonoBehaviour
+public class EnemyShipController : MonoBehaviour
 {
-    public static event Action<float, float> OnCannonFired;
 
     [Serializable]
     private struct ScreenShakeParameters
@@ -59,7 +58,6 @@ public class EnemyShipShooter : MonoBehaviour
             if (cannon.CanShoot())
             {
                 cannon.Shoot();
-                OnCannonFired?.Invoke(_screenShakeParameters.Duration, _screenShakeParameters.Strength);
                 yield return new WaitForSeconds(_delayBetweenShotsInSeconds);
             }
             else
@@ -107,7 +105,7 @@ public class EnemyShipShooter : MonoBehaviour
 
     private void SetNewTargetToCannons()
     {
-        foreach(Cannon cannon in _leftCannons)
+        foreach (Cannon cannon in _leftCannons)
             cannon.SetTarget(_target);
     }
 }

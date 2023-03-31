@@ -4,9 +4,9 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     private ShipCameraController _shipCameraContoller;
-    private ShipController _shipController;
+    private PlayerShipController _shipController;
 
-    public void SetShipController(ShipController shipController)
+    public void SetShipController(PlayerShipController shipController)
     {
         _shipController = shipController;
     }

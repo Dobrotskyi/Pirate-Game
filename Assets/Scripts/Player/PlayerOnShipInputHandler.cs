@@ -4,10 +4,10 @@ using UnityEngine;
 public class PlayerOnShipInputHandler : MonoBehaviour
 {
     private PlayerOnShipInput _playerInput;
-    private ShipController _shipController;
+    private PlayerShipController _shipController;
     private ShipCameraController _shipCameraContoller;
 
-    public void SetShipController(ShipController shipController)
+    public void SetShipController(PlayerShipController shipController)
     {
         _shipController = shipController;
     }
@@ -17,8 +17,9 @@ public class PlayerOnShipInputHandler : MonoBehaviour
         _shipCameraContoller = shipCameraController;
     }
 
-    private void Start()
+    private void OnEnable()
     {
+        Debug.Log(_shipController);
         _playerInput = GetComponent<PlayerOnShipInput>();
         _playerInput.Shoot += ShootEventHandler;
         _playerInput.AimingDirectionChanged += _shipController.StopCannonsAiming;

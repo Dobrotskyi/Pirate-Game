@@ -3,7 +3,6 @@ using TMPro;
 
 public class CannonballAmountUI : MonoBehaviour
 {
-    private ShipCharacteristics _currentShipCharacteristics;
     private TextMeshProUGUI _TMP;
 
     private void UpdateCannonballsAmount(int amt)
@@ -14,11 +13,11 @@ public class CannonballAmountUI : MonoBehaviour
     private void OnEnable()
     {
         _TMP = GetComponent<TextMeshProUGUI>();
-        ShipCharacteristics.OnCannonballsAmtChanged += UpdateCannonballsAmount;
+        PlayerShipCharacteristics.OnCannonballsAmtChanged += UpdateCannonballsAmount;
     }
 
     private void OnDisable()
     {
-        ShipCharacteristics.OnCannonballsAmtChanged -= UpdateCannonballsAmount;
+        PlayerShipCharacteristics.OnCannonballsAmtChanged -= UpdateCannonballsAmount;
     }
 }

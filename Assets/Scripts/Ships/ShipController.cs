@@ -11,9 +11,8 @@ public class ShipController : MonoBehaviour
     [SerializeField] protected float[] _targetXLimits = new float[2];
     [SerializeField] protected float[] _targetZLimits = new float[2];
     [SerializeField] protected Vector2 _sensivity = new Vector2(10f, 100f);
-    [SerializeField] GameObject _steeringWheel;
     [SerializeField] private float _delayBetweenShotsInSeconds = 0.3f;
-    [SerializeField] private ShipCharacteristics _shipCharacteristics;
+    protected ShipCharacteristics _shipCharacteristics;
 
     [Serializable]
     private struct ScreenShakeParameters
@@ -31,9 +30,6 @@ public class ShipController : MonoBehaviour
     protected Transform _mainLeftTarget;
     protected Transform _mainRightTarget;
 
-    private Rigidbody _rigidbody;
-    private bool _canMoveForward = true;
-
     protected virtual void SetCannons()
     {
         for (int i = 0; i < transform.Find("Cannons").childCount; i++)
@@ -49,22 +45,6 @@ public class ShipController : MonoBehaviour
                 _rightCannons[_rightCannons.Count - 1].SetTarget(_mainRightTarget);
             }
         }
-    }
-
-    public void MoveForward()
-    {
-        if (_canMoveForward)
-        {
-            Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
-            _rigidbody.AddForceAtPosition(forward * _shipCharacteristics.Speed * Time.deltaTime, _steeringWheel.transform.position, ForceMode.Acceleration);
-            _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _shipCharacteristics.MaxSpeed);
-        }
-    }
-
-    public void Rotate(float rotationSide)
-    {
-        Vector3 side = -_steeringWheel.transform.right * rotationSide;
-        _rigidbody.AddForceAtPosition(side * Time.deltaTime * _shipCharacteristics.RotationSpeed, _steeringWheel.transform.position, ForceMode.Acceleration);
     }
 
     public void StopCannonsAiming()
@@ -117,16 +97,10 @@ public class ShipController : MonoBehaviour
         _leftCannons = new List<Cannon>();
         _rightCannons = new List<Cannon>();
 
-        _rigidbody = GetComponent<Rigidbody>();
-
-        GameObject.Find("Player").GetComponent<PlayerOnShipInputHandler>().SetShipController(this);
-
         _mainLeftTarget = transform.Find("MainLeftTarget");
         _mainRightTarget = transform.Find("MainRightTarget");
 
         SetCannons();
-
-        _steeringWheel.transform.localPosition = new Vector3(_rigidbody.centerOfMass.x, _rigidbody.centerOfMass.y, _steeringWheel.transform.localPosition.z);
     }
 
     private void AimCannons(Vector2 mouseInput, Transform target, List<Cannon> cannons)
@@ -148,29 +122,4 @@ public class ShipController : MonoBehaviour
             cannon.Aim();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Rock"))
-            _canMoveForward = false;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Rock"))
-            _canMoveForward = true;
-    }
-
-    private void FixedUpdate()
-    {
-        KeepHorizontalVelocityForward();
-    }
-
-    private void KeepHorizontalVelocityForward()
-    {
-        Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
-        Vector3 horizontalVelocity = Vector3.Scale(new Vector3(1, 0, 1), _rigidbody.velocity);
-        horizontalVelocity = forward * horizontalVelocity.magnitude;
-        float verticalVelocity = _rigidbody.velocity.y;
-        _rigidbody.velocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
-    }
 }
