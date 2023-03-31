@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SmallShipController : ShipController
+public class SmallShipController : PlayerShipController
 {
     [SerializeField] private GameObject _rotationalPointPrefab;
     private Transform _targetRotationPoint;
@@ -33,7 +33,7 @@ public class SmallShipController : ShipController
         AimCannons(mouseInput);
     }
 
-    private void AimCannons(Vector2 mouseInput)
+    protected void AimCannons(Vector2 mouseInput)
     {
         float newX = _mainRightTarget.localPosition.x + (mouseInput.y * _sensivity.y * Time.deltaTime);
         if (_mainRightTarget.localPosition.x > 0)
@@ -65,8 +65,8 @@ public class SmallShipController : ShipController
     protected override void OnEnable()
     {
         base.OnEnable();
-        _startingTargetPosition = _mainRightTarget.localPosition;
 
+        _startingTargetPosition = _mainRightTarget.localPosition;
         Destroy(_mainLeftTarget.gameObject);
         _targetRotationPoint = Instantiate(_rotationalPointPrefab, transform).transform;
         _mainRightTarget.parent = _targetRotationPoint;

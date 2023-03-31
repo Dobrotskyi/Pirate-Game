@@ -7,13 +7,13 @@ public class EnemyPathFinding : MonoBehaviour
     private Transform _destinationTransform;
     private NavMeshAgent _navMeshAgent;
     private Villages _villages;
-    private bool _destinationReached = false;
+    private bool _destinationReached = true;
 
     private void OnEnable()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _villages = FindObjectOfType<Villages>();
-        _navMeshAgent.destination = _villages.GetRandomDock;
+        StartCoroutine(Docking());
     }
 
     private void FixedUpdate()
@@ -28,8 +28,8 @@ public class EnemyPathFinding : MonoBehaviour
     private IEnumerator Docking()
     {
         yield return new WaitForSeconds(5);
+
         _navMeshAgent.destination = _villages.GetRandomDock;
-        Debug.Log(_navMeshAgent.destination);
         _destinationReached = false;
         yield break;
     }

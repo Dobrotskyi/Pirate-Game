@@ -19,7 +19,6 @@ public class PlayerOnShipInputHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log(_shipController);
         _playerInput = GetComponent<PlayerOnShipInput>();
         _playerInput.Shoot += ShootEventHandler;
         _playerInput.AimingDirectionChanged += _shipController.StopCannonsAiming;

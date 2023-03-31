@@ -2562,14 +2562,14 @@ MonoBehaviour:
   - 10
   - 50
   _targetZLimits:
-  - 10
-  - 50
+  - -20
+  - 20
   _sensivity: {x: 100, y: 400}
   _delayBetweenShotsInSeconds: 0.2
+  _steeringWheel: {fileID: 6918861571719121809}
   _screenShakeParameters:
     Duration: 1
     Strength: 1.3
-  _steeringWheel: {fileID: 6918861571719121809}
 --- !u!114 &198888999831717636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2586,7 +2586,7 @@ MonoBehaviour:
   _cannonsCooldown: 2
   _cannonFOV: 40
   _speed: 800
-  _maxSpeed: 1200
+  _maxSpeed: 2000
   _shipRotationSpeed: 130
 --- !u!1 &4350310416745252302
 GameObject:

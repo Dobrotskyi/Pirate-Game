@@ -638,7 +638,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849810191513464607}
-  m_LocalRotation: {x: 0.10624119, y: -0.000000017109, z: 0.0000000018280266, w: 0.9943404}
+  m_LocalRotation: {x: 0.10624121, y: -0.0000000114520375, z: 0.0000000012236031, w: 0.9943404}
   m_LocalPosition: {x: 0, y: 5.66, z: -8.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -907,6 +907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rb: {fileID: 0}
   depthBeforeSubmerged: 0.5
   cubeVolume: 1.5
   floaterCount: 4
@@ -1765,10 +1766,11 @@ GameObject:
   - component: {fileID: 3234836930430135050}
   - component: {fileID: 6099351496539468288}
   - component: {fileID: 6945444189762270189}
-  - component: {fileID: 3100386504847990009}
   - component: {fileID: 2078796908654853011}
   - component: {fileID: -6829133362175366618}
   - component: {fileID: -9019026795433361350}
+  - component: {fileID: 6935031221216126045}
+  - component: {fileID: -8189355337570424770}
   m_Layer: 0
   m_Name: SmallShip
   m_TagString: PlayerShip
@@ -1828,36 +1830,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetXLimits:
   - 3
-  - 30
+  - 50
   _targetZLimits:
   - -10
   - 10
   _sensivity: {x: 8, y: 40}
-  _steeringWheel: {fileID: 3590812491753273915}
   _delayBetweenShotsInSeconds: 0.3
-  _shipCharacteristics: {fileID: 3100386504847990009}
+  _steeringWheel: {fileID: 3590812491753273915}
   _screenShakeParameters:
     Duration: 1
     Strength: 0.6
   _rotationalPointPrefab: {fileID: 5905824303975257117, guid: 59d12362ceda2784ca56d3cf29d7b4f5, type: 3}
---- !u!114 &3100386504847990009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3234836930430135051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf73340571883274db53e338afbead40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 1100
-  _maxSpeed: 1300
-  _shipRotationSpeed: 220
-  _cannonShotForce: 430
-  _cannonsCooldown: 1
-  _cannonFOV: -1
 --- !u!54 &2078796908654853011
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1900,6 +1883,40 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.97782016, y: 0.46335262, z: 0.09699941}
   m_Center: {x: -0.011089921, y: 0.4941915, z: 1.5916797}
+--- !u!114 &6935031221216126045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3234836930430135051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970ba3723171a1c4397cf8d590971ae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cannonShotForce: 430
+  _cannonsCooldown: 1
+  _cannonFOV: -1
+  _speed: 1600
+  _maxSpeed: 2000
+  _shipRotationSpeed: 400
+--- !u!208 &-8189355337570424770
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3234836930430135051}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5, y: 0.5, z: 2.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3234836930446538741
 GameObject:
   m_ObjectHideFlags: 0
@@ -2311,6 +2328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rb: {fileID: 0}
   depthBeforeSubmerged: 0.5
   cubeVolume: 1.5
   floaterCount: 4
@@ -3652,6 +3670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rb: {fileID: 0}
   depthBeforeSubmerged: 0.5
   cubeVolume: 1.5
   floaterCount: 4
@@ -3772,6 +3791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rb: {fileID: 0}
   depthBeforeSubmerged: 0.5
   cubeVolume: 1.5
   floaterCount: 4

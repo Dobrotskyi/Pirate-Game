@@ -293,6 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rb: {fileID: 0}
   depthBeforeSubmerged: 1
   cubeVolume: 1.4
   floaterCount: 6
@@ -899,6 +900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rb: {fileID: 0}
   depthBeforeSubmerged: 1
   cubeVolume: 1.4
   floaterCount: 6
@@ -1031,6 +1033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rb: {fileID: 0}
   depthBeforeSubmerged: 1
   cubeVolume: 1.4
   floaterCount: 6
@@ -1669,6 +1672,9 @@ GameObject:
   - component: {fileID: 151820541849368297}
   - component: {fileID: 4609445624197162844}
   - component: {fileID: 2024363454746561856}
+  - component: {fileID: 3877344679808927810}
+  - component: {fileID: 4944808205066325807}
+  - component: {fileID: -5602296011398553943}
   m_Layer: 0
   m_Name: LargeShip
   m_TagString: PlayerShip
@@ -1732,12 +1738,7 @@ MonoBehaviour:
   - -7
   - 7
   _sensivity: {x: 50, y: 120}
-  _steeringWheel: {fileID: 7838277141564036832}
   _delayBetweenShotsInSeconds: 0.3
-  _shipCharacteristics: {fileID: 3874441641790378371}
-  _screenShakeParameters:
-    Duration: 1
-    Strength: 0.8
 --- !u!114 &3874441641790378371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1750,9 +1751,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf73340571883274db53e338afbead40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1000
-  _maxSpeed: 1300
-  _shipRotationSpeed: 200
   _cannonShotForce: 450
   _cannonsCooldown: 1.4
   _cannonFOV: 80
@@ -1798,6 +1796,64 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.97782016, y: 0.46335262, z: 0.09699941}
   m_Center: {x: -0.011089921, y: 0.4941915, z: 1.5916797}
+--- !u!114 &3877344679808927810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3613701304156612209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970ba3723171a1c4397cf8d590971ae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cannonShotForce: 450
+  _cannonsCooldown: 1.4
+  _cannonFOV: 80
+  _speed: 1000
+  _maxSpeed: 1200
+  _shipRotationSpeed: 200
+--- !u!114 &4944808205066325807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3613701304156612209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7edff39db649384789743709bc04d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetXLimits:
+  - 5.6
+  - 40
+  _targetZLimits:
+  - -7
+  - 7
+  _sensivity: {x: 50, y: 120}
+  _delayBetweenShotsInSeconds: 0.3
+  _steeringWheel: {fileID: 7838277141564036832}
+  _screenShakeParameters:
+    Duration: 0.6
+    Strength: 1
+--- !u!208 &-5602296011398553943
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3613701304156612209}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5, y: 1, z: 3}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3613701304172427919
 GameObject:
   m_ObjectHideFlags: 0
@@ -2021,6 +2077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rb: {fileID: 0}
   depthBeforeSubmerged: 1
   cubeVolume: 1.4
   floaterCount: 6
@@ -3055,6 +3112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rb: {fileID: 0}
   depthBeforeSubmerged: 1
   cubeVolume: 1.4
   floaterCount: 6
@@ -3301,6 +3359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a36e062412d69f4689fcf647471fc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rb: {fileID: 0}
   depthBeforeSubmerged: 1
   cubeVolume: 1.4
   floaterCount: 6

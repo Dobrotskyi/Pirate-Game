@@ -8,13 +8,13 @@ public class Villages : MonoBehaviour
     {
         get
         {
-          return _docks[Random.Range(0, _docks.Count)];
+            return _docks[Random.Range(0, _docks.Count)];
         }
     }
 
     private List<Vector3> _docks = new List<Vector3>();
 
-    private void Awake()
+    private void Start()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
