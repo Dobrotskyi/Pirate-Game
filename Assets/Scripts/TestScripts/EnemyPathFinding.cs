@@ -10,9 +10,9 @@ public class EnemyPathFinding : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
     private Villages _villages;
     private bool _destinationReached = true;
-    private bool _canShoot = false;
 
-    private float _minimumAttackDistance = 10f;
+    private float _minimumAttackDistance = 20f;
+    private float _startChasingDistance = 30f;
 
     [SerializeField]
     private Transform _leftCannonsPlacement;
@@ -39,10 +39,22 @@ public class EnemyPathFinding : MonoBehaviour
             StartCoroutine(Docking());
         }
 
-        if (_attackMode == true)
+        if (_attackMode)
         {
-            _navMeshAgent.isStopped = true;
-            AttackTarget();
+            float distance = Vector3.Distance(transform.position, _target.position);
+            if (distance < _minimumAttackDistance)
+            {
+                AimAtTarget();
+            }
+            else
+            {
+                _shipController.StopCannonsAiming();
+                if (distance >= _startChasingDistance)
+                {
+                    _navMeshAgent.isStopped = false;
+                    _navMeshAgent.destination = _target.position;
+                }
+            }
         }
     }
 
@@ -55,8 +67,9 @@ public class EnemyPathFinding : MonoBehaviour
         yield break;
     }
 
-    private void AttackTarget()
+    private void AimAtTarget()
     {
+        _navMeshAgent.enabled = false;
         Vector3 direction = transform.position - _target.position;
         Quaternion rotation = Quaternion.LookRotation(direction);
         float rotateToSide;
@@ -72,8 +85,8 @@ public class EnemyPathFinding : MonoBehaviour
             _shipController.AimRightCannons();
             _shipController.ShootRight();
         }
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y + rotateToSide, 0), 5 * Time.deltaTime);
 
-
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y + rotateToSide, 0), 4 * Time.deltaTime);
+        _navMeshAgent.enabled = true;
     }
 }

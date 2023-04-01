@@ -15,13 +15,13 @@ public class Cannon : MonoBehaviour
     protected Transform _cannonballSpawner;
     protected TrajectoryMaker _trajectoryMaker;
     protected float _centerOfTargetYOffset = 0f;
+    protected GameObject _barrel;
+
+    protected float _cannonRotationSpeed = 5f;
 
     private float _lastShotTime;
     private ShipCharacteristics _shipCharacteristics;
-
-    protected GameObject _barrel;
     private Quaternion _defaultRotation;
-
     private AudioSource _audioSource;
 
     public void Shoot()
@@ -72,9 +72,9 @@ public class Cannon : MonoBehaviour
 
     private void MainPartAim()
     {
-        Vector3 direction = _barrel.transform.position - _target.position;
+        Vector3 direction = _barrel.transform.position - GetAimingPoint();
         Quaternion rotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), 5 * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), _cannonRotationSpeed * Time.deltaTime);
 
         if (_shipCharacteristics.CannonFOV != -1)
         {
@@ -83,9 +83,14 @@ public class Cannon : MonoBehaviour
         }
     }
 
+    protected virtual Vector3 GetAimingPoint()
+    {
+        return _target.position;
+    }
+
     protected virtual void BarrelAim()
     {
-        Vector3 launchVector = _cannonShotForce * _cannonballSpawner.forward / _cannonballMass;
+        Vector3 launchVector = GetLaunchVector();
         Vector3 partToHit = _target.position;
         partToHit.y += _centerOfTargetYOffset;
         float launchAngle = CannonLaunchAngleCounter.GetLaunchAngle(_cannonballSpawner.position, partToHit, launchVector);
@@ -97,7 +102,12 @@ public class Cannon : MonoBehaviour
         _trajectoryMaker.ShowTrajectory(_cannonballSpawner.position, launchVector);
     }
 
-    private void OnEnable()
+    protected Vector3 GetLaunchVector()
+    {
+        return _cannonShotForce * _cannonballSpawner.forward / _cannonballMass;
+    }
+
+    protected virtual void OnEnable()
     {
         _barrel = transform.Find("barrel").gameObject;
         _cannonballSpawner = _barrel.transform.Find("CannonballSpawner");

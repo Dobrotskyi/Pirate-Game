@@ -39,6 +39,14 @@ public class EnemyShipController : ShipController
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("PlayerShip"))
+        {
+            _enemyPathFinding._attackMode = false;
+        }
+    }
+
     private void SetNewTargetToCannons(Rigidbody target)
     {
         foreach (Cannon cannon in _leftCannons)
