@@ -5,28 +5,45 @@ using UnityEngine;
 
 public class EnemyShipController : ShipController
 {
-    private Transform _target;
+    private EnemyPathFinding _enemyPathFinding;
+
+    public void AimRightCannons()
+    {
+        AimCannons(_rightCannons);
+    }
+
+    public void AimLeftCannons()
+    {
+        AimCannons(_leftCannons);
+    }
 
     protected override void OnEnable()
     {
-        _leftCannons = new List<Cannon>();
-        _rightCannons = new List<Cannon>();
+        base.OnEnable();
+        _enemyPathFinding = transform.GetComponentInParent<EnemyPathFinding>();
+    }
 
-        SetCannons();
+    private void AimCannons(List<Cannon> cannons)
+    {
+        foreach (Cannon cannon in cannons)
+            cannon.Aim();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PlayerShip"))
         {
-            _target = other.transform;
-            SetNewTargetToCannons();
+            SetNewTargetToCannons(other.transform.GetComponent<Rigidbody>());
+            _enemyPathFinding._attackMode = true;
+            _enemyPathFinding._target = other.transform;
         }
     }
 
-    private void SetNewTargetToCannons()
+    private void SetNewTargetToCannons(Rigidbody target)
     {
         foreach (Cannon cannon in _leftCannons)
-            cannon.SetTarget(_target);
+            cannon.SetTarget(target);
+        foreach (Cannon cannon in _rightCannons)
+            cannon.SetTarget(target);
     }
 }

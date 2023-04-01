@@ -9,9 +9,10 @@ TagManager:
   - Rock
   - Chest
   - PlayerShip
-  - Cannonball
-  - CannonBall
   - EnemyShip
+  - Cannonball
+  - Water
+  - CannonBall
   layers:
   - Default
   - TransparentFX

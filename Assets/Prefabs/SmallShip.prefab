@@ -1828,14 +1828,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229332e87344ed047a337347aa5012c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _delayBetweenShotsInSeconds: 0.3
+  _sensivity: {x: 8, y: 40}
   _targetXLimits:
   - 3
   - 50
   _targetZLimits:
   - -10
   - 10
-  _sensivity: {x: 8, y: 40}
-  _delayBetweenShotsInSeconds: 0.3
   _steeringWheel: {fileID: 3590812491753273915}
   _screenShakeParameters:
     Duration: 1
@@ -1849,7 +1849,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3234836930430135051}
   serializedVersion: 2
-  m_Mass: 30
+  m_Mass: 200
   m_Drag: 0.5
   m_AngularDrag: 3
   m_UseGravity: 1
@@ -1895,7 +1895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970ba3723171a1c4397cf8d590971ae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cannonShotForce: 430
+  _cannonShotForce: 800
   _cannonsCooldown: 1
   _cannonFOV: -1
   _speed: 1600

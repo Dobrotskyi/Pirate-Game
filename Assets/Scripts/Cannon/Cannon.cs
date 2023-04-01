@@ -8,17 +8,20 @@ public class Cannon : MonoBehaviour
     [SerializeField] private GameObject _afterShotSmokeEffect;
     [SerializeField] private AudioClip _shotAudio;
 
-    private float _cannonShotForce;
+    protected float _cannonShotForce;
+    protected float _cannonballMass;
+    protected Transform _target;
+    protected Rigidbody _shipRb;
+    protected Transform _cannonballSpawner;
+    protected TrajectoryMaker _trajectoryMaker;
+    protected float _centerOfTargetYOffset = 0f;
+
     private float _lastShotTime;
-
     private ShipCharacteristics _shipCharacteristics;
-    private Transform _cannonballSpawner;
-    private TrajectoryMaker _trajectoryMaker;
 
-    private GameObject _barrel;
+    protected GameObject _barrel;
     private Quaternion _defaultRotation;
-    private Transform _target;
-    private Rigidbody _shipRb;
+
     private AudioSource _audioSource;
 
     public void Shoot()
@@ -55,6 +58,12 @@ public class Cannon : MonoBehaviour
         _target = target;
     }
 
+    public void SetTarget(Rigidbody targetRb)
+    {
+        _target = targetRb.transform;
+        _centerOfTargetYOffset = targetRb.centerOfMass.y;
+    }
+
     public void Aim()
     {
         MainPartAim();
@@ -74,15 +83,16 @@ public class Cannon : MonoBehaviour
         }
     }
 
-    private void BarrelAim()
+    protected virtual void BarrelAim()
     {
-        Vector3 launchVector = _cannonShotForce * _cannonballSpawner.forward / _cannonball.GetComponent<Rigidbody>().mass;
-        float launchAngle = CannonLaunchAngleCounter.GetLaunchAngle(_cannonballSpawner, _target, launchVector);
-
+        Vector3 launchVector = _cannonShotForce * _cannonballSpawner.forward / _cannonballMass;
+        Vector3 partToHit = _target.position;
+        partToHit.y += _centerOfTargetYOffset;
+        float launchAngle = CannonLaunchAngleCounter.GetLaunchAngle(_cannonballSpawner.position, partToHit, launchVector);
         if (float.IsNaN(launchAngle))
             Debug.Log("Target out of reach");
-        else
-            _barrel.transform.localRotation = Quaternion.Euler(launchAngle, 0, 0);
+
+        _barrel.transform.localRotation = Quaternion.Euler(launchAngle, 0, 0);
 
         _trajectoryMaker.ShowTrajectory(_cannonballSpawner.position, launchVector);
     }
@@ -94,14 +104,17 @@ public class Cannon : MonoBehaviour
         _defaultRotation = transform.localRotation;
         _trajectoryMaker = GetComponent<TrajectoryMaker>();
 
-        Transform baseObj = transform;
-        while (baseObj.parent != null)
-            baseObj = baseObj.parent;
-        _shipRb = baseObj.GetComponent<Rigidbody>();
-        _shipCharacteristics = baseObj.GetComponent<ShipCharacteristics>();
-        _lastShotTime = -_shipCharacteristics.GetCannonsCooldown();
+        Transform shipObj = transform;
+
+        while (shipObj.TryGetComponent<ShipController>(out ShipController shipController) == false && shipObj.parent != null)
+            shipObj = shipObj.parent;
+
+        _shipRb = shipObj.GetComponent<Rigidbody>();
+        _shipCharacteristics = shipObj.GetComponent<ShipCharacteristics>();
+        _lastShotTime = _shipCharacteristics.GetCannonsCooldown();
         _cannonShotForce = _shipCharacteristics.GetCannonsShotForce();
-        
+
         _audioSource = GetComponent<AudioSource>();
+        _cannonballMass = _cannonball.GetComponent<Rigidbody>().mass;
     }
 }

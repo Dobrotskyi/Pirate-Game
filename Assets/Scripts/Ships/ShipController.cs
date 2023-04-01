@@ -7,7 +7,7 @@ using UnityEngine;
 public class ShipController : MonoBehaviour
 {
     [SerializeField] protected float _delayBetweenShotsInSeconds = 0.3f;
-    protected ShipCharacteristics _shipCharacteristics;
+    protected internal ShipCharacteristics _shipCharacteristics;
 
     protected List<Cannon> _leftCannons;
     protected List<Cannon> _rightCannons;

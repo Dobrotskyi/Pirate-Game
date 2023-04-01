@@ -4,10 +4,10 @@ public static class CannonLaunchAngleCounter
 {
     private const float G = 9.81f;
 
-    public static float GetLaunchAngle(Transform origin, Transform target, Vector3 velocity)
+    public static float GetLaunchAngle(Vector3 origin, Vector3 target, Vector3 velocity)
     {
         float xDist = RelativeToMainDistanceX(origin, target);
-        float yDist = target.position.y - origin.position.y;
+        float yDist = target.y - origin.y;
 
         float mag = velocity.magnitude;
         float underSqr = Mathf.Pow(mag, 4) - G * (G * xDist * xDist + 2 * yDist * mag * mag);
@@ -20,13 +20,10 @@ public static class CannonLaunchAngleCounter
         return launchAngle;
     }
 
-    private static float RelativeToMainDistanceX(Transform origin, Transform target)
+    private static float RelativeToMainDistanceX(Vector3 origin, Vector3 target)
     {
-        if (HaveSameMainParent(origin, target) == false)
-            return -1;
-
-        float distance = Vector3.Distance(origin.position, target.position);
-        float xDistance = Mathf.Sqrt(Mathf.Pow(distance, 2) - Mathf.Pow(target.position.y - origin.position.y, 2));
+        float distance = Vector3.Distance(origin, target);
+        float xDistance = Mathf.Sqrt(Mathf.Pow(distance, 2) - Mathf.Pow(target.y - origin.y, 2));
         return xDistance;
     }
 

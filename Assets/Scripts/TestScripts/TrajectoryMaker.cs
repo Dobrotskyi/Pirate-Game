@@ -13,8 +13,8 @@ public class TrajectoryMaker : MonoBehaviour
 
     public void ShowTrajectory(Vector3 origin, Vector3 velocity)
     {
-        if (_trajectoryLine.enabled == false)
-            _trajectoryLine.enabled = true;
+        if (_trajectoryLine.gameObject.activeSelf == false)
+            _trajectoryLine.gameObject.SetActive(true);
         List<Vector3> points = new List<Vector3>();
         int i = 0;
         float time = i * 0.1f;
@@ -34,6 +34,6 @@ public class TrajectoryMaker : MonoBehaviour
 
     public void HideTrajectory()
     {
-        _trajectoryLine.enabled = false;
+        _trajectoryLine.gameObject.SetActive(false);
     }
 }

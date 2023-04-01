@@ -10,7 +10,7 @@ public class ShipManager : MonoBehaviour
         transform.SetParent(ship.transform);
         ship.transform.SetParent(transform);
         ship.transform.localPosition = transform.position;
-        ship.transform.localRotation = Quaternion.identity;
+        ship.transform.rotation = transform.rotation;
         transform.localPosition = Vector3.zero;
     }
     private void Awake()
