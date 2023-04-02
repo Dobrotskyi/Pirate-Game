@@ -34,7 +34,6 @@ public class EnemyPathFinder : MonoBehaviour
     public IEnumerator Docking()
     {
         yield return new WaitForSeconds(5);
-        Debug.Log("NewPathFound");
         _navMeshAgent.destination = _villages.GetRandomDock;
         yield break;
     }
@@ -54,6 +53,5 @@ public class EnemyPathFinder : MonoBehaviour
     {
         TrackVelocity = ((transform.position - _prevPos) * 50).magnitude;
         _prevPos = transform.position;
-        Debug.Log(TrackVelocity);
     }
 }

@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class EnemyShipController : ShipController
 {
+    [SerializeField] private float _allowedDistanceToPathFinder = 5.5f;
+    [SerializeField] private float _distanceWhenPathFinderToFar = 6f;
+    private Rigidbody _rb;
+    private const float velocityMultiplier = 100f;
 
-    public Rigidbody Rb
-    {
-        get;
-        private set;
-    }
 
     public void AimRightCannons()
     {
@@ -21,26 +20,36 @@ public class EnemyShipController : ShipController
     {
         AimCannons(_leftCannons);
     }
-    public void MoveForward(float velocity)
-    {
-        Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
-        Rb.AddForce(forward * velocity * 100 * Time.deltaTime, ForceMode.Acceleration);
-        Rb.velocity = Vector3.ClampMagnitude(Rb.velocity, 1000);
-    }
+
 
     public void FollowPathFinder(EnemyPathFinder pathFinder)
     {
         Vector3 direction = transform.position - pathFinder.transform.position;
         Quaternion rotation = Quaternion.LookRotation(-direction);
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), pathFinder.NavMeshAgent.angularSpeed * Time.deltaTime);
-        if (Vector3.Distance(pathFinder.transform.position, transform.position) > 0.2f)
-            MoveForward(pathFinder.TrackVelocity);
+        Quaternion lerpRotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), pathFinder.NavMeshAgent.angularSpeed * Time.deltaTime);
+        lerpRotation.x = transform.rotation.x;
+        lerpRotation.z = transform.rotation.z;
+        transform.rotation = lerpRotation;
+
+        float distanceToPathFinder = Vector3.Distance(pathFinder.transform.position, transform.position);
+        if (distanceToPathFinder > _distanceWhenPathFinderToFar)
+            MoveForward(pathFinder.TrackVelocity * 1.2f, pathFinder.NavMeshAgent.speed);
+        else
+        if (distanceToPathFinder > _allowedDistanceToPathFinder)
+            MoveForward(pathFinder.TrackVelocity, pathFinder.NavMeshAgent.speed);
+
+    }
+    private void MoveForward(float velocity, float maxSpeed)
+    {
+        Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
+        _rb.AddForce(forward * velocity * velocityMultiplier * Time.deltaTime, ForceMode.Acceleration);
+        _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, maxSpeed * velocityMultiplier);
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        Rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void AimCannons(List<Cannon> cannons)
@@ -65,9 +74,9 @@ public class EnemyShipController : ShipController
     private void KeepHorizontalVelocityForward()
     {
         Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
-        Vector3 horizontalVelocity = Vector3.Scale(new Vector3(1, 0, 1), Rb.velocity);
+        Vector3 horizontalVelocity = Vector3.Scale(new Vector3(1, 0, 1), _rb.velocity);
         horizontalVelocity = forward * horizontalVelocity.magnitude;
-        float verticalVelocity = Rb.velocity.y;
-        Rb.velocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
+        float verticalVelocity = _rb.velocity.y;
+        _rb.velocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
     }
 }

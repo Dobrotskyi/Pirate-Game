@@ -23,7 +23,7 @@ public class EnemyPerseption : MonoBehaviour
         _pathFinder = GetComponentInChildren<EnemyPathFinder>();
 
         StartCoroutine(_pathFinder.Docking());
-        _currentBehaviourState = BehaviourStates.goingToDock;
+        _currentBehaviourState = BehaviourStates.docked;
     }
 
     private void FixedUpdate()
@@ -38,14 +38,15 @@ public class EnemyPerseption : MonoBehaviour
             if (!ShipHasReachedDock())
             {
                 _currentBehaviourState = BehaviourStates.goingToDock;
+            }
+            if (_currentBehaviourState == BehaviourStates.goingToDock)
                 _shipController.FollowPathFinder(_pathFinder);
-            }
-            }
+        }
     }
 
     private bool ShipHasReachedDock()
     {
-        if (Vector3.Distance(transform.position, _pathFinder.NavMeshAgent.destination) <= _pathFinder.NavMeshAgent.stoppingDistance)
+        if (Vector3.Distance(_pathFinder.transform.position, _pathFinder.NavMeshAgent.destination) <= _pathFinder.NavMeshAgent.stoppingDistance)
             return true;
         else return false;
     }
