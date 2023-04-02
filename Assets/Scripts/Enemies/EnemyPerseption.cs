@@ -28,20 +28,25 @@ public class EnemyPerseption : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (ShipHasReachedDock() && _currentBehaviourState == BehaviourStates.goingToDock)
+        if(_currentBehaviourState == BehaviourStates.attacking)
         {
-            _currentBehaviourState = BehaviourStates.docked;
-            StartCoroutine(_pathFinder.Docking());
+            _shipController.PrepareCannons();
         }
-        else
-        {
-            if (!ShipHasReachedDock())
-            {
-                _currentBehaviourState = BehaviourStates.goingToDock;
-            }
-            if (_currentBehaviourState == BehaviourStates.goingToDock)
-                _shipController.FollowPathFinder(_pathFinder);
-        }
+
+        // if (ShipHasReachedDock() && _currentBehaviourState == BehaviourStates.goingToDock)
+        // {
+        //     _currentBehaviourState = BehaviourStates.docked;
+        //     StartCoroutine(_pathFinder.Docking());
+        // }
+        // else
+        // {
+        //     if (!ShipHasReachedDock())
+        //     {
+        //         _currentBehaviourState = BehaviourStates.goingToDock;
+        //     }
+        //     if (_currentBehaviourState == BehaviourStates.goingToDock)
+        //         _shipController.FollowPathFinder(_pathFinder);
+        // }
     }
 
     private bool ShipHasReachedDock()

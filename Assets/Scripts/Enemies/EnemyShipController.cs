@@ -7,20 +7,32 @@ public class EnemyShipController : ShipController
 {
     [SerializeField] private float _allowedDistanceToPathFinder = 5.5f;
     [SerializeField] private float _distanceWhenPathFinderToFar = 6f;
+    [SerializeField] private Transform _leftCannonsPlacement;
+    [SerializeField] private Transform _rightCannonsPlacement;
     private Rigidbody _rb;
+    private Transform _target;
     private const float velocityMultiplier = 100f;
 
-
-    public void AimRightCannons()
+    public void PrepareCannons()
     {
-        AimCannons(_rightCannons);
-    }
+        float rotateToSide;
+        if (Vector3.Distance(_leftCannonsPlacement.position, _target.position) < Vector3.Distance(_rightCannonsPlacement.position, _target.position))
+        {
+            AimCannons(_leftCannons);
+            rotateToSide = -90;
+        }
+        else
+        {
+            AimCannons(_rightCannons);
+            rotateToSide = 90;
+        }
+        Vector3 direction = transform.position - _target.position;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        rotation.eulerAngles = new Vector3(0, rotation.eulerAngles.y + rotateToSide, 0);
 
-    public void AimLeftCannons()
-    {
-        AimCannons(_leftCannons);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), 4 * Time.deltaTime);
+        MoveForward(6f, 9f);
     }
-
 
     public void FollowPathFinder(EnemyPathFinder pathFinder)
     {
@@ -60,6 +72,7 @@ public class EnemyShipController : ShipController
 
     internal void SetNewTargetToCannons(Rigidbody target)
     {
+        _target = target.transform;
         foreach (Cannon cannon in _leftCannons)
             cannon.SetTarget(target);
         foreach (Cannon cannon in _rightCannons)
