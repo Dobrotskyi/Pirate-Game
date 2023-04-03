@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class EnemyPerseption : MonoBehaviour
 {
-    private EnemyShipController _shipController;
-    private EnemyPathFinder _pathFinder;
-
-    private enum BehaviourStates
+    internal enum BehaviourStates
     {
         goingToDock,
         docked,
@@ -15,22 +12,43 @@ public class EnemyPerseption : MonoBehaviour
         chasingTarget
     }
 
-    private BehaviourStates _currentBehaviourState;
+    internal BehaviourStates _currentBehaviourState;
+
+    [SerializeField] private EnemyShipController _shipController;
+    [SerializeField] private EnemyPathFinder _pathFinder;
+
+    private Transform _currentTarget;
 
     private void OnEnable()
     {
-        _shipController = GetComponentInChildren<EnemyShipController>();
-        _pathFinder = GetComponentInChildren<EnemyPathFinder>();
-
         StartCoroutine(_pathFinder.Docking());
         _currentBehaviourState = BehaviourStates.docked;
     }
 
     private void FixedUpdate()
     {
-        if(_currentBehaviourState == BehaviourStates.attacking)
+        transform.position = _shipController.transform.position;
+        if (_currentBehaviourState == BehaviourStates.chasingTarget && _currentTarget != null)
         {
-            _shipController.PrepareCannons();
+            _pathFinder.SetNewDestination(_currentTarget.position);
+            _shipController.FollowPathFinder();
+            if (_shipController.ReadyToAttack())
+            {
+                _currentBehaviourState = BehaviourStates.attacking;
+            }
+        }
+
+        if (_currentBehaviourState == BehaviourStates.attacking)
+        {
+            if (_shipController.TargetToFarToShoot())
+            {
+                _currentBehaviourState = BehaviourStates.chasingTarget;
+                _shipController.StopCannonsAiming();
+            }
+            else
+            {
+                _shipController.Attack();
+            }
         }
 
         // if (ShipHasReachedDock() && _currentBehaviourState == BehaviourStates.goingToDock)
@@ -40,29 +58,23 @@ public class EnemyPerseption : MonoBehaviour
         // }
         // else
         // {
-        //     if (!ShipHasReachedDock())
+        //     if (_pathFinder.ShipHasReachedDock())
         //     {
         //         _currentBehaviourState = BehaviourStates.goingToDock;
         //     }
         //     if (_currentBehaviourState == BehaviourStates.goingToDock)
-        //         _shipController.FollowPathFinder(_pathFinder);
+        //         _shipController.FollowPathFinder();
         // }
-    }
-
-    private bool ShipHasReachedDock()
-    {
-        if (Vector3.Distance(_pathFinder.transform.position, _pathFinder.NavMeshAgent.destination) <= _pathFinder.NavMeshAgent.stoppingDistance)
-            return true;
-        else return false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PlayerShip"))
         {
-            _shipController.SetNewTargetToCannons(other.transform.GetComponent<Rigidbody>());
-            _pathFinder._target = other.transform;
-            _currentBehaviourState = BehaviourStates.attacking;
+            Debug.Log("OnTriggerEnter Player");
+            _currentTarget = other.transform;
+            _shipController.SetNewTarget(_currentTarget);
+            _currentBehaviourState = BehaviourStates.chasingTarget;
         }
     }
 
@@ -70,9 +82,8 @@ public class EnemyPerseption : MonoBehaviour
     {
         if (other.CompareTag("PlayerShip"))
         {
+            _currentTarget = null;
             _currentBehaviourState = BehaviourStates.goingToDock;
         }
     }
-
-
 }

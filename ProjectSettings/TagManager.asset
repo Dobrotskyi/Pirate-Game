@@ -13,6 +13,7 @@ TagManager:
   - Cannonball
   - Water
   - CannonBall
+  - Terrain
   layers:
   - Default
   - TransparentFX

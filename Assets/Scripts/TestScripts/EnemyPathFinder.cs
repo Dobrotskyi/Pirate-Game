@@ -38,6 +38,18 @@ public class EnemyPathFinder : MonoBehaviour
         yield break;
     }
 
+    public bool ShipHasReachedDock()
+    {
+        if (Vector3.Distance(transform.position, NavMeshAgent.destination) <= NavMeshAgent.stoppingDistance)
+            return true;
+        else return false;
+    }
+
+    public void SetNewDestination(Vector3 point)
+    {
+        _navMeshAgent.destination = point;
+    }
+
     private void AimAtTarget(float rotateToSide)
     {
         _navMeshAgent.enabled = false;
