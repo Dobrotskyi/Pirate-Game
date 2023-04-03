@@ -4,9 +4,15 @@ using System.Collections;
 
 public class EnemyPathFinder : MonoBehaviour
 {
-    public NavMeshAgent NavMeshAgent
+    public NavMeshAgent navMeshAgent
     {
-        get { return _navMeshAgent; }
+        get
+        {
+            if (_navMeshAgent != null)
+                return _navMeshAgent;
+            else
+                return GetComponent<NavMeshAgent>();
+        }
     }
 
     public float TrackVelocity
@@ -14,35 +20,21 @@ public class EnemyPathFinder : MonoBehaviour
         private set;
         get;
     }
-    internal Transform _target;
+
+    public bool SearchingForNewDock
+    {
+        private set;
+        get;
+    }
+
     private NavMeshAgent _navMeshAgent;
 
     private Vector3 _prevPos;
-    private Vector3 _currentPos;
-
-    private Transform _destinationTransform;
     private Villages _villages;
 
-
-    private void OnEnable()
+    public void FindNewDock()
     {
-        _navMeshAgent = GetComponent<NavMeshAgent>();
-        _villages = FindObjectOfType<Villages>();
-        _prevPos = transform.position;
-    }
-
-    public IEnumerator Docking()
-    {
-        yield return new WaitForSeconds(5);
-        _navMeshAgent.destination = _villages.GetRandomDock;
-        yield break;
-    }
-
-    public bool ShipHasReachedDock()
-    {
-        if (Vector3.Distance(transform.position, NavMeshAgent.destination) <= NavMeshAgent.stoppingDistance)
-            return true;
-        else return false;
+        StartCoroutine(Docking());
     }
 
     public void SetNewDestination(Vector3 point)
@@ -50,20 +42,37 @@ public class EnemyPathFinder : MonoBehaviour
         _navMeshAgent.destination = point;
     }
 
-    private void AimAtTarget(float rotateToSide)
+    public bool ShipHasReachedDock()
     {
-        _navMeshAgent.enabled = false;
-        Vector3 direction = transform.position - _target.position;
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        rotation.eulerAngles = new Vector3(0, rotation.eulerAngles.y + rotateToSide, 0);
+        if (Vector3.Distance(transform.position, navMeshAgent.destination) <= navMeshAgent.stoppingDistance)
+            return true;
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), 4 * Time.deltaTime);
-        _navMeshAgent.enabled = true;
+        else return false;
+    }
+
+    private IEnumerator Docking()
+    {
+        SearchingForNewDock = true;
+        yield return new WaitForSeconds(5);
+
+        if (_navMeshAgent.isStopped == true)
+            _navMeshAgent.isStopped = false;
+        _navMeshAgent.destination = _villages.GetRandomDock;
+        SearchingForNewDock = false;
+        yield break;
     }
 
     private void FixedUpdate()
     {
         TrackVelocity = ((transform.position - _prevPos) * 50).magnitude;
+        _prevPos = transform.position;
+    }
+
+    private void OnEnable()
+    {
+        SearchingForNewDock = false;
+        _navMeshAgent = GetComponent<NavMeshAgent>();
+        _villages = FindObjectOfType<Villages>();
         _prevPos = transform.position;
     }
 }

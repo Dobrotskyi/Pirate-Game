@@ -23,8 +23,8 @@ public class EnemyShipController : ShipController
 
     internal void Attack()
     {
-        if (_pathFinder.NavMeshAgent.isStopped == false)
-            _pathFinder.NavMeshAgent.isStopped = true;
+        if (_pathFinder.navMeshAgent.isStopped == false)
+            _pathFinder.navMeshAgent.isStopped = true;
 
         float rotateToSide;
         if (Vector3.Distance(_leftCannonsPlacement.position, _target.position) < Vector3.Distance(_rightCannonsPlacement.position, _target.position))
@@ -52,11 +52,10 @@ public class EnemyShipController : ShipController
 
     internal void FollowPathFinder()
     {
-        if (_pathFinder.NavMeshAgent.isStopped == true)
-            _pathFinder.NavMeshAgent.isStopped = false;
+        if (_pathFinder.navMeshAgent.isStopped == true)
+            _pathFinder.navMeshAgent.isStopped = false;
 
         float distanceToPathFinder = Vector3.Distance(_pathFinder.transform.position, transform.position);
-        Debug.Log(distanceToPathFinder);
         if (distanceToPathFinder > _allowedDistanceToPathFinder)
         {
             Vector3 direction = transform.position - _pathFinder.transform.position;
@@ -67,10 +66,10 @@ public class EnemyShipController : ShipController
             transform.rotation = lerpRotation;
         }
 
-        if (distanceToPathFinder > _distanceWhenPathFinderToFar)
+        if (distanceToPathFinder > _distanceWhenPathFinderToFar && _canGoForward)
             MoveForward(_pathFinder.TrackVelocity * 1.2f * VELOCITY_MULTIPLIER);
         else
-        if (distanceToPathFinder > _allowedDistanceToPathFinder)
+        if (distanceToPathFinder > _allowedDistanceToPathFinder && _canGoForward)
             MoveForward(_pathFinder.TrackVelocity * VELOCITY_MULTIPLIER);
     }
 
@@ -86,7 +85,7 @@ public class EnemyShipController : ShipController
 
     internal bool TargetToFarToShoot()
     {
-        if (Vector3.Distance(_target.position, transform.position) > _shootingDistance + _pathFinder.NavMeshAgent.stoppingDistance)
+        if (Vector3.Distance(_target.position, transform.position) > _shootingDistance + _pathFinder.navMeshAgent.stoppingDistance)
             return true;
         else
             return false;
@@ -94,7 +93,7 @@ public class EnemyShipController : ShipController
 
     internal bool ReadyToAttack()
     {
-        if (Vector3.Distance(_target.position, transform.position) < _chaseDistance + _pathFinder.NavMeshAgent.stoppingDistance)
+        if (Vector3.Distance(_target.position, transform.position) < _chaseDistance + _pathFinder.navMeshAgent.stoppingDistance)
             return true;
         else
             return false;
@@ -105,9 +104,8 @@ public class EnemyShipController : ShipController
         base.OnEnable();
         _rb = GetComponent<Rigidbody>();
         _pathFinder = transform.parent.Find("PathFinder").GetComponent<EnemyPathFinder>();
-        _speedAndMaxSpeed = new Vector2(_pathFinder.NavMeshAgent.acceleration, _pathFinder.NavMeshAgent.speed) * VELOCITY_MULTIPLIER;
-        _rotationSpeed = _pathFinder.NavMeshAgent.angularSpeed / 60;
-
+        _speedAndMaxSpeed = new Vector2(_pathFinder.navMeshAgent.acceleration, _pathFinder.navMeshAgent.speed) * VELOCITY_MULTIPLIER;
+        _rotationSpeed = _pathFinder.navMeshAgent.angularSpeed / 60;
     }
 
     private void MoveForward(float velocity)

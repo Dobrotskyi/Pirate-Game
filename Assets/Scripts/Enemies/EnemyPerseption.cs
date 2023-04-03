@@ -28,7 +28,22 @@ public class EnemyPerseption : MonoBehaviour
     private void FixedUpdate()
     {
         transform.position = _shipController.transform.position;
-        if (_currentBehaviourState == BehaviourStates.chasingTarget && _currentTarget != null)
+        if (_currentBehaviourState == BehaviourStates.docked && _pathFinder.SearchingForNewDock == false)
+        {
+            _pathFinder.FindNewDock();
+            _currentBehaviourState = BehaviourStates.goingToDock;
+        }
+        else
+        {
+            if (_currentBehaviourState == BehaviourStates.goingToDock)
+            {
+                _shipController.FollowPathFinder();
+                if(_pathFinder.ShipHasReachedDock() && _pathFinder.SearchingForNewDock == false)
+                    _currentBehaviourState = BehaviourStates.docked;
+            }
+        }
+
+        if (_currentTarget != null && _currentBehaviourState == BehaviourStates.chasingTarget)
         {
             _pathFinder.SetNewDestination(_currentTarget.position);
             _shipController.FollowPathFinder();
@@ -50,28 +65,12 @@ public class EnemyPerseption : MonoBehaviour
                 _shipController.Attack();
             }
         }
-
-        // if (ShipHasReachedDock() && _currentBehaviourState == BehaviourStates.goingToDock)
-        // {
-        //     _currentBehaviourState = BehaviourStates.docked;
-        //     StartCoroutine(_pathFinder.Docking());
-        // }
-        // else
-        // {
-        //     if (_pathFinder.ShipHasReachedDock())
-        //     {
-        //         _currentBehaviourState = BehaviourStates.goingToDock;
-        //     }
-        //     if (_currentBehaviourState == BehaviourStates.goingToDock)
-        //         _shipController.FollowPathFinder();
-        // }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PlayerShip"))
         {
-            Debug.Log("OnTriggerEnter Player");
             _currentTarget = other.transform;
             _shipController.SetNewTarget(_currentTarget);
             _currentBehaviourState = BehaviourStates.chasingTarget;
