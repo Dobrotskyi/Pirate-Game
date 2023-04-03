@@ -18,7 +18,8 @@ public class EnemyShipController : ShipController
     private EnemyPathFinder _pathFinder;
     private Rigidbody _rb;
     private Transform _target;
-    private bool canGoForward = true;
+    private bool _canGoForward = true;
+    private float _rotationSpeed = 1f;
 
     internal void Attack()
     {
@@ -40,8 +41,8 @@ public class EnemyShipController : ShipController
         Quaternion rotation = Quaternion.LookRotation(direction);
         rotation.eulerAngles = new Vector3(0, rotation.eulerAngles.y + rotateToSide, 0);
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), 4 * Time.deltaTime);
-        if (canGoForward)
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), _rotationSpeed * Time.deltaTime);
+        if (_canGoForward)
             MoveForward(_speedAndMaxSpeed.x);
 
         Vector3 newPos = transform.localPosition;
@@ -55,11 +56,12 @@ public class EnemyShipController : ShipController
             _pathFinder.NavMeshAgent.isStopped = false;
 
         float distanceToPathFinder = Vector3.Distance(_pathFinder.transform.position, transform.position);
+        Debug.Log(distanceToPathFinder);
         if (distanceToPathFinder > _allowedDistanceToPathFinder)
         {
             Vector3 direction = transform.position - _pathFinder.transform.position;
             Quaternion rotation = Quaternion.LookRotation(-direction);
-            Quaternion lerpRotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), _pathFinder.NavMeshAgent.angularSpeed * Time.deltaTime);
+            Quaternion lerpRotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), _rotationSpeed * Time.deltaTime);
             lerpRotation.x = transform.rotation.x;
             lerpRotation.z = transform.rotation.z;
             transform.rotation = lerpRotation;
@@ -104,6 +106,7 @@ public class EnemyShipController : ShipController
         _rb = GetComponent<Rigidbody>();
         _pathFinder = transform.parent.Find("PathFinder").GetComponent<EnemyPathFinder>();
         _speedAndMaxSpeed = new Vector2(_pathFinder.NavMeshAgent.acceleration, _pathFinder.NavMeshAgent.speed) * VELOCITY_MULTIPLIER;
+        _rotationSpeed = _pathFinder.NavMeshAgent.angularSpeed / 60;
 
     }
 
@@ -137,12 +140,12 @@ public class EnemyShipController : ShipController
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Terrain"))
-            canGoForward = false;
+            _canGoForward = false;
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Terrain"))
-            canGoForward = true;
+            _canGoForward = true;
     }
 }
