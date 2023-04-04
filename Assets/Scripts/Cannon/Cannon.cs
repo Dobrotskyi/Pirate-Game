@@ -40,7 +40,7 @@ public class Cannon : MonoBehaviour
         _audioSource.PlayOneShot(_shotAudio);
     }
 
-    public bool CanShoot()
+    public bool Loaded()
     {
         if (_shipCharacteristics.CannonballsAmt > 0 && Time.time - _lastShotTime >= _shipCharacteristics.GetCannonsCooldown())
             return true;

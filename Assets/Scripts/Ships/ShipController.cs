@@ -7,7 +7,7 @@ using UnityEngine;
 public class ShipController : MonoBehaviour
 {
     [SerializeField] protected float _delayBetweenShotsInSeconds = 0.3f;
-    protected internal ShipCharacteristics _shipCharacteristics;
+    protected ShipCharacteristics _shipCharacteristics;
 
     protected List<Cannon> _leftCannons;
     protected List<Cannon> _rightCannons;
@@ -37,25 +37,32 @@ public class ShipController : MonoBehaviour
 
     public void ShootLeft()
     {
-        StartCoroutine("ShootWithCannons", _leftCannons);
+        if (AllCannonsAreLoaded(_leftCannons))
+            StartCoroutine("ShootWithCannons", _leftCannons);
     }
 
     public void ShootRight()
     {
-        StartCoroutine("ShootWithCannons", _rightCannons);
+        if (AllCannonsAreLoaded(_rightCannons))
+            StartCoroutine("ShootWithCannons", _rightCannons);
+    }
+
+    protected bool AllCannonsAreLoaded(List<Cannon> cannons)
+    {
+        foreach (Cannon cannon in cannons)
+        {
+            if (cannon.Loaded() == false)
+                return false;
+        }
+        return true;
     }
 
     protected virtual IEnumerator ShootWithCannons(List<Cannon> cannons)
     {
         foreach (Cannon cannon in cannons)
         {
-            if (cannon.CanShoot())
-            {
-                cannon.Shoot();
-                yield return new WaitForSeconds(_delayBetweenShotsInSeconds);
-            }
-            else
-                yield break;
+            cannon.Shoot();
+            yield return new WaitForSeconds(_delayBetweenShotsInSeconds);
         }
     }
 

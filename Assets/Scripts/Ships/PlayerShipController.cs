@@ -78,7 +78,7 @@ public class PlayerShipController : ShipController
     {
         foreach (Cannon cannon in cannons)
         {
-            if (cannon.CanShoot())
+            if (cannon.Loaded())
             {
                 cannon.Shoot();
                 OnCannonFired?.Invoke(_screenShakeParameters.Duration, _screenShakeParameters.Strength);
