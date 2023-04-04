@@ -5,7 +5,17 @@ using UnityEngine;
 public class EnemyCannon : Cannon
 {
     Rigidbody _targetRb;
-    [SerializeField]
+
+    public bool AimedAtTarget()
+    {
+        Vector3 direction = _barrel.transform.position - GetAimingPoint();
+        Quaternion rotation = Quaternion.LookRotation(direction);
+
+        if (Mathf.Abs(transform.rotation.eulerAngles.y - rotation.eulerAngles.y) < 5)
+            return true;
+        else
+            return false;
+    }
 
     protected override void BarrelAim()
     {
@@ -43,7 +53,8 @@ public class EnemyCannon : Cannon
         Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), _target.forward);
         Vector3 horizontalVelocity = Vector3.Scale(new Vector3(1, 0, 1), _targetRb.velocity);
         horizontalVelocity = forward * horizontalVelocity.magnitude;
-        return _target.position + horizontalVelocity * GetCannonballTimeOfFlight();
+        float cannonballTimeOfFlight = GetCannonballTimeOfFlight();
+        return _target.position + horizontalVelocity * cannonballTimeOfFlight - _shipRb.velocity * cannonballTimeOfFlight;
     }
 
     private float GetCannonballTimeOfFlight()

@@ -40,14 +40,28 @@ public class EnemyShipController : ShipController
         if (Vector3.Distance(_leftCannonsPlacement.position, _target.position) < Vector3.Distance(_rightCannonsPlacement.position, _target.position))
         {
             AimCannons(_leftCannons);
+            if (CannonsAreAimedAtTarget(_leftCannons))
+                ShootLeft();
             rotateToSide = 90;
         }
         else
         {
             AimCannons(_rightCannons);
+            if (CannonsAreAimedAtTarget(_rightCannons))
+                ShootRight();
             rotateToSide = -90;
         }
         RotateYToTarget(_target.position, rotateToSide);
+    }
+
+    private bool CannonsAreAimedAtTarget(List<Cannon> cannons)
+    {
+        foreach (EnemyCannon cannon in cannons)
+        {
+            if (cannon.AimedAtTarget() == false)
+                return false;
+        }
+        return true;
     }
 
     internal void FollowPathFinder()
@@ -94,9 +108,9 @@ public class EnemyShipController : ShipController
         _target = target;
         Rigidbody targetRb = target.GetComponent<Rigidbody>();
         foreach (Cannon cannon in _leftCannons)
-            cannon.SetTarget(target);
+            cannon.SetTarget(targetRb);
         foreach (Cannon cannon in _rightCannons)
-            cannon.SetTarget(target);
+            cannon.SetTarget(targetRb);
     }
 
     internal bool TargetToFarToShoot()
