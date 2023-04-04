@@ -21,7 +21,6 @@ public class EnemyPerseption : MonoBehaviour
 
     private void OnEnable()
     {
-        //StartCoroutine(_pathFinder.Docking());
         _currentBehaviourState = BehaviourStates.docked;
     }
 

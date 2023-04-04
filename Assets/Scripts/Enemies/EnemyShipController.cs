@@ -26,28 +26,28 @@ public class EnemyShipController : ShipController
         if (_pathFinder.navMeshAgent.isStopped == false)
             _pathFinder.navMeshAgent.isStopped = true;
 
-        float rotateToSide;
-        if (Vector3.Distance(_leftCannonsPlacement.position, _target.position) < Vector3.Distance(_rightCannonsPlacement.position, _target.position))
-        {
-            AimCannons(_leftCannons);
-            rotateToSide = -90;
-        }
-        else
-        {
-            AimCannons(_rightCannons);
-            rotateToSide = 90;
-        }
-        Vector3 direction = transform.position - _target.position;
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        rotation.eulerAngles = new Vector3(0, rotation.eulerAngles.y + rotateToSide, 0);
-
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), _rotationSpeed * Time.deltaTime);
-        if (_canGoForward)
-            MoveForward(_speedAndMaxSpeed.x);
+        PrepareShipSideForShooting();
+        MoveForward(_speedAndMaxSpeed.x);
 
         Vector3 newPos = transform.localPosition;
         newPos.y = 0;
         _pathFinder.transform.localPosition = newPos;
+    }
+
+    private void PrepareShipSideForShooting()
+    {
+        float rotateToSide;
+        if (Vector3.Distance(_leftCannonsPlacement.position, _target.position) < Vector3.Distance(_rightCannonsPlacement.position, _target.position))
+        {
+            AimCannons(_leftCannons);
+            rotateToSide = 90;
+        }
+        else
+        {
+            AimCannons(_rightCannons);
+            rotateToSide = -90;
+        }
+        RotateYToTarget(_target.position, rotateToSide);
     }
 
     internal void FollowPathFinder()
@@ -58,19 +58,35 @@ public class EnemyShipController : ShipController
         float distanceToPathFinder = Vector3.Distance(_pathFinder.transform.position, transform.position);
         if (distanceToPathFinder > _allowedDistanceToPathFinder)
         {
-            Vector3 direction = transform.position - _pathFinder.transform.position;
-            Quaternion rotation = Quaternion.LookRotation(-direction);
-            Quaternion lerpRotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), _rotationSpeed * Time.deltaTime);
-            lerpRotation.x = transform.rotation.x;
-            lerpRotation.z = transform.rotation.z;
-            transform.rotation = lerpRotation;
+            RotateYToTarget(_pathFinder.transform.position);
         }
 
-        if (distanceToPathFinder > _distanceWhenPathFinderToFar && _canGoForward)
+        if (distanceToPathFinder > _distanceWhenPathFinderToFar)
             MoveForward(_pathFinder.TrackVelocity * 1.2f * VELOCITY_MULTIPLIER);
+
         else
-        if (distanceToPathFinder > _allowedDistanceToPathFinder && _canGoForward)
+        if (distanceToPathFinder > _allowedDistanceToPathFinder)
             MoveForward(_pathFinder.TrackVelocity * VELOCITY_MULTIPLIER);
+    }
+
+    private void RotateYToTarget(Vector3 target, float offset = 0)
+    {
+        Vector3 direction = transform.position - target;
+        Quaternion rotation = Quaternion.LookRotation(-direction);
+        Quaternion lerpRotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y + offset, 0), _rotationSpeed * Time.deltaTime);
+        lerpRotation.x = transform.rotation.x;
+        lerpRotation.z = transform.rotation.z;
+        transform.rotation = lerpRotation;
+    }
+
+    private void MoveForward(float velocity)
+    {
+        if (_canGoForward)
+        {
+            Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
+            _rb.AddForce(forward * velocity * Time.deltaTime, ForceMode.Acceleration);
+            _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, _speedAndMaxSpeed.y);
+        }
     }
 
     internal void SetNewTarget(Transform target)
@@ -106,13 +122,6 @@ public class EnemyShipController : ShipController
         _pathFinder = transform.parent.Find("PathFinder").GetComponent<EnemyPathFinder>();
         _speedAndMaxSpeed = new Vector2(_pathFinder.navMeshAgent.acceleration, _pathFinder.navMeshAgent.speed) * VELOCITY_MULTIPLIER;
         _rotationSpeed = _pathFinder.navMeshAgent.angularSpeed / 60;
-    }
-
-    private void MoveForward(float velocity)
-    {
-        Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
-        _rb.AddForce(forward * velocity * Time.deltaTime, ForceMode.Acceleration);
-        _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, _speedAndMaxSpeed.y);
     }
 
     private void AimCannons(List<Cannon> cannons)
