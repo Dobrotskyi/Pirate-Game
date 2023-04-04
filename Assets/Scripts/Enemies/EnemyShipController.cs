@@ -146,13 +146,13 @@ public class EnemyShipController : ShipController
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Terrain"))
+        if (other.CompareTag("Untagged") == false)
             _canGoForward = false;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Terrain"))
+        if (other.CompareTag("Untagged") == false)
             _canGoForward = true;
     }
 }
