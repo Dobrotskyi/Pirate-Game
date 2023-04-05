@@ -1576,6 +1576,7 @@ MonoBehaviour:
   _cannonShotForce: 1400
   _cannonsCooldown: 2
   _cannonFOV: 90
+  _maxHealth: 50
 --- !u!114 &7201984260269589249
 MonoBehaviour:
   m_ObjectHideFlags: 0

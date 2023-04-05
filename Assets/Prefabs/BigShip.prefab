@@ -2558,14 +2558,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7edff39db649384789743709bc04d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _delayBetweenShotsInSeconds: 0.2
+  _sensivity: {x: 100, y: 400}
   _targetXLimits:
   - 10
   - 50
   _targetZLimits:
   - -20
   - 20
-  _sensivity: {x: 100, y: 400}
-  _delayBetweenShotsInSeconds: 0.2
   _steeringWheel: {fileID: 6918861571719121809}
   _screenShakeParameters:
     Duration: 1
@@ -2585,6 +2585,7 @@ MonoBehaviour:
   _cannonShotForce: 700
   _cannonsCooldown: 2
   _cannonFOV: 40
+  _maxHealth: 50
   _speed: 800
   _maxSpeed: 2000
   _shipRotationSpeed: 130

@@ -158,6 +158,14 @@ public class EnemyShipController : ShipController
         _rb.velocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
     }
 
+    private void OnDestroy()
+    {
+        Transform mainObj = transform;
+        while (mainObj.parent != null)
+            mainObj = transform.parent;
+        Destroy(mainObj.gameObject);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Untagged") == false)

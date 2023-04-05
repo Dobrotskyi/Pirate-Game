@@ -37,12 +37,19 @@ public class EnemyPerseption : MonoBehaviour
             if (_currentBehaviourState == BehaviourStates.goingToDock)
             {
                 _shipController.FollowPathFinder();
-                if(_pathFinder.ShipHasReachedDock() && _pathFinder.SearchingForNewDock == false)
+                if (_pathFinder.ShipHasReachedDock() && _pathFinder.SearchingForNewDock == false)
                     _currentBehaviourState = BehaviourStates.docked;
             }
         }
 
-        if (_currentTarget != null && _currentBehaviourState == BehaviourStates.chasingTarget)
+        if (_currentTarget == null)
+        {
+            _shipController.StopCannonsAiming();
+            _pathFinder.FindNewDock();
+            _currentBehaviourState = BehaviourStates.goingToDock;
+        }
+
+        if (_currentBehaviourState == BehaviourStates.chasingTarget)
         {
             _pathFinder.SetNewDestination(_currentTarget.position);
             _shipController.FollowPathFinder();

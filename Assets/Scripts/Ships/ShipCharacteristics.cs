@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class ShipCharacteristics : MonoBehaviour
+public class ShipCharacteristics : MonoBehaviour, ITakeDamage
 {
     [SerializeField] private float _cannonShotForce;
     [SerializeField] private float _cannonsCooldown;
     [SerializeField] private float _cannonFOV;
+    [SerializeField] private int _maxHealth = 50;
+    private int _health;
 
     private int _cannonBallsAmt;
     private int _maxCannonBallsAmt;
@@ -60,8 +61,18 @@ public class ShipCharacteristics : MonoBehaviour
         return _cannonShotForce;
     }
 
+    public void TakeDamage(int amt)
+    {
+        _health -= amt;
+        if (_health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     private void OnEnable()
     {
+        _health = _maxHealth;
         Transform cannonballs = transform.Find("Cannonballs");
         for (int i = 0; i < cannonballs.childCount; i++)
         {
