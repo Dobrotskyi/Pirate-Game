@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyPerseption : MonoBehaviour
@@ -20,15 +18,15 @@ public class EnemyPerseption : MonoBehaviour
     private void OnEnable()
     {
         _currentBehaviourState = BehaviourStates.docked;
-        _shipController.Emergency += GoDockIgnorePlayer;
+        _shipController.Emergency += GoDockIgnoreTarget;
     }
 
     private void OnDisable()
     {
-        _shipController.Emergency -= GoDockIgnorePlayer;
+        _shipController.Emergency -= GoDockIgnoreTarget;
     }
 
-    private void GoDockIgnorePlayer()
+    private void GoDockIgnoreTarget()
     {
         Debug.Log("Emergency trip to dock");
         _shipController.StopCannonsAiming();

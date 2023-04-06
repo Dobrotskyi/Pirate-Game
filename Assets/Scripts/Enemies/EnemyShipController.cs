@@ -11,7 +11,8 @@ public class EnemyShipController : ShipController
     private const float VELOCITY_MULTIPLIER = 100f;
 
     [SerializeField] private float _allowedDistanceToPathFinder = 5.5f;
-    [SerializeField] private float _distanceWhenPathFinderToFar = 6f;
+    [SerializeField] private float _fastFollowPathfinderDistance = 6f;
+    [SerializeField] private float _pathFinderTooFarToChase = 15f;
     [SerializeField] private Transform _leftCannonsPlacement;
     [SerializeField] private Transform _rightCannonsPlacement;
     [SerializeField] private float _chaseDistance = 5f;
@@ -31,10 +32,30 @@ public class EnemyShipController : ShipController
 
         AimAndShoot();
         MoveForward(_speedAndMaxSpeed.x);
+        KeepPathfinderClose();
+    }
 
-        Vector3 newPos = transform.localPosition;
-        newPos.y = 0;
-        _pathFinder.transform.localPosition = newPos;
+    internal void FollowPathFinder()
+    {
+        if (_pathFinder.navMeshAgent.isStopped == true)
+            _pathFinder.navMeshAgent.isStopped = false;
+
+        float distanceToPathFinder = Vector3.Distance(_pathFinder.transform.position, transform.position);
+
+        if (distanceToPathFinder > _allowedDistanceToPathFinder)
+        {
+            RotateYToTarget(_pathFinder.transform.position);
+        }
+
+        if (distanceToPathFinder > _pathFinderTooFarToChase)
+            KeepPathfinderClose();
+        else
+        if (distanceToPathFinder > _fastFollowPathfinderDistance)
+            MoveForward(_pathFinder.TrackVelocity * 1.35f * VELOCITY_MULTIPLIER);
+
+        else
+        if (distanceToPathFinder > _allowedDistanceToPathFinder)
+            MoveForward(_pathFinder.TrackVelocity * VELOCITY_MULTIPLIER);
     }
 
     private void AimAndShoot()
@@ -62,7 +83,13 @@ public class EnemyShipController : ShipController
             _target = null;
             Emergency?.Invoke();
         }
+    }
 
+    private void KeepPathfinderClose()
+    {
+        Vector3 newPos = transform.localPosition;
+        newPos.y = 0;
+        _pathFinder.transform.localPosition = newPos;
     }
 
     private bool CannonsAreAimedAtTarget(List<Cannon> cannons)
@@ -73,25 +100,6 @@ public class EnemyShipController : ShipController
                 return false;
         }
         return true;
-    }
-
-    internal void FollowPathFinder()
-    {
-        if (_pathFinder.navMeshAgent.isStopped == true)
-            _pathFinder.navMeshAgent.isStopped = false;
-
-        float distanceToPathFinder = Vector3.Distance(_pathFinder.transform.position, transform.position);
-        if (distanceToPathFinder > _allowedDistanceToPathFinder)
-        {
-            RotateYToTarget(_pathFinder.transform.position);
-        }
-
-        if (distanceToPathFinder > _distanceWhenPathFinderToFar)
-            MoveForward(_pathFinder.TrackVelocity * 1.35f * VELOCITY_MULTIPLIER);
-
-        else
-        if (distanceToPathFinder > _allowedDistanceToPathFinder)
-            MoveForward(_pathFinder.TrackVelocity * VELOCITY_MULTIPLIER);
     }
 
     private void RotateYToTarget(Vector3 target, float offset = 0)
