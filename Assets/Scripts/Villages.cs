@@ -7,6 +7,7 @@ public class Villages : MonoBehaviour
 {
     [SerializeField] private GameObject _ship;
     [SerializeField] private float _shipRespawnRate = 3f;
+
     private List<Dock> _docks = new List<Dock>();
 
     public Vector3 GetRandomDock
@@ -81,6 +82,7 @@ public class Villages : MonoBehaviour
                 Debug.Log("Spawning new ship");
                 GameObject ship = SpawnShip(_docks[i].Transform.position, _docks[i].Transform.rotation);
                 _docks[i].SetShip(ship);
+                yield break;
             }
         }
         yield break;

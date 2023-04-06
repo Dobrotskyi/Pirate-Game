@@ -35,7 +35,7 @@ public class PlayerShipController : ShipController
         if (_canMoveForward)
         {
             Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
-            _rigidbody.AddForceAtPosition(forward * _playerShipCharacteristics.Speed * Time.deltaTime, _steeringWheel.transform.position, ForceMode.Acceleration);
+            _rigidbody.AddForce(forward * _playerShipCharacteristics.Speed * Time.deltaTime, ForceMode.Acceleration);
             _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _playerShipCharacteristics.MaxSpeed);
         }
     }

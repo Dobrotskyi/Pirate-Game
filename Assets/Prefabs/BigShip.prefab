@@ -667,7 +667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
-  depthBeforeSubmerged: 1.4
+  depthBeforeSubmerged: 5
   cubeVolume: 1.4
   floaterCount: 6
   waterDrag: 0.95
@@ -1249,7 +1249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
-  depthBeforeSubmerged: 1.4
+  depthBeforeSubmerged: 5
   cubeVolume: 1.4
   floaterCount: 6
   waterDrag: 0.95
@@ -2380,7 +2380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
-  depthBeforeSubmerged: 1.4
+  depthBeforeSubmerged: 5
   cubeVolume: 1.4
   floaterCount: 6
   waterDrag: 0.95
@@ -2585,10 +2585,10 @@ MonoBehaviour:
   _cannonShotForce: 700
   _cannonsCooldown: 2
   _cannonFOV: 40
-  _maxHealth: 600
-  _speed: 800
+  _maxHealth: 1500
+  _speed: 1500
   _maxSpeed: 2000
-  _shipRotationSpeed: 130
+  _shipRotationSpeed: 200
 --- !u!1 &4350310416745252302
 GameObject:
   m_ObjectHideFlags: 0
@@ -5841,7 +5841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
-  depthBeforeSubmerged: 1.4
+  depthBeforeSubmerged: 5
   cubeVolume: 1.4
   floaterCount: 6
   waterDrag: 0.95
@@ -5891,7 +5891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
-  depthBeforeSubmerged: 1.4
+  depthBeforeSubmerged: 5
   cubeVolume: 1.4
   floaterCount: 6
   waterDrag: 0.95
@@ -7956,7 +7956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
-  depthBeforeSubmerged: 1.4
+  depthBeforeSubmerged: 5
   cubeVolume: 1.4
   floaterCount: 6
   waterDrag: 0.95
