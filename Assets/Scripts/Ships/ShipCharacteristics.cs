@@ -84,7 +84,6 @@ public class ShipCharacteristics : MonoBehaviour, ITakeDamage
     {
         CannonballsAmt = _maxCannonBallsAmt;
         _health = _maxHealth;
-        Debug.Log($"Current health: {_health}\n Current cannonballs Amt: {_cannonballsAmt}");
     }
 
     private void OnEnable()
