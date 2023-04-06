@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyShipController : ShipController
 {
+    public event Action Emergency;
     private const float VELOCITY_MULTIPLIER = 100f;
 
     [SerializeField] private float _allowedDistanceToPathFinder = 5.5f;
@@ -26,7 +27,7 @@ public class EnemyShipController : ShipController
         if (_pathFinder.navMeshAgent.isStopped == false)
             _pathFinder.navMeshAgent.isStopped = true;
 
-        PrepareShipSideForShooting();
+        AimAndShoot();
         MoveForward(_speedAndMaxSpeed.x);
 
         Vector3 newPos = transform.localPosition;
@@ -34,7 +35,7 @@ public class EnemyShipController : ShipController
         _pathFinder.transform.localPosition = newPos;
     }
 
-    private void PrepareShipSideForShooting()
+    private void AimAndShoot()
     {
         float rotateToSide;
         if (Vector3.Distance(_leftCannonsPlacement.position, _target.position) < Vector3.Distance(_rightCannonsPlacement.position, _target.position))
@@ -52,6 +53,14 @@ public class EnemyShipController : ShipController
             rotateToSide = -90;
         }
         RotateYToTarget(_target.position, rotateToSide);
+
+        if (_shipCharacteristics.NoCannonballs && _target != null)
+        {
+            Debug.Log("Emergency invoke");
+            _target = null;
+            Emergency?.Invoke();
+        }
+
     }
 
     private bool CannonsAreAimedAtTarget(List<Cannon> cannons)

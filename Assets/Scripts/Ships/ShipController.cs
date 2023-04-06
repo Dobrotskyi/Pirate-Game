@@ -27,6 +27,11 @@ public class ShipController : MonoBehaviour
         }
     }
 
+    public void Restock()
+    {
+        _shipCharacteristics.RestockHealthAndCannonballs();
+    }
+
     public void StopCannonsAiming()
     {
         foreach (Cannon cannon in _leftCannons)
@@ -70,6 +75,7 @@ public class ShipController : MonoBehaviour
     {
         _leftCannons = new List<Cannon>();
         _rightCannons = new List<Cannon>();
+        _shipCharacteristics = GetComponent<ShipCharacteristics>();
 
         SetCannons();
     }

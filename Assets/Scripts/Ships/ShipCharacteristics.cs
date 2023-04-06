@@ -9,23 +9,28 @@ public class ShipCharacteristics : MonoBehaviour, ITakeDamage
     [SerializeField] private int _maxHealth = 50;
     private int _health;
 
-    private int _cannonBallsAmt;
+    private int _cannonballsAmt;
     private int _maxCannonBallsAmt;
+    private bool _noCannonballs = false;
 
     private List<GameObject> _cannonballs = new List<GameObject>();
 
     public virtual int CannonballsAmt
     {
-        get { return _cannonBallsAmt; }
+        get { return _cannonballsAmt; }
         protected set
         {
-            if (value < 0)
-                _cannonBallsAmt = 0;
+            if (value <= 0)
+            {
+                _cannonballsAmt = 0;
+                _noCannonballs = true;
+            }
             else
             {
-                _cannonBallsAmt = value;
-                if (_cannonBallsAmt > _maxCannonBallsAmt)
-                    _cannonBallsAmt = _maxCannonBallsAmt;
+                _cannonballsAmt = value;
+                if (_cannonballsAmt > _maxCannonBallsAmt)
+                    _cannonballsAmt = _maxCannonBallsAmt;
+                _noCannonballs = false;
             }
         }
     }
@@ -44,6 +49,11 @@ public class ShipCharacteristics : MonoBehaviour, ITakeDamage
     {
         CannonballsAmt--;
         _cannonballs[CannonballsAmt].SetActive(false);
+    }
+
+    public bool NoCannonballs
+    {
+        get { return _noCannonballs; }
     }
 
     public void AddCannonballs(int amount)
@@ -68,6 +78,13 @@ public class ShipCharacteristics : MonoBehaviour, ITakeDamage
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public void RestockHealthAndCannonballs()
+    {
+        CannonballsAmt = _maxCannonBallsAmt;
+        _health = _maxHealth;
+        Debug.Log($"Current health: {_health}\n Current cannonballs Amt: {_cannonballsAmt}");
     }
 
     private void OnEnable()

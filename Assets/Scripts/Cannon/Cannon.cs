@@ -35,10 +35,10 @@ public class Cannon : MonoBehaviour
         _shipCharacteristics.CannonballFired();
         _lastShotTime = Time.time;
 
-        GameObject explosion = Instantiate(_afterShotSmokeEffect, _cannonballSpawner.position, _cannonballSpawner.rotation);
-        explosion.GetComponent<Rigidbody>().velocity = _shipRb.velocity * 0.7f;
-        _audioSource.PlayOneShot(_shotAudio);
+        PlayCannonShotEffects();
     }
+
+
 
     public bool Loaded()
     {
@@ -105,6 +105,13 @@ public class Cannon : MonoBehaviour
     protected Vector3 GetLaunchVector()
     {
         return _cannonShotForce * _cannonballSpawner.forward / _cannonballMass;
+    }
+
+    private void PlayCannonShotEffects()
+    {
+        GameObject explosion = Instantiate(_afterShotSmokeEffect, _cannonballSpawner.position, _cannonballSpawner.rotation);
+        explosion.GetComponent<Rigidbody>().velocity = _shipRb.velocity * 0.7f;
+        _audioSource.PlayOneShot(_shotAudio);
     }
 
     protected virtual void OnEnable()

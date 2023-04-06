@@ -32,11 +32,6 @@ public class EnemyPathFinder : MonoBehaviour
     private Vector3 _prevPos;
     private Villages _villages;
 
-    public void FindNewDock()
-    {
-        StartCoroutine(Docking());
-    }
-
     public void SetNewDestination(Vector3 point)
     {
         _navMeshAgent.destination = point;
@@ -48,6 +43,15 @@ public class EnemyPathFinder : MonoBehaviour
             return true;
 
         else return false;
+    }
+
+    public void FindNewDock()
+    {
+        if (SearchingForNewDock == false)
+        {
+            Debug.Log("Searching for new Dock");
+            StartCoroutine(Docking());
+        }
     }
 
     private IEnumerator Docking()
