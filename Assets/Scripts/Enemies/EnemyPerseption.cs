@@ -15,7 +15,7 @@ public class EnemyPerseption : MonoBehaviour
     }
     private BehaviourStates _currentBehaviourState;
     private Transform _currentTarget;
-    private bool _ignorePlayer = false;
+    private bool _ignoreTarget = false;
 
     private void OnEnable()
     {
@@ -33,7 +33,7 @@ public class EnemyPerseption : MonoBehaviour
         Debug.Log("Emergency trip to dock");
         _shipController.StopCannonsAiming();
         _currentBehaviourState = BehaviourStates.docked;
-        _ignorePlayer = true;
+        _ignoreTarget = true;
     }
 
     private void FixedUpdate()
@@ -52,13 +52,13 @@ public class EnemyPerseption : MonoBehaviour
                 if (_pathFinder.ShipHasReachedDock() && _pathFinder.SearchingForNewDock == false)
                 {
                     _currentBehaviourState = BehaviourStates.docked;
-                    _ignorePlayer = false;
+                    _ignoreTarget = false;
                     _shipController.Restock();
                 }
             }
         }
 
-        if (_ignorePlayer == false)
+        if (_ignoreTarget == false && _currentTarget != null)
         {
             if (_currentBehaviourState == BehaviourStates.chasingTarget)
             {
@@ -83,11 +83,17 @@ public class EnemyPerseption : MonoBehaviour
                 }
             }
         }
+        else if (_currentBehaviourState == BehaviourStates.attacking || _currentBehaviourState == BehaviourStates.chasingTarget
+                && _currentTarget == null)
+        {
+            _shipController.StopCannonsAiming();
+            _currentBehaviourState = BehaviourStates.docked;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("PlayerShip") && _ignorePlayer == false)
+        if (other.CompareTag("PlayerShip") && _ignoreTarget == false)
         {
             _currentTarget = other.transform;
             _shipController.SetNewTarget(_currentTarget);
@@ -97,7 +103,7 @@ public class EnemyPerseption : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("PlayerShip") && _ignorePlayer == false)
+        if (other.CompareTag("PlayerShip") && _ignoreTarget == false)
         {
             _shipController.StopCannonsAiming();
             _currentTarget = null;

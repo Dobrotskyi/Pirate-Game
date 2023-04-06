@@ -85,7 +85,7 @@ public class EnemyShipController : ShipController
         }
 
         if (distanceToPathFinder > _distanceWhenPathFinderToFar)
-            MoveForward(_pathFinder.TrackVelocity * 1.2f * VELOCITY_MULTIPLIER);
+            MoveForward(_pathFinder.TrackVelocity * 1.35f * VELOCITY_MULTIPLIER);
 
         else
         if (distanceToPathFinder > _allowedDistanceToPathFinder)
