@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class EnemyShipController : ShipController
 {
+    public static event Action Destroyed;
     public event Action Emergency;
+
     private const float VELOCITY_MULTIPLIER = 100f;
 
     [SerializeField] private float _allowedDistanceToPathFinder = 5.5f;
@@ -172,7 +174,9 @@ public class EnemyShipController : ShipController
         Transform mainObj = transform;
         while (mainObj.parent != null)
             mainObj = transform.parent;
+
         Destroy(mainObj.gameObject);
+        Destroyed?.Invoke();
     }
 
     private void OnTriggerEnter(Collider other)

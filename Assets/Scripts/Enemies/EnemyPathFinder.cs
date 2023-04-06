@@ -49,7 +49,6 @@ public class EnemyPathFinder : MonoBehaviour
     {
         if (SearchingForNewDock == false)
         {
-            Debug.Log("Searching for new Dock");
             StartCoroutine(Docking());
         }
     }
