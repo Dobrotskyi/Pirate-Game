@@ -1898,6 +1898,7 @@ MonoBehaviour:
   _cannonShotForce: 800
   _cannonsCooldown: 1
   _cannonFOV: -1
+  _maxHealth: 15
   _speed: 1600
   _maxSpeed: 2000
   _shipRotationSpeed: 400

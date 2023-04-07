@@ -20,7 +20,6 @@ public class EnemyShipController : ShipController
 
     private Vector2 _speedAndMaxSpeed = new Vector2(600, 900);
     private EnemyPathFinder _pathFinder;
-    private Rigidbody _rb;
     private Transform _target;
     private bool _canGoForward = true;
     private float _rotationSpeed = 1f;
@@ -161,20 +160,6 @@ public class EnemyShipController : ShipController
     {
         foreach (Cannon cannon in cannons)
             cannon.Aim();
-    }
-
-    private void FixedUpdate()
-    {
-        KeepHorizontalVelocityForward();
-    }
-
-    private void KeepHorizontalVelocityForward()
-    {
-        Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
-        Vector3 horizontalVelocity = Vector3.Scale(new Vector3(1, 0, 1), _rb.velocity);
-        horizontalVelocity = forward * horizontalVelocity.magnitude;
-        float verticalVelocity = _rb.velocity.y;
-        _rb.velocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
     }
 
     private void OnDestroy()

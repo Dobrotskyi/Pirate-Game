@@ -8,6 +8,7 @@ public class ShipController : MonoBehaviour
 {
     [SerializeField] protected float _delayBetweenShotsInSeconds = 0.3f;
     protected ShipCharacteristics _shipCharacteristics;
+    protected Rigidbody _rb;
 
     protected List<Cannon> _leftCannons;
     protected List<Cannon> _rightCannons;
@@ -78,5 +79,19 @@ public class ShipController : MonoBehaviour
         _shipCharacteristics = GetComponent<ShipCharacteristics>();
 
         SetCannons();
+    }
+
+    private void FixedUpdate()
+    {
+        KeepHorizontalVelocityForward();
+    }
+
+    private void KeepHorizontalVelocityForward()
+    {
+        Vector3 forward = Vector3.Scale(new Vector3(1, 0, 1), transform.forward);
+        Vector3 horizontalVelocity = Vector3.Scale(new Vector3(1, 0, 1), _rb.velocity);
+        horizontalVelocity = forward * horizontalVelocity.magnitude;
+        float verticalVelocity = _rb.velocity.y;
+        _rb.velocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
     }
 }
