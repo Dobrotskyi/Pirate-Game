@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerOnShipInputHandler))]
 public class PlayerOnShipInput : MonoBehaviour
 {
+    public static event Action GameOver;
+
     internal event Action Shoot;
     internal event Action AimingDirectionChanged;
     internal bool aimingLeft = false;
@@ -78,5 +80,11 @@ public class PlayerOnShipInput : MonoBehaviour
             rotate = true;
         else
             rotate = false;
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("GameOver was Invoked");
+        GameOver?.Invoke();
     }
 }
