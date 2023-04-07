@@ -84,7 +84,6 @@ public class PlayerOnShipInput : MonoBehaviour
 
     private void OnDisable()
     {
-        Debug.Log("GameOver was Invoked");
         GameOver?.Invoke();
     }
 }

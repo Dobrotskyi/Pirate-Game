@@ -132,13 +132,13 @@ public class PlayerShipController : ShipController
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Rock"))
+        if (other.CompareTag("Terrain"))
             _canMoveForward = false;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Rock"))
+        if (other.CompareTag("Terrain"))
             _canMoveForward = true;
     }
 }

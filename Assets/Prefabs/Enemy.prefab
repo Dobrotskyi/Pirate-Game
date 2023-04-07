@@ -1556,9 +1556,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delayBetweenShotsInSeconds: 0.3
-  _allowedDistanceToPathFinder: 5.5
+  _allowedDistanceToPathFinder: 3.5
   _fastFollowPathfinderDistance: 6
-  _pathFinderTooFarToChase: 15
+  _pathFinderTooFarToChase: 30
   _leftCannonsPlacement: {fileID: 2304607921035377542}
   _rightCannonsPlacement: {fileID: 2304607921775309255}
   _chaseDistance: 10
