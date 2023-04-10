@@ -83,6 +83,7 @@ public class ShipController : MonoBehaviour, ITakeDamage
         _leftCannons = new List<Cannon>();
         _rightCannons = new List<Cannon>();
         _shipCharacteristics = GetComponent<ShipCharacteristics>();
+        _rb = GetComponent<Rigidbody>();
 
         SetCannons();
     }
