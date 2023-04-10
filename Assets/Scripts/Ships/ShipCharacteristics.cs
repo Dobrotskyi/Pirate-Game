@@ -41,7 +41,7 @@ public class ShipCharacteristics : MonoBehaviour
         }
     }
 
-    public int Health
+    public virtual int Health
     {
         get{return _health;}
         set

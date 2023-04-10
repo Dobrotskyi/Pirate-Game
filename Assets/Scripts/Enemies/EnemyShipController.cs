@@ -77,7 +77,6 @@ public class EnemyShipController : ShipController
 
         if (_shipCharacteristics.NoCannonballs && _target != null)
         {
-            Debug.Log("Emergency invoke");
             _target = null;
             Emergency?.Invoke();
         }

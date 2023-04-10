@@ -28,7 +28,6 @@ public class EnemyPerseption : MonoBehaviour
 
     private void GoDockIgnoreTarget()
     {
-        Debug.Log("Emergency trip to dock");
         _shipController.StopCannonsAiming();
         _currentBehaviourState = BehaviourStates.docked;
         _ignoreTarget = true;
