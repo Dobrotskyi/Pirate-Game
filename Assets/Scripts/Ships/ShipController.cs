@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(ShipCharacteristics))]
-public class ShipController : MonoBehaviour
+public class ShipController : MonoBehaviour, ITakeDamage
 {
     [SerializeField] protected float _delayBetweenShotsInSeconds = 0.3f;
     protected ShipCharacteristics _shipCharacteristics;
@@ -13,20 +12,7 @@ public class ShipController : MonoBehaviour
     protected List<Cannon> _leftCannons;
     protected List<Cannon> _rightCannons;
 
-    protected virtual void SetCannons()
-    {
-        for (int i = 0; i < transform.Find("Cannons").childCount; i++)
-        {
-            if (transform.Find("Cannons").GetChild(i).localPosition.x < 0)
-            {
-                _leftCannons.Add(transform.Find("Cannons").GetChild(i).GetComponent<Cannon>());
-            }
-            else
-            {
-                _rightCannons.Add(transform.Find("Cannons").GetChild(i).GetComponent<Cannon>());
-            }
-        }
-    }
+
 
     public void Restock()
     {
@@ -51,6 +37,26 @@ public class ShipController : MonoBehaviour
     {
         if (AllCannonsAreLoaded(_rightCannons))
             StartCoroutine("ShootWithCannons", _rightCannons);
+    }
+
+    public void TakeDamage(int amt)
+    {
+        _shipCharacteristics.Health -= amt;
+    }
+
+    protected virtual void SetCannons()
+    {
+        for (int i = 0; i < transform.Find("Cannons").childCount; i++)
+        {
+            if (transform.Find("Cannons").GetChild(i).localPosition.x < 0)
+            {
+                _leftCannons.Add(transform.Find("Cannons").GetChild(i).GetComponent<Cannon>());
+            }
+            else
+            {
+                _rightCannons.Add(transform.Find("Cannons").GetChild(i).GetComponent<Cannon>());
+            }
+        }
     }
 
     protected bool AllCannonsAreLoaded(List<Cannon> cannons)

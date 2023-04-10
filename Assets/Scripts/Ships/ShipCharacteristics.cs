@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipCharacteristics : MonoBehaviour, ITakeDamage
+public class ShipCharacteristics : MonoBehaviour
 {
+    public event Action<int> HealthAmtChanged;
     [SerializeField] private float _cannonShotForce;
     [SerializeField] private float _cannonsCooldown;
     [SerializeField] private float _cannonFOV;
@@ -31,6 +33,20 @@ public class ShipCharacteristics : MonoBehaviour, ITakeDamage
                 if (_cannonballsAmt > _maxCannonBallsAmt)
                     _cannonballsAmt = _maxCannonBallsAmt;
                 _noCannonballs = false;
+            }
+        }
+    }
+
+    public int Health
+    {
+        get{return _health;}
+        set
+        {
+            _health = value;
+            HealthAmtChanged?.Invoke(_health);
+            if(_health <= 0)
+            {
+                Destroy(gameObject);
             }
         }
     }
@@ -71,24 +87,16 @@ public class ShipCharacteristics : MonoBehaviour, ITakeDamage
         return _cannonShotForce;
     }
 
-    public void TakeDamage(int amt)
-    {
-        _health -= amt;
-        if (_health <= 0)
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
     public void RestockHealthAndCannonballs()
     {
         CannonballsAmt = _maxCannonBallsAmt;
-        _health = _maxHealth;
+        Health = _maxHealth;
     }
 
     private void OnEnable()
     {
         _health = _maxHealth;
+        HealthAmtChanged?.Invoke(_health);
         Transform cannonballs = transform.Find("Cannonballs");
         for (int i = 0; i < cannonballs.childCount; i++)
         {

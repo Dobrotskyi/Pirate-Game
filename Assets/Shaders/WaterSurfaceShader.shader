@@ -6,12 +6,12 @@ Shader "Custom/WaterSurfaceShader"
 		_MainTex("Albedo (RGB)", 2D) = "white" {}
 		_Glossiness("Smoothness", Range(0,1)) = 0.5
 		_Metallic("Metallic", Range(0,1)) = 0.0
-			_WaveA("Wave A (dir, steepness, wavelength)", Vector) = (1,0,0.5,10)
-			_Speed1("WaveA Speed", float) = 2
-			_WaveB("Wave B", Vector) = (0,1,0.25,20)
-			_Speed2("WaveB Speed", float) = 1
-			_WaveC("Wave C", Vector) = (1,1,0.15,10)
-			_Speed3("WaveC Speed", float) = 2.3
+		_WaveA("Wave A (dir, steepness, wavelength)", Vector) = (1,0,0.5,10)
+		_Speed1("WaveA Speed", float) = 2
+		_WaveB("Wave B", Vector) = (0,1,0.25,20)
+		_Speed2("WaveB Speed", float) = 1
+		_WaveC("Wave C", Vector) = (1,1,0.15,10)
+		_Speed3("WaveC Speed", float) = 2.3
 	}
 		SubShader
 		{
