@@ -1,11 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealthBarShower : MonoBehaviour
+public class EnemyStatsBarShower : MonoBehaviour
 {
     [SerializeField] private float _showBarDistance = 40f;
-    [SerializeField] private GameObject _bar;
+    [SerializeField] private List<GameObject> _bars;
     private Transform _player;
 
     private void OnEnable()
@@ -17,20 +16,23 @@ public class EnemyHealthBarShower : MonoBehaviour
     {
         if (_player == null)
         {
-            _bar.SetActive(false);
+            foreach(GameObject bar in _bars)
+                bar.SetActive(false);
             this.enabled = false;
             return;
         }
 
         if (Vector3.Distance(_player.position, transform.position) <= _showBarDistance)
         {
-            if (_bar.activeSelf == false)
-                _bar.SetActive(true);
+            if (_bars[0].activeSelf == false)
+                foreach(GameObject bar in _bars)
+                    bar.SetActive(true);
         }
         else
         {
-            if (_bar.activeSelf == true)
-                _bar.SetActive(false);
+            if (_bars[0].activeSelf == true)
+                foreach(GameObject bar in _bars)
+                    bar.SetActive(false);
         }
     }
 }

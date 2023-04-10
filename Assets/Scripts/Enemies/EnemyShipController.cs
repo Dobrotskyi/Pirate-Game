@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -175,18 +174,13 @@ public class EnemyShipController : ShipController
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Untagged") == false)
-        {
-            Debug.Log($"Ship at position {transform.position} CANT move");
             _canGoForward = false;
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Untagged") == false)
-        {
-            Debug.Log($"Ship at position {transform.position} CAN move");
             _canGoForward = true;
-        }
+
     }
 }

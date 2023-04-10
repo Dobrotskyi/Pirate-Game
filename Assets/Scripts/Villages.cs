@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-
 public class Villages : MonoBehaviour
 {
     [SerializeField] private GameObject _ship;
@@ -79,7 +78,6 @@ public class Villages : MonoBehaviour
         {
             if (_docks[i].AttachedShip == null)
             {
-                Debug.Log("Spawning new ship");
                 GameObject ship = SpawnShip(_docks[i].Transform.position, _docks[i].Transform.rotation);
                 _docks[i].SetShip(ship);
                 yield break;

@@ -5,6 +5,8 @@ using UnityEngine;
 public class ShipCharacteristics : MonoBehaviour
 {
     public event Action<int> HealthAmtChanged;
+    public event Action<int> CannonballsAmtChanged;
+
     [SerializeField] private float _cannonShotForce;
     [SerializeField] private float _cannonsCooldown;
     [SerializeField] private float _cannonFOV;
@@ -34,6 +36,8 @@ public class ShipCharacteristics : MonoBehaviour
                     _cannonballsAmt = _maxCannonBallsAmt;
                 _noCannonballs = false;
             }
+            
+            CannonballsAmtChanged?.Invoke(_cannonballsAmt);
         }
     }
 

@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
 public class PlayerShipCharacteristics : ShipCharacteristics
 {
-    public static event Action<int> OnCannonballsAmtChanged;
+    public static new event Action<int> CannonballsAmtChanged;
     [SerializeField] private float _speed;
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _shipRotationSpeed;
@@ -15,7 +13,7 @@ public class PlayerShipCharacteristics : ShipCharacteristics
         protected set
         {
             base.CannonballsAmt = value;
-            OnCannonballsAmtChanged?.Invoke(base.CannonballsAmt);
+            CannonballsAmtChanged?.Invoke(base.CannonballsAmt);
         }
     }
 

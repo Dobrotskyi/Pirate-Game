@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthBarLookAtPlayer : MonoBehaviour
+public class StatsBarLookAtPlayer : MonoBehaviour
 {
     private Transform _player;
 
