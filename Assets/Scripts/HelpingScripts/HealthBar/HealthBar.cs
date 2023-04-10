@@ -4,19 +4,21 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Slider _healthBar;
+
+    [Header("Can leave it empty")]
     [SerializeField] private ShipCharacteristics _characteristics;
 
     private void OnEnable()
     {
         if(_characteristics == null)
-            FindCharacteristics();
+            FindCharacteristicsInParents();
 
         _healthBar.maxValue = _characteristics.Health;
         _healthBar.value = _characteristics.Health;
         _characteristics.HealthAmtChanged += UpdateHealthBarInfo;
     }
 
-    private void FindCharacteristics()
+    private void FindCharacteristicsInParents()
     {
         Transform current = transform;
         while (current.gameObject.TryGetComponent<ShipCharacteristics>(out _characteristics) == false && current.parent != null)

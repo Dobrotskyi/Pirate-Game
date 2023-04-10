@@ -95,8 +95,7 @@ public class ShipCharacteristics : MonoBehaviour
 
     private void OnEnable()
     {
-        _health = _maxHealth;
-        HealthAmtChanged?.Invoke(_health);
+        Health = _maxHealth;
         Transform cannonballs = transform.Find("Cannonballs");
         for (int i = 0; i < cannonballs.childCount; i++)
         {
