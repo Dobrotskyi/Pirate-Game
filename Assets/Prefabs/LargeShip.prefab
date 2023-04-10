@@ -1500,8 +1500,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3613701304156612208}
   - component: {fileID: 8160627485520964506}
-  - component: {fileID: 7896451202308036696}
-  - component: {fileID: 3874441641790378371}
   - component: {fileID: 151820541849368297}
   - component: {fileID: 4609445624197162844}
   - component: {fileID: 2024363454746561856}
@@ -1552,35 +1550,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _createdParentCMCameras: {fileID: 2831020602446040081}
---- !u!114 &7896451202308036696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3613701304156612209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f8137d94063ff04fad1ec0018a9d7e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _delayBetweenShotsInSeconds: 0.3
---- !u!114 &3874441641790378371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3613701304156612209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf73340571883274db53e338afbead40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cannonShotForce: 450
-  _cannonsCooldown: 1.4
-  _cannonFOV: 80
-  _maxHealth: 50
 --- !u!54 &151820541849368297
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ public class PlayerShipCharacteristics : ShipCharacteristics
 {
     public static new event Action<int> CannonballsAmtChanged;
     public static new event Action<int> HealthAmtChanged;
+    public static event Action<int> NewShipSpawned;
 
     [SerializeField] private float _speed;
     [SerializeField] private float _maxSpeed;
@@ -43,5 +44,11 @@ public class PlayerShipCharacteristics : ShipCharacteristics
     public float RotationSpeed
     {
         get { return _shipRotationSpeed; }
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        NewShipSpawned?.Invoke(Health);
     }
 }
