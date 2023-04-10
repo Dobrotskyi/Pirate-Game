@@ -91,7 +91,7 @@ public class ShipCharacteristics : MonoBehaviour
         return _cannonShotForce;
     }
 
-    public void RestockHealthAndCannonballs()
+    public void RestoreHealthAndCannonballs()
     {
         CannonballsAmt = _maxCannonBallsAmt;
         Health = _maxHealth;

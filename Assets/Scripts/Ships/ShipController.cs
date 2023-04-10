@@ -16,7 +16,7 @@ public class ShipController : MonoBehaviour, ITakeDamage
 
     public void Restock()
     {
-        _shipCharacteristics.RestockHealthAndCannonballs();
+        _shipCharacteristics.RestoreHealthAndCannonballs();
     }
 
     public void StopCannonsAiming()
