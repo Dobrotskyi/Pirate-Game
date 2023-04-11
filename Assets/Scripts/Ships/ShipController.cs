@@ -16,6 +16,7 @@ public class ShipController : MonoBehaviour, ITakeDamage
 
     public void Restock()
     {
+        Debug.Log("Restock");
         _shipCharacteristics.RestoreHealthAndCannonballs();
     }
 

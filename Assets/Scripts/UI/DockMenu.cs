@@ -50,9 +50,6 @@ public class DockMenu : MonoBehaviour
 
         Button upgradeButton = transform.Find("UpgradeShipButton").GetComponent<Button>();
         TextMeshProUGUI upgradeButtonText = transform.Find("UpgradeShipButton").GetChild(0).GetComponent<TextMeshProUGUI>();
-        Debug.Log(_score);
-        Debug.Log(_priceForUpgrade);
-        Debug.Log(_score - _priceForUpgrade >= 0);
         if (_score - _priceForUpgrade >= 0)
         {
             upgradeButton.enabled = true;
