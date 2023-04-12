@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyPerseption : MonoBehaviour
+public class EnemyBehaviourController: MonoBehaviour
 {
     [SerializeField] private EnemyShipController _shipController;
     [SerializeField] private EnemyPathFinder _pathFinder;
@@ -35,6 +35,9 @@ public class EnemyPerseption : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Dock.PlayerInDock)
+            return;
+
         transform.position = _shipController.transform.position;
         if (_currentBehaviourState == BehaviourStates.docked)
         {

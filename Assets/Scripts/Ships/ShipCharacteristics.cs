@@ -37,19 +37,19 @@ public class ShipCharacteristics : MonoBehaviour
                     _cannonballsAmt = _maxCannonBallsAmt;
                 _noCannonballs = false;
             }
-            
+
             CannonballsAmtChanged?.Invoke(_cannonballsAmt);
         }
     }
 
     public virtual int Health
     {
-        get{return _health;}
+        get { return _health; }
         set
         {
             _health = value;
             HealthAmtChanged?.Invoke(_health);
-            if(_health <= 0)
+            if (_health <= 0)
             {
                 DestroyThisObj();
             }
@@ -79,8 +79,6 @@ public class ShipCharacteristics : MonoBehaviour
 
     public void AddCannonballs(int amount)
     {
-        Debug.Log("AddCannonballs");
-        Debug.Log(amount);
         CannonballsAmt += amount;
         for (int i = 0; i < CannonballsAmt; i++)
         {
@@ -116,7 +114,8 @@ public class ShipCharacteristics : MonoBehaviour
 
     private void DestroyThisObj()
     {
-        _dropSpawner.DropItems(this);
+        if (_dropSpawner)
+            _dropSpawner.DropItems(this);
         Destroy(gameObject);
     }
 }

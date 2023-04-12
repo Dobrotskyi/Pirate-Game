@@ -15,6 +15,7 @@ public class DockMenu : MonoBehaviour
 
     public void CloseDockMenu()
     {
+        Dock.PlayerInDock = false;
         _menuIsOpen = false;
         foreach (Transform child in transform)
             child.gameObject.SetActive(!child.gameObject.activeSelf);
@@ -59,6 +60,7 @@ public class DockMenu : MonoBehaviour
 
     private void OpenMenu()
     {
+        Dock.PlayerInDock = true;
         UpdateButtonsInfo();
 
         foreach (Transform child in transform)
