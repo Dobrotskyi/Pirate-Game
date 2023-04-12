@@ -12,11 +12,8 @@ public class ShipController : MonoBehaviour, ITakeDamage
     protected List<Cannon> _leftCannons;
     protected List<Cannon> _rightCannons;
 
-
-
     public void Restock()
     {
-        Debug.Log("Restock");
         _shipCharacteristics.RestoreHealthAndCannonballs();
     }
 
