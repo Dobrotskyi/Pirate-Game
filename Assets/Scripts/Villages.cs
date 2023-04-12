@@ -68,10 +68,10 @@ public class Villages : MonoBehaviour
 
     private void RecalculateEnemies()
     {
-        StartCoroutine(ReplaceDestroyedShipShip());
+        StartCoroutine(ReplaceDestroyedShip());
     }
 
-    private IEnumerator ReplaceDestroyedShipShip()
+    private IEnumerator ReplaceDestroyedShip()
     {
         yield return new WaitForSeconds(_shipRespawnRate);
         for (int i = 0; i < _docks.Count; i++)

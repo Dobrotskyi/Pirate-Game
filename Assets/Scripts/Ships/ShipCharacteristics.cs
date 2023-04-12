@@ -18,6 +18,7 @@ public class ShipCharacteristics : MonoBehaviour
     private bool _noCannonballs = false;
 
     private List<GameObject> _cannonballs = new List<GameObject>();
+    private DropSpawner _dropSpawner;
 
     public virtual int CannonballsAmt
     {
@@ -50,7 +51,7 @@ public class ShipCharacteristics : MonoBehaviour
             HealthAmtChanged?.Invoke(_health);
             if(_health <= 0)
             {
-                Destroy(gameObject);
+                DestroyThisObj();
             }
         }
     }
@@ -78,6 +79,8 @@ public class ShipCharacteristics : MonoBehaviour
 
     public void AddCannonballs(int amount)
     {
+        Debug.Log("AddCannonballs");
+        Debug.Log(amount);
         CannonballsAmt += amount;
         for (int i = 0; i < CannonballsAmt; i++)
         {
@@ -107,5 +110,13 @@ public class ShipCharacteristics : MonoBehaviour
         }
         _maxCannonBallsAmt = cannonballs.childCount;
         CannonballsAmt = _maxCannonBallsAmt;
+
+        _dropSpawner = GetComponent<DropSpawner>();
+    }
+
+    private void DestroyThisObj()
+    {
+        _dropSpawner.DropItems(this);
+        Destroy(gameObject);
     }
 }
