@@ -7443,7 +7443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3131979809754139487, guid: 6595cbd8bccf550458ac9d8eb0193241, type: 3}
       propertyPath: m_Name
-      value: EnemyHealthBarCanvas
+      value: EnemyBarsCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 4321395264421748332, guid: 6595cbd8bccf550458ac9d8eb0193241, type: 3}
       propertyPath: m_PresetInfoIsWorld
@@ -7558,10 +7558,7 @@ PrefabInstance:
       value: 0.16862746
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 2055656820389443949, guid: 6595cbd8bccf550458ac9d8eb0193241, type: 3}
-    - {fileID: 4657623879507275955, guid: 6595cbd8bccf550458ac9d8eb0193241, type: 3}
     - {fileID: 2865965200759594649, guid: 6595cbd8bccf550458ac9d8eb0193241, type: 3}
-    - {fileID: 8421401698725599446, guid: 6595cbd8bccf550458ac9d8eb0193241, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6595cbd8bccf550458ac9d8eb0193241, type: 3}
 --- !u!224 &2352719344795913865 stripped
 RectTransform:

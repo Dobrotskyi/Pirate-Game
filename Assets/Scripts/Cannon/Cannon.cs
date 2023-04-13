@@ -95,7 +95,7 @@ public class Cannon : MonoBehaviour
         partToHit.y += _centerOfTargetYOffset;
         float launchAngle = CannonLaunchAngleCounter.GetLaunchAngle(_cannonballSpawner.position, partToHit, launchVector);
         if (float.IsNaN(launchAngle))
-            Debug.Log("Target out of reach");
+            {}
         else
             _barrel.transform.localRotation = Quaternion.Euler(launchAngle, 0, 0);
 

@@ -162,7 +162,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6044069512168490325}
   - component: {fileID: 2563587313399832218}
-  - component: {fileID: 2055656820389443949}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -243,18 +242,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2055656820389443949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1031418574574937735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c750598d2087f340a6f574823aac9c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2145557842177498417
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +252,6 @@ GameObject:
   m_Component:
   - component: {fileID: 919763918994859022}
   - component: {fileID: 7884717228408594050}
-  - component: {fileID: 4657623879507275955}
   m_Layer: 5
   m_Name: CannonballsBar
   m_TagString: Untagged
@@ -346,18 +332,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4657623879507275955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2145557842177498417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c750598d2087f340a6f574823aac9c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3131979809754139487
 GameObject:
   m_ObjectHideFlags: 0

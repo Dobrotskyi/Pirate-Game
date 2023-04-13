@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class StatsBarLookAtPlayer : MonoBehaviour
+public class ObjectLookAtPlayer : MonoBehaviour
 {
     private Transform _player;
 
