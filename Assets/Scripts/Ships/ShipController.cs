@@ -18,6 +18,7 @@ public class ShipController : MonoBehaviour, ITakeDamage
         animator.enabled = true;
         animator.Play("Sinking");
         StopCannonsAiming();
+        GetComponent<ShipExplosionOnSinking>().PlayExplosionEffect();
     }
 
     public void Restock()
