@@ -23,6 +23,15 @@ public class EnemyShipController : ShipController
     private bool _canGoForward = true;
     private float _rotationSpeed = 1f;
 
+    public override void Sinking()
+    {
+        base.Sinking();
+        GameObject bars = transform.Find("EnemyBarsCanvas").gameObject;
+        bars.SetActive(false);
+        Destroyed?.Invoke();
+        Destroy(this);
+    }
+
     internal void Attack()
     {
         if (_pathFinder.navMeshAgent.isStopped == false)
@@ -160,15 +169,15 @@ public class EnemyShipController : ShipController
             cannon.Aim();
     }
 
-    private void OnDestroy()
-    {
-        Transform mainObj = transform;
-        while (mainObj.parent != null)
-            mainObj = transform.parent;
+    // private void OnDestroy()
+    // {
+    //     Transform mainObj = transform;
+    //     while (mainObj.parent != null)
+    //         mainObj = transform.parent;
 
-        Destroy(mainObj.gameObject);
-        Destroyed?.Invoke();
-    }
+    //     Destroy(mainObj.gameObject);
+    //     Destroyed?.Invoke();
+    // }
 
     private void OnTriggerEnter(Collider other)
     {

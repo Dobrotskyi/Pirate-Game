@@ -5,7 +5,7 @@ using System;
 public class DropSpawner : MonoBehaviour
 {
     [SerializeField] private List<DropItem> _dropItems;
-    [SerializeField] private Vector2 _dropPosOffset = new Vector2(2, 2);
+    [SerializeField] private Vector2 _dropDissplacement = new Vector2(2, 2);
 
     [Serializable]
     private struct DropItem
@@ -24,8 +24,8 @@ public class DropSpawner : MonoBehaviour
             for (int i = 0; i < amt; i++)
             {
                 GameObject item = Instantiate(drop.Item);
-                float newX = UnityEngine.Random.Range(pos.x - _dropPosOffset.x, pos.x + _dropPosOffset.x);
-                float newZ = UnityEngine.Random.Range(pos.z - _dropPosOffset.y, pos.z + _dropPosOffset.y);
+                float newX = UnityEngine.Random.Range(pos.x - _dropDissplacement.x, pos.x + _dropDissplacement.x);
+                float newZ = UnityEngine.Random.Range(pos.z - _dropDissplacement.y, pos.z + _dropDissplacement.y);
                 item.transform.position = new Vector3(newX, transform.position.y, newZ);
                 item.GetComponent<CollectableItem>().GetResourceFromShip(shipCharacteristics, amt);
             }

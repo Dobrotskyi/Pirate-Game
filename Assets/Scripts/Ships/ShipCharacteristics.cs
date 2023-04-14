@@ -114,8 +114,9 @@ public class ShipCharacteristics : MonoBehaviour
 
     private void DestroyThisObj()
     {
+        GetComponent<ShipController>().Sinking();
         if (_dropSpawner)
             _dropSpawner.DropItems(this);
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }

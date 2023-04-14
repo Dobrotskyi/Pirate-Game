@@ -2314,6 +2314,7 @@ GameObject:
   - component: {fileID: 767730977930598948}
   - component: {fileID: 8350686668509390744}
   - component: {fileID: 198888999831717636}
+  - component: {fileID: -5900968405566275234}
   m_Layer: 0
   m_Name: BigShip
   m_TagString: PlayerShip
@@ -2498,6 +2499,26 @@ MonoBehaviour:
   _speed: 1500
   _maxSpeed: 2000
   _shipRotationSpeed: 200
+--- !u!95 &-5900968405566275234
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4350310416063003364}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 54f380f2020cf794b9d8da15f7c321e5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4350310416745252302
 GameObject:
   m_ObjectHideFlags: 0

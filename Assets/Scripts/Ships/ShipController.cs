@@ -12,6 +12,14 @@ public class ShipController : MonoBehaviour, ITakeDamage
     protected List<Cannon> _leftCannons;
     protected List<Cannon> _rightCannons;
 
+    public virtual void Sinking()
+    {
+        Animator animator = GetComponent<Animator>();
+        animator.enabled = true;
+        animator.Play("Sinking");
+        StopCannonsAiming();
+    }
+
     public void Restock()
     {
         _shipCharacteristics.RestoreHealthAndCannonballs();

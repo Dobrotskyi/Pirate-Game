@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyBehaviourController: MonoBehaviour
+public class EnemyBehaviourController : MonoBehaviour
 {
     [SerializeField] private EnemyShipController _shipController;
     [SerializeField] private EnemyPathFinder _pathFinder;
@@ -35,7 +35,7 @@ public class EnemyBehaviourController: MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Dock.PlayerInDock)
+        if (Dock.PlayerInDock || _shipController == null)
             return;
 
         transform.position = _shipController.transform.position;
