@@ -2495,10 +2495,10 @@ MonoBehaviour:
   _cannonShotForce: 700
   _cannonsCooldown: 2
   _cannonFOV: 40
-  _maxHealth: 1000
+  _maxHealth: 220
   _speed: 1500
   _maxSpeed: 2000
-  _shipRotationSpeed: 200
+  _shipRotationSpeed: 450
 --- !u!95 &-5900968405566275234
 Animator:
   serializedVersion: 4
