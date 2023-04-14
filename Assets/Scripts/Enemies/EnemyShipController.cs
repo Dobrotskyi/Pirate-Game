@@ -28,8 +28,8 @@ public class EnemyShipController : ShipController
         base.Sinking();
         GameObject bars = transform.Find("EnemyBarsCanvas").gameObject;
         bars.SetActive(false);
-        Destroyed?.Invoke();
-        Destroy(this);
+        StopCannonsAiming();
+        this.enabled = false;
     }
 
     internal void Attack()
@@ -169,15 +169,15 @@ public class EnemyShipController : ShipController
             cannon.Aim();
     }
 
-    // private void OnDestroy()
-    // {
-    //     Transform mainObj = transform;
-    //     while (mainObj.parent != null)
-    //         mainObj = transform.parent;
+    private void OnDestroy()
+    {
+        Transform mainObj = transform;
+        while (mainObj.parent != null)
+            mainObj = transform.parent;
 
-    //     Destroy(mainObj.gameObject);
-    //     Destroyed?.Invoke();
-    // }
+        Destroy(mainObj.gameObject);
+        Destroyed?.Invoke();
+    }
 
     private void OnTriggerEnter(Collider other)
     {

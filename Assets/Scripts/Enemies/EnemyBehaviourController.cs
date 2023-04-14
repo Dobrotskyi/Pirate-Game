@@ -35,7 +35,7 @@ public class EnemyBehaviourController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Dock.PlayerInDock || _shipController == null)
+        if (Dock.PlayerInDock || _shipController.enabled == false)
             return;
 
         transform.position = _shipController.transform.position;
