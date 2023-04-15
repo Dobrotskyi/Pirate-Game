@@ -638,7 +638,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849810191513464607}
-  m_LocalRotation: {x: 0.10624119, y: -0.00000001710896, z: 0.0000000018280222, w: 0.9943404}
+  m_LocalRotation: {x: 0.10624119, y: -0.000000017109, z: 0.0000000018280266, w: 0.9943404}
   m_LocalPosition: {x: 0, y: 5.66, z: -8.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1771,6 +1771,8 @@ GameObject:
   - component: {fileID: -9019026795433361350}
   - component: {fileID: 6935031221216126045}
   - component: {fileID: -8189355337570424770}
+  - component: {fileID: 5980779311683559859}
+  - component: {fileID: 3826540779883983892}
   m_Layer: 0
   m_Name: SmallShip
   m_TagString: PlayerShip
@@ -1898,7 +1900,7 @@ MonoBehaviour:
   _cannonShotForce: 800
   _cannonsCooldown: 1
   _cannonFOV: -1
-  _maxHealth: 200
+  _maxHealth: 25
   _speed: 1600
   _maxSpeed: 2000
   _shipRotationSpeed: 400
@@ -1918,6 +1920,40 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!95 &5980779311683559859
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3234836930430135051}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 54f380f2020cf794b9d8da15f7c321e5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3826540779883983892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3234836930430135051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04105abbe57722144a538b93cd1e76e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effect: {fileID: 6775909676889107040, guid: 4616942cf84829d468ba7d3429194ebf, type: 3}
+  _maxDelay: 8
 --- !u!1 &3234836930446538741
 GameObject:
   m_ObjectHideFlags: 0

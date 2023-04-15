@@ -32,6 +32,9 @@ public class PlayerOnShipInputHandler : MonoBehaviour
 
     private void ShootEventHandler()
     {
+        if(_shipController.enabled == false)
+            return;
+
         if (_playerInput.aimingLeft)
             _shipController.ShootLeft();
         else
@@ -40,6 +43,9 @@ public class PlayerOnShipInputHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_shipController.enabled == false)
+            return;
+
         float mouseVerticalInput = Input.GetAxis("Mouse Y");
         float mouseHorizontalInput = Input.GetAxis("Mouse X");
         Vector2 mouseInput = new Vector2(mouseHorizontalInput, mouseVerticalInput);

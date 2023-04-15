@@ -2315,6 +2315,7 @@ GameObject:
   - component: {fileID: 8350686668509390744}
   - component: {fileID: 198888999831717636}
   - component: {fileID: -5900968405566275234}
+  - component: {fileID: -5034701227709274383}
   m_Layer: 0
   m_Name: BigShip
   m_TagString: PlayerShip
@@ -2519,6 +2520,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-5034701227709274383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4350310416063003364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04105abbe57722144a538b93cd1e76e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effect: {fileID: 6775909676889107040, guid: 4616942cf84829d468ba7d3429194ebf, type: 3}
+  _maxDelay: 8
 --- !u!1 &4350310416745252302
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,11 +25,10 @@ public class EnemyShipController : ShipController
 
     public override void Sinking()
     {
-        base.Sinking();
         GameObject bars = transform.Find("EnemyBarsCanvas").gameObject;
         bars.SetActive(false);
         StopCannonsAiming();
-        this.enabled = false;
+        base.Sinking();
     }
 
     internal void Attack()
