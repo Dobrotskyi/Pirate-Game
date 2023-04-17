@@ -76,5 +76,8 @@ public class PlayerOnShipInputHandler : MonoBehaviour
             float direction = (float)Math.Round(Input.GetAxis("Horizontal"), 3);
             _shipController.Rotate(direction);
         }
+
+        if(_playerInput._closeGame)
+            Application.Quit();
     }
 }

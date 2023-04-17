@@ -11,6 +11,7 @@ public class PlayerOnShipInput : MonoBehaviour
     internal bool aimingRight = false;
     internal bool goForward = false;
     internal bool rotate = false;
+    internal bool _closeGame = false;
 
     private enum possibleAimingDirection
     {
@@ -57,6 +58,9 @@ public class PlayerOnShipInput : MonoBehaviour
             AimingDirectionChanged?.Invoke();
             _lastAimingDirection = _currentAimingDirection;
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+            _closeGame = true;
     }
 
     private void CheckKeyboardInput()
