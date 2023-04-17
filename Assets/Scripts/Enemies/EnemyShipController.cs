@@ -180,7 +180,7 @@ public class EnemyShipController : ShipController
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Untagged") == false)
+        if (other.CompareTag("Untagged") == false && other.isTrigger == false)
             _canGoForward = false;
     }
 
@@ -188,6 +188,5 @@ public class EnemyShipController : ShipController
     {
         if (other.CompareTag("Untagged") == false)
             _canGoForward = true;
-
     }
 }
