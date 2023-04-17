@@ -38,6 +38,12 @@ public class ShipCharacteristics : MonoBehaviour
                 _noCannonballs = false;
             }
 
+            for (int i = 0; i < CannonballsAmt; i++)
+            {
+                if (_cannonballs[i].activeSelf == false)
+                    _cannonballs[i].SetActive(true);
+            }
+
             CannonballsAmtChanged?.Invoke(_cannonballsAmt);
         }
     }
@@ -80,11 +86,6 @@ public class ShipCharacteristics : MonoBehaviour
     public void AddCannonballs(int amount)
     {
         CannonballsAmt += amount;
-        for (int i = 0; i < CannonballsAmt; i++)
-        {
-            if (_cannonballs[i].activeSelf == false)
-                _cannonballs[i].SetActive(true);
-        }
     }
 
     public float GetCannonsShotForce()
@@ -110,6 +111,7 @@ public class ShipCharacteristics : MonoBehaviour
         CannonballsAmt = _maxCannonBallsAmt;
 
         _dropSpawner = GetComponent<DropSpawner>();
+
     }
 
     private void DestroyThisObj()
