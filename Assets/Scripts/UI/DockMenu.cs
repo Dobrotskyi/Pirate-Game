@@ -44,17 +44,28 @@ public class DockMenu : MonoBehaviour
         _score = Convert.ToInt32(GameObject.FindGameObjectWithTag("ScoreCounter").GetComponent<TextMeshProUGUI>().text);
         _playerInputHandler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerOnShipInputHandler>();
         _playerInputHandler.enabled = false;
+        UpdateUpgradeButtonInfo();
+    }
 
-        TextMeshProUGUI upgradeButtonText = _upgradeButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+    private void UpdateUpgradeButtonInfo()
+    {
+        TextMeshProUGUI upgradeButtonObj = _upgradeButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+        Debug.Log(ShipManager.FinalShip);
+        if (ShipManager.FinalShip)
+        {
+            upgradeButtonObj.text = "You have the best ship";
+            return;
+        }
+
         if (_score - _priceForUpgrade >= 0)
         {
             _upgradeButton.enabled = true;
-            upgradeButtonText.text = "Upgrade ship, cost is: " + _priceForUpgrade;
+            upgradeButtonObj.text = "Upgrade ship, cost is: " + _priceForUpgrade;
         }
         else
         {
             _upgradeButton.enabled = false;
-            upgradeButtonText.text = "Not enough score to upgrade, price is: " + _priceForUpgrade;
+            upgradeButtonObj.text = "Not enough score to upgrade, price is: " + _priceForUpgrade;
         }
     }
 
