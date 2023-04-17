@@ -83,6 +83,7 @@ public class Villages : MonoBehaviour
     {
         GameObject ship = Instantiate(_ship);
         Vector3 spawnPosition = position;
+        spawnPosition.y = 0.5f;
         spawnPosition.x += UnityEngine.Random.Range(-_XZDissplacement.x, _XZDissplacement.x);
         spawnPosition.z += UnityEngine.Random.Range(-_XZDissplacement.y, _XZDissplacement.y);
         ship.transform.position = spawnPosition;

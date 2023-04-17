@@ -1619,13 +1619,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970ba3723171a1c4397cf8d590971ae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cannonShotForce: 500
+  _cannonShotForce: 650
   _cannonsCooldown: 1.4
   _cannonFOV: 140
   _maxHealth: 70
-  _speed: 1000
-  _maxSpeed: 1200
-  _shipRotationSpeed: 500
+  _speed: 1500
+  _maxSpeed: 1700
+  _shipRotationSpeed: 600
 --- !u!114 &4944808205066325807
 MonoBehaviour:
   m_ObjectHideFlags: 0
