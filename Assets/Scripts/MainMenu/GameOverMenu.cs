@@ -5,12 +5,12 @@ public class GameOverMenu : BasicMenu
     [SerializeField] GameObject _gameOverMenu;
     private void OnEnable()
     {
-       PlayerOnShipInput.GameOver += ShowGameOverMenu;
+       PlayerShipCharacteristics.GameOver += ShowGameOverMenu;
     }
 
     private void OnDisable()
     {
-        PlayerOnShipInput.GameOver -= ShowGameOverMenu;
+        PlayerShipCharacteristics.GameOver -= ShowGameOverMenu;
     }
 
     private void ShowGameOverMenu()

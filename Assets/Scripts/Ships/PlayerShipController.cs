@@ -60,11 +60,12 @@ public class PlayerShipController : ShipController
     protected override void OnEnable()
     {
         base.OnEnable();
+        _playerShipCharacteristics = GetComponent<PlayerShipCharacteristics>();
+        base._shipCharacteristics = _playerShipCharacteristics;
         _rb = GetComponent<Rigidbody>();
         _steeringWheel.transform.localPosition = new Vector3(_rb.centerOfMass.x, _rb.centerOfMass.y, _steeringWheel.transform.localPosition.z);
         GameObject.Find("Player").GetComponent<PlayerOnShipInputHandler>().SetShipController(this);
-        _playerShipCharacteristics = GetComponent<PlayerShipCharacteristics>();
-        base._shipCharacteristics = _playerShipCharacteristics;
+
 
         _mainLeftTarget = transform.Find("MainLeftTarget");
         _mainRightTarget = transform.Find("MainRightTarget");

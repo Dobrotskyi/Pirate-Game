@@ -5,6 +5,7 @@ public class PlayerShipCharacteristics : ShipCharacteristics
 {
     public static new event Action<int> CannonballsAmtChanged;
     public static new event Action<int> HealthAmtChanged;
+    public static event Action GameOver;
     public static event Action<int> NewShipSpawned;
 
     [SerializeField] private float _speed;
@@ -28,6 +29,8 @@ public class PlayerShipCharacteristics : ShipCharacteristics
         {
             base.Health = value;
             HealthAmtChanged?.Invoke(Health);
+            if(Health <= 0)
+                GameOver?.Invoke();
         }
     }
 
