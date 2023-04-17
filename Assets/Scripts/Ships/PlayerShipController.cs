@@ -127,4 +127,14 @@ public class PlayerShipController : ShipController
         if (other.CompareTag("Terrain"))
             _canMoveForward = true;
     }
+
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.transform.CompareTag("Terrain"))
+            foreach (ContactPoint contact in collision.contacts)
+            {
+                Debug.DrawRay(contact.point, contact.normal, Color.red);
+                _rb.AddForceAtPosition(contact.normal * 5f, contact.point, ForceMode.Acceleration);
+            }
+    }
 }
