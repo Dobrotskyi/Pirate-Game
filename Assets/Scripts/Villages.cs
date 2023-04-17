@@ -6,6 +6,7 @@ public class Villages : MonoBehaviour
 {
     [SerializeField] private GameObject _ship;
     [SerializeField] private float _shipRespawnRate = 3f;
+    private Vector2 _XZDissplacement = new Vector2(5, 5);
 
     private List<Dock> _docks = new List<Dock>();
 
@@ -53,14 +54,6 @@ public class Villages : MonoBehaviour
         EnemyShipController.Destroyed += RecalculateEnemies;
     }
 
-    private GameObject SpawnShip(Vector3 position, Quaternion rotation)
-    {
-        GameObject ship = Instantiate(_ship);
-        ship.transform.position = position;
-        ship.transform.rotation = rotation;
-        return ship;
-    }
-
     private void OnDisable()
     {
         EnemyShipController.Destroyed -= RecalculateEnemies;
@@ -74,15 +67,26 @@ public class Villages : MonoBehaviour
     private IEnumerator ReplaceDestroyedShip()
     {
         yield return new WaitForSeconds(_shipRespawnRate);
+        List<Dock> docksNoShip = new List<Dock>();
         for (int i = 0; i < _docks.Count; i++)
         {
             if (_docks[i].AttachedShip == null)
-            {
-                GameObject ship = SpawnShip(_docks[i].Transform.position, _docks[i].Transform.rotation);
-                _docks[i].SetShip(ship);
-                yield break;
-            }
+                docksNoShip.Add(_docks[i]);
         }
+        int index = new System.Random().Next(0, docksNoShip.Count);
+        GameObject newShip = SpawnShip(docksNoShip[index].Transform.position, docksNoShip[index].Transform.rotation);
+        docksNoShip[index].SetShip(newShip);
         yield break;
+    }
+
+    private GameObject SpawnShip(Vector3 position, Quaternion rotation)
+    {
+        GameObject ship = Instantiate(_ship);
+        Vector3 spawnPosition = position;
+        spawnPosition.x += UnityEngine.Random.Range(-_XZDissplacement.x, _XZDissplacement.x);
+        spawnPosition.z += UnityEngine.Random.Range(-_XZDissplacement.y, _XZDissplacement.y);
+        ship.transform.position = spawnPosition;
+        ship.transform.rotation = rotation;
+        return ship;
     }
 }

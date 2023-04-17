@@ -47,7 +47,6 @@ public class ShipCharacteristics : MonoBehaviour
         get { return _health; }
         set
         {
-            Debug.Log("Base set");
             _health = value;
             HealthAmtChanged?.Invoke(_health);
             if (_health <= 0)
