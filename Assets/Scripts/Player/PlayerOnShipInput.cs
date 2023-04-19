@@ -31,7 +31,7 @@ public class PlayerOnShipInput : MonoBehaviour
 
     private void CheckMouseInput()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && aimingRight == false)
         {
             aimingLeft = true;
             aimingRight = false;
@@ -39,7 +39,7 @@ public class PlayerOnShipInput : MonoBehaviour
         }
         else
         {
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButton(1) && aimingLeft == false)
             {
                 aimingRight = true;
                 aimingLeft = false;
