@@ -45,7 +45,6 @@ public class SmallShipController : PlayerShipController
             newX = Mathf.Clamp(newX, -_targetXLimits[1], -_targetXLimits[0]);
         }
         _mainRightTarget.localPosition = new Vector3(newX, _mainRightTarget.localPosition.y, _mainRightTarget.localPosition.z);
-        _mainRightTarget.position = new Vector3(_mainRightTarget.position.x, 0, _mainRightTarget.position.z);
 
         foreach (Cannon cannon in _rightCannons)
             cannon.Aim();

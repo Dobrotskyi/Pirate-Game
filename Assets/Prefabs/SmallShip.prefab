@@ -1781,9 +1781,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delayBetweenShotsInSeconds: 0.3
-  _sensivity: {x: 8, y: 40}
+  _sensivity: {x: 4, y: 80}
   _targetXLimits:
-  - 3
+  - 5
   - 50
   _targetZLimits:
   - -10
