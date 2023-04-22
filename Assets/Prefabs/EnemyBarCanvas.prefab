@@ -435,7 +435,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483647
 --- !u!114 &2865965200759594649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,7 +450,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 2563587313399832218}
   _cannonballsBar: {fileID: 7884717228408594050}
-  _characteristics: {fileID: 0}
 --- !u!114 &1548822228374409567
 MonoBehaviour:
   m_ObjectHideFlags: 0

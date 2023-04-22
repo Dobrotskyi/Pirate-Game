@@ -6,13 +6,11 @@ public class EnemyStatsBar : MonoBehaviour
     [SerializeField] private Slider _healthBar;
     [SerializeField] private Slider _cannonballsBar;
 
-    [Header("Can leave it empty")]
-    [SerializeField] private ShipCharacteristics _characteristics;
+    private ShipCharacteristics _characteristics;
 
     private void OnEnable()
     {
-        if (_characteristics == null)
-            FindCharacteristicsInParents();
+        FindCharacteristicsInParents();
 
         _healthBar.maxValue = _characteristics.Health;
         _healthBar.value = _characteristics.Health;
