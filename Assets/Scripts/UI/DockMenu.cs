@@ -22,6 +22,8 @@ public class DockMenu : MonoBehaviour
         _playerInputHandler.enabled = true;
 
         _restockButton.onClick.RemoveListener(RestockAction);
+
+        CursorController.SetCursorOff();
     }
 
     public void UpgradeShip()
@@ -50,7 +52,6 @@ public class DockMenu : MonoBehaviour
     private void UpdateUpgradeButtonInfo()
     {
         TextMeshProUGUI upgradeButtonObj = _upgradeButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-        Debug.Log(ShipManager.FinalShip);
         if (ShipManager.FinalShip)
         {
             upgradeButtonObj.text = "You have the best ship";
@@ -71,6 +72,7 @@ public class DockMenu : MonoBehaviour
 
     private void OpenMenu()
     {
+        CursorController.SetCursorOn();
         Dock.PlayerInDock = true;
         UpdateButtonsInfo();
 
