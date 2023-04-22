@@ -1,5 +1,5 @@
 # Pirate-Game
-This project was built for portfolio.
+This project was built for a portfolio.
 
 You can play the game by downloading the Build.rar unpacking it and launching the .exe file.
 
