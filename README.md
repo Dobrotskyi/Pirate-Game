@@ -8,7 +8,7 @@ For this project i`ve developed AI that attacks player, roams through docks, res
 such as others ships or rocks.
 Tasks like creating waves, environment and creating AI were quite a challenge,
 but i think i made it well.
-For AI pathfinging i`ve used NavMesh.
+For AI pathfinging i`ve used NavMesh. 
 
 # Here are some screenshots. 
 ![GameMainMenuTitle](https://user-images.githubusercontent.com/118120050/233713421-711cc701-cebb-4896-97b1-26492b7b4575.png)
