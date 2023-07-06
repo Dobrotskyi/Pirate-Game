@@ -4,7 +4,10 @@ This project was built for a portfolio.
 You can play the game by downloading the Build.rar unpacking it and launching the .exe file also you can watch some videos of this game at my channel https://www.youtube.com/channel/UC2OqrtKZ_YkSEKxAyMEWSow
 
 In the game, you will be able to sail on three different ships, buy new ships, and experience the spirit of unequal naval battles.
-For this project i`ve developed AI that attacks player, roams through docks, ressuplies its needs and avoid obstacles such as other ships or rocks. Tasks like creating waves, environment and creating AI were quite a challenge, but i think i made it well. For AI pathfinding i`ve used NavMesh.
+
+For this project i have developed AI that attacks player, roams through docks, ressuplies its needs and avoid obstacles such as other ships or rocks. Tasks like creating waves, environment and creating AI were quite a challenge, but i think i made it well.
+
+For AI pathfinding i used NavMesh.
 
 # Here are some screenshots. 
 ![GameMainMenuTitle](https://user-images.githubusercontent.com/118120050/233713421-711cc701-cebb-4896-97b1-26492b7b4575.png)
